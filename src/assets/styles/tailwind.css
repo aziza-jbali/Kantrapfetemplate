@@ -3038,3 +3038,15 @@ select {
 
 @media (min-width: 1536px) {
 }
+.color-black{
+  color:black
+}
+.color-white{
+  color: white;
+}
+.navbar-visitor{
+    background-color: #F3F2F3; /* شفاف */
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* shadow */
+
+
+}

@@ -13,7 +13,7 @@ import video2 from "../assets/videos/hh.mp4";
 import video3 from "../assets/videos/bb.mp4";
 import Vistornavbar from "components/Navbars/Vistornavbar";
 import KarmaAutoSection from "components/Backgroundcards/KarmaAutoSection";
-
+import ServicesAndWhyUs from "components/ServiceandWhyUs/ServiceandWhyUs";
 
 export default function Index() {
   return (
@@ -23,10 +23,18 @@ export default function Index() {
       {/* <section>
         <KarmaAutoSection />
       </section> */}
-       <Vistornavbar />
+      <Vistornavbar />
       <section>
         <KarmaAutoSection />
       </section>
+      <div style={{ width: "100%" }}>
+        <div
+          style={{ maxWidth: "1200px", margin: "auto", paddingBottom: "10px" }}
+        ></div>
+        <section>
+          <ServicesAndWhyUs />
+        </section>
+      </div>
       <div style={{ width: "100%" }} className="bago">
         <div
           style={{ maxWidth: "1200px", margin: "auto", paddingBottom: "10px" }}
@@ -46,7 +54,7 @@ export default function Index() {
         </div>
       </div>
 
-      <section className="mt-48 md:mt-40 pb-40 relative bg-blueGray-100">
+      <section className="pb-40 relative bg-blueGray-100" style={{border:"1px red solid"}}>
         <div className="justify-center text-center flex flex-wrap mt-24">
           <div className="w-full md:w-6/12 px-12 md:px-4">
             <h2 className="font-semibold text-4xl">Beautiful Example Pages</h2>
@@ -115,7 +123,7 @@ export default function Index() {
       </section>
 
       <section className="py-20 bg-blueGray-600 overflow-hidden">
-        <div className="container mx-auto pb-64">
+        {/* <div className="container mx-auto pb-64">
           <div className="flex flex-wrap justify-center">
             <div className="w-full md:w-5/12 px-12 md:px-4 ml-auto mr-auto md:mt-64">
               <div className="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-white">
@@ -126,13 +134,13 @@ export default function Index() {
               </h3>
               <p className="text-lg font-light leading-relaxed mt-4 mb-4 text-blueGray-400">
                 Since{" "}
-                <a
+                 <a
                   href="https://tailwindcss.com/?ref=creativetim"
                   className="text-blueGray-300"
                   target="_blank"
                 >
                   Tailwind CSS
-                </a>{" "}
+                </a>{" "} 
                 is an open source project we wanted to continue this movement
                 too. You can give this version a try to feel the design and also
                 test the quality of the code!
@@ -154,7 +162,7 @@ export default function Index() {
               <i className="fab fa-github text-blueGray-700 absolute -top-150-px -right-100 left-auto opacity-80 text-55"></i>
             </div>
           </div>
-        </div>
+        </div> */}
       </section>
 
       <section className="pb-16 bg-blueGray-200 relative pt-32">

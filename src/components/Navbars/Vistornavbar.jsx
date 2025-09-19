@@ -1,75 +1,55 @@
-import react from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import React from "react";
+
 function Vistornavbar() {
   return (
-    <div style={{ border: "red 1 px solid" }}>
-      <nav class="navbar navbar-expand-lg  shadow-sm fixed-top">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">
+    <nav className="relative navbar-visitor  flex flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg  ">
+      <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
+        <div className="w-full relative flex justify-between lg:w-auto  px-4 lg:static lg:block lg:justify-start">
+          <a
+            className="text-2xl font-bold leading-relaxed inline-block mr-4 py-2 whitespace-no-wrap uppercase color-black no-underline"
+            href="#pablo"
+          >
             Karama-Auto
           </a>
           <button
-            class="navbar-toggler"
+            className="cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
             type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNavDropdown"
-            aria-controls="navbarNavDropdown"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
           >
-            <span class="navbar-toggler-icon"></span>
+            <span className="block relative w-6 h-px rounded-sm bg-white"></span>
+            <span className="block relative w-6 h-px rounded-sm bg-white mt-1"></span>
+            <span className="block relative w-6 h-px rounded-sm bg-white mt-1"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">
-                  Home
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  Features
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  Pricing
-                </a>
-              </li>
-              <li class="nav-item dropdown">
-                <a
-                  class="nav-link dropdown-toggle"
-                  href="#"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  Dropdown link
-                </a>
-                <ul class="dropdown-menu">
-                  <li>
-                    <a class="dropdown-item" href="#">
-                      Action
-                    </a>
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="#">
-                      Another action
-                    </a>
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="#">
-                      Something else here
-                    </a>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </div>
         </div>
-      </nav>
-    </div>
+        <div className="lg:flex flex-grow items-center">
+          <ul className="flex flex-col lg:flex-row list-none ml-auto">
+            <li className="nav-item">
+              <a
+                className="px-3 py-2 flex no-underline items-center text-lg uppercase font-bold leading-snug color-black hover:opacity-75  "
+                href="#pablo"
+              >
+                Discover
+              </a>
+            </li>
+            <li className="nav-item">
+              <a
+                className="px-3 no-underline py-2 flex items-center text-lg uppercase font-bold leading-snug color-black  hover:opacity-75"
+                href="#pablo"
+              >
+                Profile
+              </a>
+            </li>
+            <li className="nav-item">
+              <a
+                className="px-3 py-2 no-underline flex items-center text-lg uppercase font-bold leading-snug color-black hover:opacity-75"
+                href="#pablo"
+              >
+                Setting
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
   );
 }
 
