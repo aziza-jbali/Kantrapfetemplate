@@ -12,63 +12,57 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import video from "../assets/videos/oo.mp4";
 import Vistornavbar from "components/Navbars/Vistornavbar";
-
+import carsofhandicaped from "../assets/img/carsofhandicaped.jpg";
+import sss from "../assets/img/sss.jpg";
+import SearchSection from "components/Navbars/SearchSection";
 
 export default function Landing() {
   return (
     <>
       {/* <Navbar transparent /> */}
-      <Vistornavbar/>
+      <Vistornavbar />
       <main>
-        {/* <section
+        {/* <div
           style={{
-            border: "1px red solid",
-            overflow: "hidden",
+            backgroundColor: "grey",
+            // overflow: "hidden",
             width: "100vw",
             height: "900px",
+            border: "1px red solid",
+            overflow: "hidden",
           }}
         >
-          <img
-            src={image1}
-            alt=""
+          <div
             style={{
               width: "100%",
               height: "100%",
-              objectFit: "cover",
+              backgroundImage: `url(${carsofhandicaped})`,
+              // backgroundSize: "cover",
+              backgroundPosition: "top", // يحافظ على الرأس
             }}
-          />
-        </section> */}
-        <section
-  style={{
-    backgroundColor:"grey",
-    // overflow: "hidden",
-    width: "100vw",
-    height: "900px",
-    position: "relative",
+          ></div>
+        </div> */}
+        {/* الصورة */}
+        {/* <div className="relative pt-16 pb-32 flex content-center items-center justify-center min-h-screen-75"> */}
+          <div
+            className="w-full h-screen bg-center bg-cover"
+            style={{
+              backgroundImage: `url(${sss})`,
+            }}
+          >
+            <span className="w-full h-full  opacity-50 block"></span>
+          </div>
+        {/* </div> */}
 
-  }}
->
-  <video
-
-    src={video}        // هذا متغير الفيديو المستورد
-    autoPlay             // تشغيل تلقائي
-    loop                 // تكرار مستمر
-    muted                // بدون صوت (مهم لتشغيل autoplay في المتصفحات)
-    style={{
-      width: "100%",
-      height: "100%",
-      objectFit: "cover",
-       borderBottomRightRadius:"500px",
-
-    }}
-  />
-</section>
-
-        <div style={{height:"100vh",backgroundColor:"grey"}}>          <Cardsvehiculs />
-
+        {/* Cards تحت الصورة */}
+        <section>
+          <SearchSection/>
+        </section>
+        <div style={{ marginTop: "50px" }}>
+          <Cardsvehiculs />
         </div>
-          {/* <Cardsvehiculs /> */}
-        
+
+        {/* <Cardsvehiculs /> */}
 
         <section className="relative py-20">
           <div
