@@ -117,6 +117,7 @@ import car3 from "../../assets/img/car3.jpg";
 import car4 from "../../assets/img/car4.jpg";
 import car5 from "../../assets/img/car5.jpg";
 import car6 from "../../assets/img/car6.jpg";
+import { Link } from "react-router-dom";
 
 
 
@@ -197,7 +198,8 @@ function Cardsvehiculs() {
                     <li>Transmission: <span className="fw-bold ms-1">{car.transmission}</span></li>
                     <li>Minimum age: <span className="fw-bold ms-1">{car.minAge} years</span></li>
                   </ul>
-                  <button className="btn btn-primary w-100">Rent Now</button>
+                  {/* <button className="btn btn-primary w-100">Rent Now</button> */}
+                  
                 </div>
               </div>
             </div>

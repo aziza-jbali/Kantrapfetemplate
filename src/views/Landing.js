@@ -66,7 +66,7 @@ export default function Landing() {
         <div style={{ marginTop: "50px" }}>
           <Cardsvehiculs />
         </div>
-         <div style={{ marginTop: "50px" }}>
+         <div >
           <OurServices/>
         </div>
 
