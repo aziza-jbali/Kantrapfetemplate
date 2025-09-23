@@ -1,59 +1,76 @@
 import React, { useState } from "react";
 
-function SearchSection() {
-  const [pickupDate, setPickupDate] = useState("");
-  const [dropDate, setDropDate] = useState("");
+// import React from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
-  const handleSearch = () => {
-    console.log("Searching cars:", { pickupDate, dropDate });
-  };
-
+function TripForm () {
   return (
-    <section className="bg-white py-8 px-6 shadow-lg rounded-lg max-w-5xl mx-auto">
-      <h2 className="text-2xl font-bold text-gray-800 text-center mb-6">
-        Find Your Car
-      </h2>
-
-      {/* Flex Row */}
-      <div className="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-6">
-        {/* Pickup Date */}
-        <div className="w-full md:w-1/3">
-          <label className="block text-gray-700 font-medium mb-2">
-            Pickup Date
-          </label>
-          <input
-            type="date"
-            value={pickupDate}
-            onChange={(e) => setPickupDate(e.target.value)}
-            className="w-full p-3 border border-gray-400 rounded-lg shadow-sm focus:outline-none focus:border-gray-700"
-          />
+    <div className="container my-5">
+      <form className="trip-form bg-white p-4 shadow rounded">
+        {/* العنوان وعدد السيارات */}
+        <div className="row align-items-center mb-4">
+          <div className="col-md-6">
+            <h3 className="m-0">Begin your trip here</h3>
+          </div>
+          <div className="col-md-6 text-md-end">
+            <span className="text-primary fw-bold">32</span>{" "}
+            <span>cars available</span>
+          </div>
         </div>
 
-        {/* Drop Date */}
-        <div className="w-full md:w-1/3">
-          <label className="block text-gray-700 font-medium mb-2">
-            Drop Date
-          </label>
-          <input
-            type="date"
-            value={dropDate}
-            onChange={(e) => setDropDate(e.target.value)}
-            className="w-full p-3 border border-gray-400 rounded-lg shadow-sm focus:outline-none focus:border-gray-700"
-          />
+        {/* الفورم */}
+        <div className="row g-3">
+          <div className="col-md-3">
+            <label htmlFor="cf-1" className="form-label">
+              Where you from
+            </label>
+            <input
+              type="text"
+              id="cf-1"
+              placeholder="Your pickup address"
+              className="form-control"
+            />
+          </div>
+
+          <div className="col-md-3">
+            <label htmlFor="cf-2" className="form-label">
+              Where you go
+            </label>
+            <input
+              type="text"
+              id="cf-2"
+              placeholder="Your drop-off address"
+              className="form-control"
+            />
+          </div>
+
+          <div className="col-md-3">
+            <label htmlFor="cf-3" className="form-label">
+              Journey date
+            </label>
+            <input type="date" id="cf-3" className="form-control" />
+          </div>
+
+          <div className="col-md-3">
+            <label htmlFor="cf-4" className="form-label">
+              Return date
+            </label>
+            <input type="date" id="cf-4" className="form-control" />
+          </div>
         </div>
 
-        {/* Search Button */}
-        <div className="w-full md:w-auto flex items-end">
-          <button
-            onClick={handleSearch}
-            className="bg-gray-800 hover:bg-gray-900 text-white font-bold py-3 px-8 rounded-lg shadow-md transition duration-300 w-full md:w-auto"
-          >
-            🔍 Search
-          </button>
+        {/* الزر */}
+        <div className="row mt-4">
+          <div className="col-lg-6">
+            <button type="submit" className="btn btn-primary">
+              Submit
+            </button>
+          </div>
         </div>
-      </div>
-    </section>
+      </form>
+    </div>
   );
-}
+};
 
-export default SearchSection;
+export default TripForm;

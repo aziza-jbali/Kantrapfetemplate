@@ -15,6 +15,7 @@ import Vistornavbar from "components/Navbars/Vistornavbar";
 import carsofhandicaped from "../assets/img/carsofhandicaped.jpg";
 import sss from "../assets/img/sss.jpg";
 import SearchSection from "components/Navbars/SearchSection";
+import OurServices from "components/Main/OurServices";
 
 export default function Landing() {
   return (
@@ -55,15 +56,22 @@ export default function Landing() {
         {/* </div> */}
 
         {/* Cards تحت الصورة */}
-        <section>
-          <SearchSection/>
+        <section >
+         <div style={{width:"100%"}}>
+          <div  style={{ maxWidth: "1200px", margin: "auto", paddingBottom: "10px" }}> 
+             <SearchSection/>
+          </div>
+         </div>
         </section>
         <div style={{ marginTop: "50px" }}>
           <Cardsvehiculs />
         </div>
+         <div style={{ marginTop: "50px" }}>
+          <OurServices/>
+        </div>
 
         {/* <Cardsvehiculs /> */}
-
+{/* 
         <section className="relative py-20">
           <div
             className="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20 h-20"
@@ -153,7 +161,7 @@ export default function Landing() {
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
 
         <section className="pt-20 pb-48">
           <div className="container mx-auto px-4">
