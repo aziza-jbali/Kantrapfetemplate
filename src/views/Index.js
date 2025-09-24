@@ -33,6 +33,7 @@ export default function Index() {
         ></div>
         <section>
           <ServicesAndWhyUs />
+          
         </section>
       </div>
       <div style={{ width: "100%" }} className="bago">

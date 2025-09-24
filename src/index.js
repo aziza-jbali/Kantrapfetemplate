@@ -15,6 +15,7 @@ import Auth from "layouts/Auth.js";
 import Landing from "views/Landing.js";
 import Profile from "views/Profile.js";
 import Index from "views/Index.js";
+import CarBooking from "views/user/Carbooking";
 
 ReactDOM.render(
   <BrowserRouter>
@@ -26,6 +27,8 @@ ReactDOM.render(
       <Route path="/landing" exact component={Landing} />
       <Route path="/profile" exact component={Profile} />
       <Route path="/" exact component={Index} />
+      <Route path="/booking/:id" element component={CarBooking} />
+
       {/* add redirect for first page */}
       <Redirect from="*" to="/" />
     </Switch>
