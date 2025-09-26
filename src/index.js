@@ -8,6 +8,7 @@ import "assets/styles/tailwind.css";
 // layouts
 
 import Admin from "layouts/Admin.js";
+import Adminagencedevoiture from "layouts/Adminagencedevoiture";
 import Auth from "layouts/Auth.js";
 
 // views without layouts
@@ -16,7 +17,7 @@ import Landing from "views/Landing.js";
 import Profile from "views/Profile.js";
 import Index from "views/Index.js";
 import CarBooking from "views/user/Carbooking";
-
+import Dashboardagencedevoiture from "views/admin/Dashboardagencedevoiture";
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
@@ -28,6 +29,9 @@ ReactDOM.render(
       <Route path="/profile" exact component={Profile} />
       <Route path="/" exact component={Index} />
       <Route path="/booking/:id" element component={CarBooking} />
+      {/* <Route path="/Dashboardagencedevoiture" element component={Dashboardagencedevoiture} /> */}
+
+      <Route path="/dashboardagencedevoiture" exact component={Adminagencedevoiture} />
 
       {/* add redirect for first page */}
       <Redirect from="*" to="/" />
