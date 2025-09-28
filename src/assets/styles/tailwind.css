@@ -2464,7 +2464,7 @@ select {
 }
 
 .no-underline {
-  text-decoration: none;
+  text-decoration: none !important ;
 }
 
 .antialiased {
@@ -3053,3 +3053,4 @@ select {
 .patop-30{
   padding-top: 30px;
 }
+
