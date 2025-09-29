@@ -1,24 +1,33 @@
 import React, { useState } from "react";
 
-export default function CarForm() {
+export default function AddCarForm() {
   const [formData, setFormData] = useState({
-    name: "",
-    brand: "",
-    price: "",
-    year: "",
-    model: "",
-    fuel: "",
-    mileage: "",
-    seats: "",
-    category: "",
+    nom: "",
+    marque: "",
+    prix: "",
+    année: "",
+    modèle: "",
+    carburant: "",
+    kilométrage: "",
+    sièges: "",
+    catégorie: "",
     transmission: "",
     description: "",
     image: null,
+    rampe: false,
+    élévateur: false,
+    commandeManuelle: false,
+    guide:false,
+    espaceFauteuil: "",
+    support: "",
   });
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    const { name, value, type, checked } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: type === "checkbox" ? checked : value,
+    }));
   };
 
   const handleImageChange = (e) => {
@@ -42,91 +51,115 @@ export default function CarForm() {
 
   return (
     <div className="form-container">
-      <h2>Add New Car</h2>
+      <h2>Ajouter une voiture adaptée</h2>
       <form className="car-form" onSubmit={handleSubmit}>
-        {/* جميع الحقول الأخرى */}
+        {/* Champs normaux avec placeholders */}
         <div className="form-group">
-          <label>Car Name</label>
+          <label>Nom de la voiture</label>
           <input
             type="text"
-            name="name"
-            value={formData.name}
+            name="nom"
+            placeholder="Ex: Renault Kangoo"
+            value={formData.nom}
             onChange={handleChange}
           />
         </div>
         <div className="form-group">
-          <label>Brand</label>
+          <label>Marque</label>
           <input
             type="text"
-            name="brand"
-            value={formData.brand}
+            name="marque"
+            placeholder="Ex: Renault, Peugeot"
+            value={formData.marque}
             onChange={handleChange}
           />
         </div>
         <div className="form-group">
-          <label>Price ($)</label>
+          <label>Prix (Dinar)</label>
           <input
             type="number"
-            name="price"
-            value={formData.price}
+            name="prix"
+            placeholder="Ex: 120"
+            value={formData.prix}
             onChange={handleChange}
           />
         </div>
         <div className="form-group">
-          <label>Year</label>
+          <label>Année</label>
           <input
             type="number"
-            name="year"
-            value={formData.year}
+            name="année"
+            placeholder="Ex: 2022"
+            value={formData.année}
             onChange={handleChange}
           />
         </div>
         <div className="form-group">
-          <label>Model</label>
+          <label>Modèle</label>
           <input
             type="text"
-            name="model"
-            value={formData.model}
+            name="modèle"
+            placeholder="Ex: Kangoo Maxi"
+            value={formData.modèle}
             onChange={handleChange}
           />
         </div>
         <div className="form-group">
-          <label>Fuel</label>
-          <select name="fuel" value={formData.fuel} onChange={handleChange}>
-            <option value="">Select</option>
-            <option value="Petrol">Petrol</option>
+          <label>Carburant</label>
+          <select
+            name="carburant"
+            value={formData.carburant}
+            onChange={handleChange}
+          >
+            <option value="">Sélectionner</option>
+            <option value="Essence">Essence</option>
             <option value="Diesel">Diesel</option>
-            <option value="Electric">Electric</option>
-            <option value="Hybrid">Hybrid</option>
+            <option value="Électrique">Électrique</option>
+            <option value="Hybride">Hybride</option>
           </select>
         </div>
         <div className="form-group">
-          <label>Mileage (km)</label>
+          <label>Kilométrage (km)</label>
           <input
             type="number"
-            name="mileage"
-            value={formData.mileage}
+            name="kilométrage"
+            placeholder="Ex: 50000"
+            value={formData.kilométrage}
             onChange={handleChange}
           />
         </div>
         <div className="form-group">
-          <label>Seats</label>
+          <label>Nombre de sièges</label>
           <input
             type="number"
-            name="seats"
-            value={formData.seats}
+            name="sièges"
+            placeholder="Ex: 4"
+            value={formData.sièges}
             onChange={handleChange}
           />
         </div>
         <div className="form-group">
-          <label>Category</label>
-          <input
-            type="text"
-            name="category"
-            value={formData.category}
+          <label>Catégorie</label>
+          <textarea
+            name="catégorie"
+            rows="2"
+            placeholder="Ex: Citadine, SUV, Monospace"
+            value={formData.catégorie}
             onChange={handleChange}
           />
         </div>
+        <div className="form-group description">
+          <label>Description</label>
+          <textarea
+            name="description"
+            rows="4"
+            placeholder="Ex: Voiture adaptée avec rampe et espace pour fauteuil."
+            value={formData.description}
+            onChange={handleChange}
+          />
+        </div>
+
+        {/* Transmission */}
         <div className="form-group transmission">
           <label>Transmission</label>
           <div className="radio-group">
@@ -134,37 +167,99 @@ export default function CarForm() {
               <input
                 type="radio"
                 name="transmission"
-                value="Automatic"
-                checked={formData.transmission === "Automatic"}
+                value="Automatique"
+                checked={formData.transmission === "Automatique"}
                 onChange={handleChange}
               />
-              Automatic
+              Automatique
             </label>
             <label>
               <input
                 type="radio"
                 name="transmission"
-                value="Manual"
-                checked={formData.transmission === "Manual"}
+                value="Manuelle"
+                checked={formData.transmission === "Manuelle"}
                 onChange={handleChange}
               />
-              Manual
+              Manuelle
             </label>
           </div>
         </div>
-        <div className="form-group description">
-          <label>Description</label>
-          <textarea
-            name="description"
-            rows="4"
-            value={formData.description}
+
+        {/* Checkboxes véhicules adaptées (ordre inchangé) */}
+        <div className="form-group">
+          <label>
+            <input
+              type="checkbox"
+              name="commandeManuelle"
+              checked={formData.commandeManuelle}
+              onChange={handleChange}
+            />
+            Commande manuelle
+          </label>
+
+           <label className="mt-3">
+            <input 
+              type="checkbox"
+              name="guide"
+              checked={formData.guide}
+              onChange={handleChange}
+            />
+            guide
+          </label>
+
+        </div>
+        
+        <div className="form-group">
+          <label>
+            <input
+              type="checkbox"
+              name="rampe"
+              checked={formData.rampe}
+              onChange={handleChange}
+            />
+            Rampe
+          </label>
+        </div>
+        <div className="form-group">
+          <label>
+            <input
+              type="checkbox"
+              name="élévateur"
+              checked={formData.élévateur}
+              onChange={handleChange}
+            />
+            Élévateur
+          </label>
+        </div>
+
+        {/* Espace pour fauteuil */}
+        <div className="form-group">
+          <label>Espace pour fauteuil</label>
+          <input
+            type="text"
+            name="espaceFauteuil"
+            placeholder="Ex: 120x80 cm"
+            value={formData.espaceFauteuil}
             onChange={handleChange}
           />
         </div>
 
-        {/* Upload Image with Remove Button */}
+        {/* Support / Fixations */}
+        <div className="form-group">
+          <label>Support / Fixations</label>
+          <input
+            type="text"
+            name="support"
+            placeholder="Ex: Ceintures spéciales, fixation au sol"
+            value={formData.support}
+            onChange={handleChange}
+          />
+        </div>
+
+        {/* Upload Image */}
         <div className="form-group image-upload">
-          <label htmlFor="image">Upload Image</label>
+          <label htmlFor="image">Télécharger une image</label>
           <input
             type="file"
             name="image"
@@ -184,20 +279,20 @@ export default function CarForm() {
                 className="remove-image-btn"
                 onClick={handleRemoveImage}
               >
-                Remove
+                Supprimer
               </button>
             </div>
           ) : (
-            <p>Drag & drop or click to upload</p>
+            <p>Glisser-déposer ou cliquer pour télécharger</p>
           )}
         </div>
 
         <button type="submit" className="submit-btn">
-          Save Car
+          Enregistrer la voiture
         </button>
       </form>
 
-      {/* CSS داخل المكون */}
+      {/* CSS du composant */}
       <style>{`
         body {
           background: linear-gradient(135deg, #1e293b, #0f172a);
@@ -217,7 +312,7 @@ export default function CarForm() {
         h2 {
           text-align: center;
           margin-bottom: 20px;
-          color: #f97316;
+          color: #C2A68C;
         }
         .car-form {
           display: grid;
@@ -306,7 +401,7 @@ export default function CarForm() {
           padding: 12px;
           border: none;
           border-radius: 8px;
-          background: #f97316;
+          background: #C2A68C;
           color: white;
           font-size: 16px;
           font-weight: bold;
@@ -314,7 +409,7 @@ export default function CarForm() {
           transition: background 0.3s;
         }
         .submit-btn:hover {
-          background: #ea580c;
+          background: #D2C1B6;
         }
       `}</style>
     </div>
