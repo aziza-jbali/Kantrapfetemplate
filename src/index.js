@@ -20,6 +20,10 @@ import CarBooking from "views/user/Carbooking";
 import Dashboardagencedevoiture from "views/admin/Dashboardagencedevoiture";
 import AddCarPage from "views/Agencedevoitureadmin/AddCarPage"
 import Tablesagencedevoiture from "views/admin/Tablesagencedevoiture"
+import CustomerDetails from "views/Agencedevoitureadmin/CustomerDetails.jsx";
+import CarDetails from "views/Agencedevoitureadmin/CarDetails";
+
+
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
@@ -28,7 +32,7 @@ ReactDOM.render(
       <Route path="/admin" component={Admin} />
 
       <Route path="/auth" component={Auth} />
-      <Route path="/dashboardagencedevoiture" exact component={ Adminagencedevoiture } />
+      {/* <Route path="/dashboardagencedevoiture" exact component={ Adminagencedevoiture } /> */}
       <Route path="/AddCarPage" element component={AddCarPage} />
        {/* <Route path="/dashboardagencedevoiture/tables" exact component={Tablesagencedevoiture} />   */}
       
@@ -40,6 +44,9 @@ ReactDOM.render(
       {/* <Route path="/Dashboardagencedevoiture" element component={Dashboardagencedevoiture} /> */}
 
      
+        <Route path="/customer-details" exact component={CustomerDetails} />
+        <Route path="/car-details" element component={CarDetails } />
+
 
 
       {/* add redirect for first page */}

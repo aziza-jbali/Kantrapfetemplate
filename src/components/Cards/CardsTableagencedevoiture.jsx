@@ -1,22 +1,89 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
-
-
-
-
 
 // components
 
-import TableDropdown from "components/Dropdowns/TableDropdown.js";
+import TableDropdownagencedevoiture from "components/Dropdowns/TableDropdownagencedevoiture.js";
+// const bookings = [
+//   {
+//     id: 1,
+//     car: "Peugeot Partner",
+//     price: "120 DT/يوم",
+//     startDate: "2025-10-02",
+//     endDate: "2025-10-05",
+//     status: "venue",
+//     customer: {
+//       name: "محمد علي",
+//       phone: "12345678",
+//       email: "mohamed@example.com",
+//       address: "تونس، شارع الحبيب بورقيبة",
+//     },
+    
+//     carDetails: {
+//       nom: "Peugeot Partner",
+//       marque: "Peugeot",
+//       modèle: "Partner",
+//       année: 2022,
+//       carburant: "Diesel",
+//       kilométrage: 50000,
+//       sièges: 5,
+//       catégorie: "Utilitaire",
+//       transmission: "Manuelle",
+//       description: "سيارة مجهزة لذوي الاحتياجات الخاصة",
+//       rampe: true,
+//       élévateur: false,
+//       commandeManuelle: true,
+//       guide: false,
+//       espaceFauteuil: "واسع",
+//       support: "حزام أمان إضافي",
+//     },
+//   },{
+//     id: 2,
+//     car: "Renault Kangoo",
+//     price: "120 DT/يوم",
+//     startDate: "2025-10-02",
+//     endDate: "2025-10-05",
+//     status: "venue",
+//     customer: {
+//       name: "   سمد علي",
+//       phone: "14345678",
+//       email: "moohamed@example.com",
+//       address: "تونس، شارع الحبيب بورقيبة",
+//     },
+    
+//     carDetails: {
+//       nom: "Peugeot Partner",
+//       marque: "Peugeot",
+//       modèle: "Partner",
+//       année: 2022,
+//       carburant: "Diesel",
+//       kilométrage: 50000,
+//       sièges: 5,
+//       catégorie: "Utilitaire",
+//       transmission: "Manuelle",
+//       description: "سيارة مجهزة لذوي الاحتياجات الخاصة",
+//       rampe: true,
+//       élévateur: false,
+//       commandeManuelle: true,
+//       guide: false,
+//       espaceFauteuil: "واسع",
+//       support: "حزام أمان إضافي",
+//     },
+//   },
+// ];
+
+
 const bookings = [
   {
-    id: 1,
+    id: "1",
     car: "Peugeot Partner",
     price: "120 DT/يوم",
     startDate: "2025-10-02",
     endDate: "2025-10-05",
-    status: "قادم",
+    datedebooking:"2025-09-04",
+    status: "venue",
     customer: {
+      id:"1",
       name: "محمد علي",
       phone: "12345678",
       email: "mohamed@example.com",
@@ -25,11 +92,11 @@ const bookings = [
     carDetails: {
       nom: "Peugeot Partner",
       marque: "Peugeot",
-      modèle: "Partner",
+      modèle: "Partner XL",
       année: 2022,
       carburant: "Diesel",
       kilométrage: 50000,
-      sièges: 5,
+      sièges: 3,
       catégorie: "Utilitaire",
       transmission: "Manuelle",
       description: "سيارة مجهزة لذوي الاحتياجات الخاصة",
@@ -37,14 +104,59 @@ const bookings = [
       élévateur: false,
       commandeManuelle: true,
       guide: false,
-      espaceFauteuil: "واسع",
+      espaceFauteuil: "Large",
       support: "حزام أمان إضافي",
+      image: "https://example.com/images/peugeot-partner.jpg",
+    },
+  },
+  {
+    id: "2",
+    car: "Renault Kangoo",
+    price: "120 DT/يوم",
+    startDate: "2025-10-02",
+    endDate: "2025-10-05",
+    datedebooking:"2025-09-10",
+
+    status: "venue",
+    customer: {
+      id:"2",
+      name: "سمد علي",
+      phone: "14345678",
+      email: "moohamed@example.com",
+      address: "تونس، شارع الحبيب بورقيبة",
+    },
+    carDetails: {
+      nom: "Renault Kangoo",
+      marque: "Renault",
+      modèle: "Kangoo Life",
+      année: 2021,
+      carburant: "Essence",
+      kilométrage: 60000,
+      sièges: 5,
+      catégorie: "Utilitaire",
+      transmission: "Manuelle",
+      description: "سيارة مجهزة لذوي الاحتياجات الخاصة",
+      rampe: false,
+      élévateur: true,
+      commandeManuelle: false,
+      guide: true,
+      espaceFauteuil: "Moyen",
+      support: "حزام أمان إضافي",
+      image: "https://example.com/images/renault-kangoo.jpg",
     },
   },
 ];
 
 
 export default function CardTable({ color }) {
+  const [booking, setBooking] = useState(bookings);
+
+  const handleStatusChange = (id, newStatus) => {
+    setBooking((prev) =>
+      prev.map((b) => (b.id === id ? { ...b, status: newStatus } : b))
+    );
+  };
+
   return (
     <>
       <div
@@ -80,7 +192,7 @@ export default function CardTable({ color }) {
                       : "bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700")
                   }
                 >
-                  Nom du client
+                  id reservation
                 </th>
                 <th
                   className={
@@ -133,7 +245,7 @@ export default function CardTable({ color }) {
               </tr>
             </thead>
             <tbody>
-              <tr>
+              {/* <tr>
                 <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center">
                   <img
                     src={require("assets/img/bootstrap.jpg").default}
@@ -450,7 +562,40 @@ export default function CardTable({ color }) {
                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right">
                   <TableDropdown />
                 </td>
-              </tr>
+              </tr> */}
+
+              {booking.map((booking) => (
+                <tr key={booking.id}>
+                  <td className="border-t-0 px-6 align-middle text-xs whitespace-nowrap p-4">
+                    {booking.id}
+                  </td>
+                  <td>{booking.carDetails.nom}</td>
+                  <td className="border-t-0 px-6 align-middle text-xs whitespace-nowrap p-4">
+                    {booking.startDate} - {booking.endDate}
+                  </td>
+                  {/* <td>{booking.status}</td> */}
+                  <td className="border p-2">
+                    {booking.status}
+                    <select 
+                      value={booking.status}
+                      onChange={(e) =>
+                        handleStatusChange(booking.id, e.target.value)
+                      }
+                      className="border rounded p-1 ml-2 "
+                    >
+                      <option value="venir">À venir</option>
+                      <option value="Termine">Terminé</option>
+                      <option value="Annule">Annulé</option>
+                    </select>
+                  </td>
+
+                  <td>{booking.price}</td>
+                  <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right">
+                    <TableDropdownagencedevoiture bookingId={booking.id} />
+
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>

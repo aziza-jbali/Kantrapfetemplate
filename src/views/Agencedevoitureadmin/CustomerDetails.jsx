@@ -1,0 +1,121 @@
+import { useLocation } from "react-router-dom";
+
+export default function CustomerDetails() {
+  // قراءة الـ id من query param
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const id = searchParams.get("id"); // هذا هو id الحجز من الرابط
+
+  // بيانات ثابتة مؤقتة
+  // const bookings = [
+  //   {
+  //     id: "1",
+  //     customer: {
+  //       name: "محمد علي",
+  //       phone: "12345678",
+  //       email: "mohamed@example.com",
+  //       address: "تونس، شارع الحبيب بورقيبة",
+  //     },
+  //   },
+  //   {
+  //     id: "2",
+  //     customer: {
+  //        name: "   سمد علي",
+  //       phone: "14345678",
+  //       email: "mohamed@example.com",
+  //       address: "تونس، شارع الحبيب ثامر",
+  //     },
+  //   },
+  // ];
+const bookings = [
+  {
+    id: "1",
+    car: "Peugeot Partner",
+    price: "120 DT/يوم",
+    startDate: "2025-10-02",
+    endDate: "2025-10-05",
+    status: "venue",
+    customer: {
+      id:"1",
+      name: "محمد علي",
+      phone: "12345678",
+      email: "mohamed@example.com",
+      address: "تونس، شارع الحبيب بورقيبة",
+    },
+    carDetails: {
+      nom: "Peugeot Partner",
+      marque: "Peugeot",
+      modèle: "Partner XL",
+      année: 2022,
+      carburant: "Diesel",
+      kilométrage: 50000,
+      sièges: 3,
+      catégorie: "Utilitaire",
+      transmission: "Manuelle",
+      description: "سيارة مجهزة لذوي الاحتياجات الخاصة",
+      rampe: true,
+      élévateur: false,
+      commandeManuelle: true,
+      guide: false,
+      espaceFauteuil: "Large",
+      support: "حزام أمان إضافي",
+      image: "https://example.com/images/peugeot-partner.jpg",
+    },
+  },
+  {
+    id: "2",
+    car: "Renault Kangoo",
+    price: "120 DT/يوم",
+    startDate: "2025-10-02",
+    endDate: "2025-10-05",
+    status: "venue",
+    customer: {
+      id:"2",
+      name: "سمد علي",
+      phone: "14345678",
+      email: "moohamed@example.com",
+      address: "تونس، شارع الحبيب بورقيبة",
+    },
+    carDetails: {
+      nom: "Renault Kangoo",
+      marque: "Renault",
+      modèle: "Kangoo Life",
+      année: 2021,
+      carburant: "Essence",
+      kilométrage: 60000,
+      sièges: 5,
+      catégorie: "Utilitaire",
+      transmission: "Manuelle",
+      description: "سيارة مجهزة لذوي الاحتياجات الخاصة",
+      rampe: false,
+      élévateur: true,
+      commandeManuelle: false,
+      guide: true,
+      espaceFauteuil: "Moyen",
+      support: "حزام أمان إضافي",
+      image: "https://example.com/images/renault-kangoo.jpg",
+    },
+  },
+];
+
+
+    
+
+  // إيجاد الحجز حسب id
+  const booking = bookings.find((b) => b.id === id);
+  const customer = booking?.customer || {};
+
+  return (
+    <div className="p-6 bg-gray-100 min-h-screen">
+      <h1 className="text-2xl font-bold mb-6">Détails du client</h1>
+      <div className="bg-white rounded-lg shadow p-4">
+                <p><b>id:</b> {customer.id}</p>
+
+        <p><b>الاسم:</b> {customer.name}</p>
+        <p><b>الهاتف:</b> {customer.phone}</p>
+        <p><b>البريد:</b> {customer.email}</p>
+        <p><b>العنوان:</b> {customer.address}</p>
+      </div>
+    </div>
+  );
+}
