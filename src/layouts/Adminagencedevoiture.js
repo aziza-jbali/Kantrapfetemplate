@@ -77,13 +77,14 @@ import Settings from "views/admin/Settings.js";
 import Tablesagencedevoiture from "views/admin/Tablesagencedevoiture.js";
 // الخرائط أو أي مكونات كبيرة نضعها لاحقًا
 import Tablesdemesvoiture from "views/admin/Tablesdemesvoiture"
+
 export default function Adminagencedevoiture() {
   return (
     <>
       <Sidebaragencedevoiture />
-      <div className="relative md:ml-64 bg-blueGray-100">
+      <div className="relative md:ml-64 bg-blueGray-800">
         <AdminNavbar />
-        <HeaderStats />
+        <HeaderStats title1="Véhicules"   title3="Reservation"  />
 
         <div className="px-4 md:px-10 mx-auto w-full -m-24">
           <Switch>

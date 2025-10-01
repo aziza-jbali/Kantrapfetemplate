@@ -4,18 +4,18 @@ import React from "react";
 
 import CardStats from "components/Cards/CardStats.js";
 
-export default function HeaderStats() {
+export default function HeaderStats({title1,title3}) {
   return (
     <>
       {/* Header */}
-      <div className="relative bg-lightBlue-600 md:pt-32 pb-32 pt-12">
+      <div className="relative bg-blueGray-800 md:pt-32 pb-32 pt-12">
         <div className="px-4 md:px-10 mx-auto w-full">
           <div>
             {/* Card stats */}
             <div className="flex flex-wrap">
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
-                  statSubtitle="TRAFFIC"
+                  statSubtitle={title1}
                   statTitle="350,897"
                   statArrow="up"
                   statPercent="3.48"
@@ -39,7 +39,7 @@ export default function HeaderStats() {
               </div>
               <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
                 <CardStats
-                  statSubtitle="SALES"
+                  statSubtitle={title3}
                   statTitle="924"
                   statArrow="down"
                   statPercent="1.10"

@@ -469,7 +469,7 @@ export default function CardTable({ color }) {
       <div
         className={
           "relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded " +
-          (color === "light" ? "bg-white" : "bg-lightBlue-900 text-white")
+          (color === "light" ? "bg-white" : "bg-blueGray-400 text-white")
         }
       >
         <div className="rounded-t mb-0 px-4 py-3 border-0">
@@ -481,8 +481,15 @@ export default function CardTable({ color }) {
                   (color === "light" ? "text-blueGray-700" : "text-white")
                 }
               >
-                Card Tables
+                La table de véhicules :
               </h3>
+                <div class="mb-3 pt-0">
+                <input 
+                  type="text"
+                  placeholder="search here"
+                  class="px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm shadow outline-none focus:outline-none focus:shadow-outline w-1/2"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -502,14 +509,15 @@ export default function CardTable({ color }) {
             <tbody>
               {booking.map((b) => (
                 <tr key={b.id}>
-                  <td className="border-t-0 px-6 align-middle text-xs whitespace-nowrap p-4">
+                  <td className="border-t-0 px-6 align-middle text-xl whitespace-nowrap p-4 border p-2">
                     {b.carDetails.id}
                   </td>
-                  <td>{b.carDetails.nom}</td>
-                  <td className="border-t-0 px-6 align-middle text-xs whitespace-nowrap p-4">
+                  <td className="border p-2 text-xl ">{b.carDetails.nom}</td>
+                  <td className="border-t-0 px-6 align-middle text-xl whitespace-nowrap p-4 border p-2">
                     {b.carDetails.catégorie}
                   </td>
-                  <td className="border p-2">
+                  <td className="border p-2 text-xl">
+                    venue
                     {b.carDetails.status}
                     <select
                       value={b.status}
@@ -521,8 +529,9 @@ export default function CardTable({ color }) {
                       <option value="Annule">Annulé</option>
                     </select>
                   </td>
-                  <td>{b.carDetails.année}</td>
-                  <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right">
+                  <td className="border p-2">{b.carDetails.année}</td>
+                  <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xl whitespace-nowrap p-4 text-center border p-2">
+                    <span>Supprimer/Modifier</span>
                     <TableDropdownmesvoiture
                       booking={b}
                       onAction={(action) => handleAction(action, b)}
@@ -618,7 +627,7 @@ function headerClass(color) {
     "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center " +
     (color === "light"
       ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
-      : "bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700")
+      : "bg-blueGray-400 text-lightBlue-300 border-lightBlue-700")
   );
 }
 

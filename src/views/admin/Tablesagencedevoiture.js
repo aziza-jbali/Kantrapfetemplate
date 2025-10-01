@@ -11,7 +11,7 @@ export default function Tables() {
         {/* <div className="w-full mb-12 px-4">
            <CardsTableagencedevoiture /> 
         </div> */}
-        <div className="w-full mb-12 px-4 mt-2">
+        <div className="w-full mb-12 px-4 mt-4">
           <CardsTableagencedevoiture color="dark" />
         </div>
       </div>
