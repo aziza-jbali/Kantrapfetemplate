@@ -400,6 +400,7 @@ const bookingsData = [
       espaceFauteuil: "Large",
       support: "حزام أمان إضافي",
       image: "https://example.com/images/peugeot-partner.jpg",
+       status: "Indisponible"
     },
   },
   {
@@ -436,6 +437,7 @@ const bookingsData = [
       espaceFauteuil: "Moyen",
       support: "حزام أمان إضافي",
       image: "https://example.com/images/renault-kangoo.jpg",
+       status: "Disponible"
     },
   },
 ];
@@ -458,11 +460,21 @@ export default function CardTable({ color }) {
     }
   };
 
+  // const handleStatusChange = (id, newStatus) => {
+  //   setBooking((prev) =>
+  //     prev.map((b) => (b.id === id ? { ...b, status: newStatus } : b))
+  //   );
+  // };
   const handleStatusChange = (id, newStatus) => {
-    setBooking((prev) =>
-      prev.map((b) => (b.id === id ? { ...b, status: newStatus } : b))
-    );
-  };
+  setBooking((prev) =>
+    prev.map((b) =>
+      b.id === id
+        ? { ...b, carDetails: { ...b.carDetails, status: newStatus } } // ⚡ هنا
+        : b
+    )
+  );
+};
+
 
   return (
     <>
@@ -483,8 +495,8 @@ export default function CardTable({ color }) {
               >
                 La table de véhicules :
               </h3>
-                <div class="mb-3 pt-0">
-                <input 
+              <div class="mb-3 pt-0">
+                <input
                   type="text"
                   placeholder="search here"
                   class="px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm shadow outline-none focus:outline-none focus:shadow-outline w-1/2"
@@ -517,16 +529,15 @@ export default function CardTable({ color }) {
                     {b.carDetails.catégorie}
                   </td>
                   <td className="border p-2 text-xl">
-                    venue
+                    
                     {b.carDetails.status}
                     <select
-                      value={b.status}
+                      value={b.carDetails.status}
                       onChange={(e) => handleStatusChange(b.id, e.target.value)}
-                      className="border rounded p-1 ml-2"
+                      className="border rounded p-1 ml-2 bg-lightBlue-600"
                     >
-                      <option value="venir">À venir</option>
-                      <option value="Termine">Terminé</option>
-                      <option value="Annule">Annulé</option>
+                      <option value="Disponible">Disponible</option>
+                      <option value="Indisponible">Indisponible</option>
                     </select>
                   </td>
                   <td className="border p-2">{b.carDetails.année}</td>
@@ -546,77 +557,76 @@ export default function CardTable({ color }) {
 
       {/* Modal / Edit Form */}
       {showEditModal && editingBooking && (
-  <div
-    style={{
-      position: "fixed",
-      top: 0,
-      left: 0,
-      width: "100%",
-      height: "100%",
-      background: "rgba(0,0,0,0.8)",
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      zIndex: 9999,
-      padding: "20px",
-      overflowY: "auto",
-    }}
-  >
-    <div
-      style={{
-        background: "black",
-        borderRadius: "15px",
-        padding: "20px",
-        maxWidth: "900px",
-        width: "100%",
-        maxHeight: "90vh",
-        overflowY: "auto",
-        boxShadow: "0 0 20px rgba(0,0,0,0.5)",
-        position: "relative",
-      }}
-    >
-      <button
-        onClick={() => {
-          setShowEditModal(false);
-          setEditingBooking(null);
-        }}
-        style={{
-          position: "absolute",
-          top: "10px",
-          right: "10px",
-          fontSize: "24px",
-          background: "none",
-          border: "none",
-          cursor: "pointer",
-        }}
-      >
-        &times;
-      </button>
+        <div
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            background: "rgba(0,0,0,0.8)",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            zIndex: 9999,
+            padding: "20px",
+            overflowY: "auto",
+          }}
+        >
+          <div
+            style={{
+              background: "black",
+              borderRadius: "15px",
+              padding: "20px",
+              maxWidth: "900px",
+              width: "100%",
+              maxHeight: "90vh",
+              overflowY: "auto",
+              boxShadow: "0 0 20px rgba(0,0,0,0.5)",
+              position: "relative",
+            }}
+          >
+            <button
+              onClick={() => {
+                setShowEditModal(false);
+                setEditingBooking(null);
+              }}
+              style={{
+                position: "absolute",
+                top: "10px",
+                right: "10px",
+                fontSize: "24px",
+                background: "none",
+                border: "none",
+                cursor: "pointer",
+              }}
+            >
+              &times;
+            </button>
 
-      {/* Render your existing AddCarForm */}
-      <AddCarForm
-        initialData={editingBooking.carDetails}
-        isModal={true}
-        onClose={() => {
-          setShowEditModal(false);
-          setEditingBooking(null);
-        }}
-        onSubmit={(updatedData) => {
-          setBooking((prev) =>
-            prev.map((b) =>
-              b.id === editingBooking.id
-                ? { ...b, carDetails: { ...updatedData } }
-                : b
-            )
-          );
-          setShowEditModal(false);
-          setEditingBooking(null);
-        }}
-      />
-    </div>
-  </div>
-)}
-
+            {/* Render your existing AddCarForm */}
+            <AddCarForm
+              initialData={editingBooking.carDetails}
+              isModal={true}
+              onClose={() => {
+                setShowEditModal(false);
+                setEditingBooking(null);
+              }}
+              onSubmit={(updatedData) => {
+                setBooking((prev) =>
+                  prev.map((b) =>
+                    b.id === editingBooking.id
+                      ? { ...b, carDetails: { ...updatedData } }
+                      : b
+                  )
+                );
+                setShowEditModal(false);
+                setEditingBooking(null);
+              }}
+            />
+          </div>
+        </div>
+      )}
     </>
   );
 }

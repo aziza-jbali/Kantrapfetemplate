@@ -443,6 +443,7 @@ export default function AddCarForm({
     guide: false,
     espaceFauteuil: "",
     support: "",
+    disponible:true
   });
 
   useEffect(() => {
@@ -466,6 +467,7 @@ export default function AddCarForm({
         guide: initialData.guide || false,
         espaceFauteuil: initialData.espaceFauteuil || "",
         support: initialData.support || "",
+        status:initialData.disponible || true,
       });
     }
   }, [initialData]);
@@ -670,7 +672,16 @@ export default function AddCarForm({
             />
             Commande manuelle
           </label>
-          <label className="mt-3">
+           <label className="mt-3">
+            <input
+              type="checkbox"
+              name="status"
+              checked={formData.disponible}
+              onChange={handleChange}
+            />
+            disponible
+          </label>
+          <label className="mt-2">
             <input
               type="checkbox"
               name="guide"

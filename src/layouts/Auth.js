@@ -11,6 +11,7 @@ import FooterSmall from "components/Footers/FooterSmall.js";
 import Login from "views/auth/Login.js";
 import forget from "views/auth/forget";
 import Register from "views/auth/Register.js";
+import video1 from "assets/videos/xx.mp4";
 
 export default function Auth() {
   return (
@@ -18,20 +19,49 @@ export default function Auth() {
       <Navbar transparent />
       <main>
         <section className="relative w-full h-full py-40 min-h-screen">
-          <div
+          {/* <div
             className="absolute top-0 w-full h-full bg-blueGray-800 bg-no-repeat bg-full"
             style={{
               backgroundImage:
                 "url(" + require("assets/img/register_bg_2.png").default + ")",
             }}
-          ></div>
+          ></div> */}
+          <div
+            className="absolute top-0 w-full h-full  bg-no-repeat bg-full"
+            // style={{
+            //   backgroundImage:
+            //     "url(" + require("assets/img/register_bg_2.png").default + ")",
+            // }}
+          >
+            <section
+              style={{
+                backgroundColor: "grey",
+                // overflow: "hidden",
+                width: "100vw",
+                height: "100vh",
+                position: "relative",
+              }}
+            >
+              <video
+                src={video1} // هذا متغير الفيديو المستورد
+                autoPlay // تشغيل تلقائي
+                loop // تكرار مستمر
+                muted // بدون صوت (مهم لتشغيل autoplay في المتصفحات)
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                }}
+              />
+            </section>
+          </div>
           <Switch>
-          <Route path="/auth/login" exact component={Login} />
-          <Route path="/auth/forget" exact component={forget} />
-          <Route path="/auth/register" exact component={Register} />
+            <Route path="/auth/login" exact component={Login} />
+            <Route path="/auth/forget" exact component={forget} />
+            <Route path="/auth/register" exact component={Register} />
             <Redirect from="/auth" to="/auth/login" />
           </Switch>
-          <FooterSmall absolute />
+          {/* <FooterSmall absolute /> */}
         </section>
       </main>
     </>

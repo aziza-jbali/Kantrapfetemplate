@@ -106,6 +106,7 @@ const bookings = [
       espaceFauteuil: "Large",
       support: "حزام أمان إضافي",
       image: "https://example.com/images/peugeot-partner.jpg",
+       status: "Indisponible"
     },
   },
   {
@@ -142,6 +143,7 @@ const bookings = [
       espaceFauteuil: "Moyen",
       support: "حزام أمان إضافي",
       image: "https://example.com/images/renault-kangoo.jpg",
+       status: "Disponible"
     },
   },
 ];
