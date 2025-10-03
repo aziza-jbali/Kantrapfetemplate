@@ -132,7 +132,7 @@ export default function Login() {
             <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-transparent border-0">
               <div className="rounded-t mb-0 px-6 py-6">
                 <div className="text-center mb-3">
-                  <h6 className="color-black text-sm font-bold">
+                  <h6 className="color-black text-xl font-bold">
                     Sign in with
                   </h6>
                 </div>
@@ -146,7 +146,7 @@ export default function Login() {
                 <form>
                   <div className="relative w-full mb-3">
                     <label
-                      className="block uppercase  color-black text-xs font-bold mb-2"
+                      className="block uppercase  color-black text-xl font-bold mb-2"
                       htmlFor="grid-password"
                     >
                       Email
@@ -156,8 +156,8 @@ export default function Login() {
                         {/* <i class="fas fa-lock"></i> */}
                       </span>
                       <input
-                        type="text"
-                        placeholder="Large Input"
+                        type="email"
+                        placeholder="votre email"
                         class="px-3 py-4 placeholder-blueGray-300 text-blueGray-600 relative  bg-transparent rounded color-white border border-blueGray-300 outline-none focus:outline-none focus:shadow-outline w-full pl-10"
                       />
                     </div>
@@ -165,7 +165,7 @@ export default function Login() {
 
                   <div className="relative w-full mb-3">
                     <label
-                      className="block uppercase color-black text-xs font-bold mb-2"
+                      className="block uppercase color-black text-xl font-bold mb-2"
                       htmlFor="grid-password"
                     >
                       Password
@@ -175,8 +175,8 @@ export default function Login() {
                         {/* <i class="fas fa-lock"></i> */}
                       </span>
                       <input
-                        type="text"
-                        placeholder="Large Input"
+                        type="password"
+                        placeholder="votre mot de passe "
                         class="px-3 py-4 placeholder-blueGray-300 text-blueGray-600 relative bg-transparent rounded color-white border border-blueGray-300 outline-none focus:outline-none focus:shadow-outline w-full pl-10"
                       />
                     </div>
@@ -188,7 +188,7 @@ export default function Login() {
                         type="checkbox"
                         className="form-checkbox border-0 rounded text-blueGray-700 ml-1 w-5 h-5 ease-linear transition-all duration-150"
                       />
-                      <span className="ml-2 text-sm font-semibold text-blueGray-600">
+                      <span className="ml-2 text-xl font-semibold text-blueGray-600">
                         Remember me
                       </span>
                     </label>
@@ -207,12 +207,12 @@ export default function Login() {
             </div>
             <div className="flex flex-wrap mt-6 relative">
               <div className="w-1/2">
-                <Link to="/auth/forget" className="text-blueGray-200">
+                <Link to="/auth/forget" className="color-white text-xl">
                   <small>Forgot password?</small>
                 </Link>
               </div>
               <div className="w-1/2 text-right">
-                <Link to="/auth/register" className="text-blueGray-200">
+                <Link to="/auth/register" className="color-white text-xl">
                   <small>Create new account</small>
                 </Link>
               </div>

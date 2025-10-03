@@ -1,0 +1,67 @@
+
+import React from "react";
+import { Switch, Route, Redirect } from "react-router-dom";
+
+// مكونات الـ UI الأساسية
+import AdminNavbar from "components/Navbars/AdminNavbar.js";
+import Sidebaragencedevoiture from "components/Sidebar/Sidebaragencedevoiture";
+import HeaderStats from "components/Headers/HeaderStats.js";
+import FooterAdmin from "components/Footers/FooterAdmin.js";
+
+// الصفحات
+import Dashboard from "views/admin/Dashboardagencedevoiture.js";
+import Settings from "views/admin/Settings.js";
+import Tablesuseradminprincipale from "views/admin/Tablesuseradminprincipale.js";
+// الخرائط أو أي مكونات كبيرة نضعها لاحقًا
+import Tablesdemesvoiture from "views/admin/Tablesdemesvoiture"
+
+export default function AdminPrincipal() {
+  return (
+    <>
+      <Sidebaragencedevoiture />
+      <div className="relative md:ml-64 bg-blueGray-800" style={{height:"100vh"}}>
+        <AdminNavbar />
+        <HeaderStats title1="Véhicules"   title3="Reservation"  />
+
+        <div className="px-4 md:px-10 mx-auto w-full -m-24">
+          <Switch>
+            {/* Dashboard أولاً */}
+             <Route
+              path="/AdminPrincipal/dashboardagencedevoiture"
+              exact
+              component={Dashboard}
+            /> 
+
+            {/* Settings
+            <Route
+              path="/Adminagencedevoiture/settings"
+              exact
+              component={Settings}
+            /> */}
+
+            {/* Tables */}
+            <Route
+              path="/AdminPrincipal/tables"
+              exact
+              component={Tablesuseradminprincipale}
+            />
+             {/* Tables */}
+            {/* <Route
+              path="/Adminagencedevoiture/Tablesdemesvoiture"
+              exact
+              component={Tablesdemesvoiture}
+            /> */}
+
+            {/* أي Route غير معروف يعيد التوجيه للـ Dashboard */}
+            <Redirect
+              from="/AdminPrincipal"
+              to="/AdminPrincipal"
+            />
+          </Switch>
+
+          <FooterAdmin />
+        </div>
+      </div>
+    </>
+  );
+}

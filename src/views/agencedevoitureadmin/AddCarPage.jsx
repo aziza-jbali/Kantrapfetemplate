@@ -811,7 +811,7 @@ export default function AddCarForm({
           padding: 10px;
           border-radius: 8px;
           border: 1px solid #374151;
-          background: #1f2937;
+          background: #1f2937 ;
           color: white;
           font-size: 14px;
         }

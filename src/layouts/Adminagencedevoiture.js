@@ -82,7 +82,7 @@ export default function Adminagencedevoiture() {
   return (
     <>
       <Sidebaragencedevoiture />
-      <div className="relative md:ml-64 bg-blueGray-800">
+      <div className="relative md:ml-64 bg-blueGray-800" style={{height:"100vh"}}>
         <AdminNavbar />
         <HeaderStats title1="Véhicules"   title3="Reservation"  />
 

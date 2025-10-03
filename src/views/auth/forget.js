@@ -43,13 +43,13 @@ export default function Login() {
               <div className="w-1/2">
                 <Link
                   to="auth/login"
-                  className="text-blueGray-200"
+                  className="color-white text-xl"
                 >
                   <small>Login</small>
                 </Link>
               </div>
               <div className="w-1/2 text-right">
-                <Link to="/auth/register" className="text-blueGray-200">
+                <Link to="/auth/register" className="color-white text-xl">
                   <small>Create new account</small>
                 </Link>
               </div>

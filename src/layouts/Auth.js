@@ -16,9 +16,9 @@ import video1 from "assets/videos/xx.mp4";
 export default function Auth() {
   return (
     <>
-      <Navbar transparent />
+      {/* <Navbar transparent /> */}
       <main>
-        <section className="relative w-full h-full py-40 min-h-screen">
+        <section className="relative w-full h-full py-40 min-h-screen" style={{height:"100vh"}}>
           {/* <div
             className="absolute top-0 w-full h-full bg-blueGray-800 bg-no-repeat bg-full"
             style={{
@@ -49,11 +49,12 @@ export default function Auth() {
                 muted // بدون صوت (مهم لتشغيل autoplay في المتصفحات)
                 style={{
                   width: "100%",
-                  height: "100%",
+                  height: "100vh",
                   objectFit: "cover",
                 }}
               />
             </section>
+            
           </div>
           <Switch>
             <Route path="/auth/login" exact component={Login} />

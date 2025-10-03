@@ -9,6 +9,7 @@ import "assets/styles/tailwind.css";
 
 import Admin from "layouts/Admin.js";
 import Adminagencedevoiture from "layouts/Adminagencedevoiture";
+import AdminPrincipal from "layouts/AdminPrincipal"
 import Auth from "layouts/Auth.js";
 
 // views without layouts
@@ -29,6 +30,8 @@ ReactDOM.render(
     <Switch>
       {/* add routes with layouts */}
       { <Route path="/Adminagencedevoiture" component={Adminagencedevoiture} /> }
+            { <Route path="/AdminPrincipal" component={AdminPrincipal} /> }
+
       <Route path="/admin" component={Admin} />
 
       <Route path="/auth" component={Auth} />
