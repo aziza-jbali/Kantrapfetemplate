@@ -159,7 +159,7 @@ const publications = [
     id: 2,
     userId: 1,
     img: "https://example.com/images/handicap-training.jpg",
-    description: "برنامج تدريبي جديد لمساعدة ذوي الإعاقة على استخدام السيارات الذكية.",
+    description: "vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvبرنامج تدريبي جديد لمساعدة ذوي الإعاقة على استخدام السيارات الذكية.",
     status: "Pending",
     datePublication: "2025-10-03"
   },
@@ -174,6 +174,7 @@ const publications = [
 ];
 
 export default function CardAnnounceAdminPrincipale({ color = "light" }) {
+  
   const [search, setSearch] = useState("");
 
   // إنشاء الصفوف لكل منشور كمستقل
