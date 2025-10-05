@@ -1642,7 +1642,7 @@ export default function CardsPublicationadminprincipale({ color = "light" }) {
                 </td>
                 <td className="border-t-0 text-xl px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-center border">
                    <span>Consulter</span>
-                    <TableDropdowndelespublications1 />
+                    <TableDropdowndelespublications1 carid={row.publicationId} />
                  </td>
               </tr>
             ))}

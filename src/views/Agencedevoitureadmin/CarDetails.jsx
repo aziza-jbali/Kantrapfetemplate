@@ -234,9 +234,95 @@ export default function CarDetails() {
       },
     },
   ];
+const agences = [
+  { id: 1, nom: "Tunis Mobility", email: "contact@tunis-mobility.com", motDePasse: "Tunis123" },
+  { id: 2, nom: "Carthage Auto", email: "contact@carthage-auto.com", motDePasse: "Carthage456" },
+];
 
-  const booking = bookings.find((b) => b.id === id);
-  const car = booking?.carDetails || {};
+// بيانات السيارات المرتبطة بالوكالات
+const voitures = [
+  {
+    id: 101,
+    agenceId: 1,
+    carDetails: {
+      nom: "Peugeot Partner",
+      marque: "Peugeot",
+      modele: "Partner XL",
+      annee: 2022,
+      carburant: "Diesel",
+      kilometrage: 50000,
+      sieges: 3,
+      categorie: "Utilitaire",
+      transmission: "Manuelle",
+      description: "سيارة مجهزة لذوي الاحتياجات الخاصة",
+      rampe: true,
+      elevateur: false,
+      commandeManuelle: true,
+      guide: false,
+      espaceFauteuil: "Large",
+      support: "حزام أمان إضافي",
+      image: "https://example.com/images/peugeot-partner.jpg",
+      status: "Indisponible",
+      datePublication: "2025-1-8"
+    }
+  },
+  {
+    id: 102,
+    agenceId: 1,
+    carDetails: {
+      nom: "Renault Kangoo",
+      marque: "Renault",
+      modele: "Kangoo Life",
+      annee: 2023,
+      carburant: "Essence",
+      kilometrage: 30000,
+      sieges: 4,
+      categorie: "Utilitaire",
+      transmission: "Automatique",
+      description: "سيارة صغيرة وعملية",
+      rampe: false,
+      elevateur: false,
+      commandeManuelle: false,
+      guide: false,
+      espaceFauteuil: "Medium",
+      support: "حزام أمان إضافي",
+      image: "https://example.com/images/renault-kangoo.jpg",
+      status: "Disponible",
+      datePublication: "2025-10-8"
+    }
+  },
+  {
+    id: 103,
+    agenceId: 2,
+    carDetails: {
+      nom: "Citroën Berlingo",
+      marque: "Citroën",
+      modele: "Berlingo XL",
+      annee: 2021,
+      carburant: "Diesel",
+      kilometrage: 60000,
+      sieges: 5,
+      categorie: "Utilitaire",
+      transmission: "Manuelle",
+      description: "سيارة واسعة للركاب والبضائع",
+      rampe: true,
+      elevateur: true,
+      commandeManuelle: true,
+      guide: true,
+      espaceFauteuil: "Large",
+      support: "حزام أمان إضافي",
+      image: "https://example.com/images/citroen-berlingo.jpg",
+      status: "Disponible",
+      datePublication: "2025-7-18"
+    }
+  }
+];
+  // const booking = bookings.find((b) => b.id === id);
+  // const car = booking?.carDetails || {};
+const booking = bookings.find((b) => b.id === id);
+const voiture = voitures.find((v) => v.id.toString() === id); // حطنا toString لأن id من URL نصي
+const car = booking?.carDetails || voiture?.carDetails || {};
+
 
   return (
     // <div className="p-6  min-h-screen flex justify-center items-start" style={{border:"30px red solid",display:"flex"}}>
@@ -376,7 +462,9 @@ export default function CarDetails() {
             </p>
             <p>
               <i className="fas fa-calendar-day mr-2 text-gray-500"></i>
-              <b>Date de réservation:</b> {booking.datedebooking}
+              {/* <b>Date de réservation:</b> {booking.datedebooking} */}
+                <b>Date:</b> {booking ? booking.datedebooking : voiture?.carDetails?.datePublication}
+
             </p>
           </div>
         </div>

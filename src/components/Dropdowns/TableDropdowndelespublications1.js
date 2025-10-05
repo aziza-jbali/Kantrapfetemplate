@@ -3,7 +3,7 @@ import { createPopper } from "@popperjs/core";
 import CustomerDetails from "views/Agencedevoitureadmin/CustomerDetails.jsx";
 import { Link } from "react-router-dom";
 
-const TableDropdowndelespublications1 = ({bookingId}) => {
+const TableDropdowndelespublications1 = ({carid}) => {
   // dropdown props
   const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false);
   const btnDropdownRef = React.createRef();
@@ -39,7 +39,7 @@ const TableDropdowndelespublications1 = ({bookingId}) => {
       >
   
         <a
-          href={`/customer-details?id=${bookingId}`} // هنا نضع id الحجز
+         href={`/car-details?id=${carid}`} // هنا نضع id الحجز
           target="_self"
           className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
         >
