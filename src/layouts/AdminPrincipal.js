@@ -14,7 +14,7 @@ import Settings from "views/admin/Settings.js";
 import Tablesuseradminprincipale from "views/admin/Tablesuseradminprincipale.js";
 // الخرائط أو أي مكونات كبيرة نضعها لاحقًا
 import Tablesdemesvoiture from "views/admin/Tablesdemesvoiture"
-
+import Tableuserpub from "views/admin/Tableuserpub"
 export default function AdminPrincipal() {
   return (
     <>
@@ -45,12 +45,13 @@ export default function AdminPrincipal() {
               exact
               component={Tablesuseradminprincipale}
             />
-             {/* Tables */}
-            {/* <Route
-              path="/Adminagencedevoiture/Tablesdemesvoiture"
+               <Route
+              path="/AdminPrincipal/tables1"
               exact
-              component={Tablesdemesvoiture}
-            /> */}
+              component={Tableuserpub}
+            />
+             {/* Tables */}
+         
 
             {/* أي Route غير معروف يعيد التوجيه للـ Dashboard */}
             <Redirect
