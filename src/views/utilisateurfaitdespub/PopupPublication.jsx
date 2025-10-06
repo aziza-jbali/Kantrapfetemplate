@@ -120,50 +120,59 @@ const PopupPublication = ({ publication }) => {
   const [popoverShow, setPopoverShow] = React.useState(false);
   const btnRef = React.createRef();
   const popoverRef = React.createRef();
+
   const openPopover = () => {
     createPopper(btnRef.current, popoverRef.current, {
       placement: "top",
     });
     setPopoverShow(true);
   };
+
   const closePopover = () => {
     setPopoverShow(false);
   };
+
   return (
     <>
       <div className="flex flex-wrap">
         <div className="w-full text-center">
           <button
-            className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+            className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xl px-6 py-1 pt-2 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
             type="button"
             onClick={() => {
               popoverShow ? closePopover() : openPopover();
             }}
             ref={btnRef}
           >
-            top lightBlue
+            Consulter
           </button>
+
           <div
-            className={
-              (popoverShow ? "" : "hidden ") +
-              "bg-lightBlue-600 border-0 mr-3 block z-50 font-normal leading-normal text-sm max-w-xs text-left no-underline break-words rounded-lg"
-            }
+            className={`${
+              popoverShow ? "" : "hidden "
+            } block z-50 rounded-lg shadow-lg border border-gray-200`}
             ref={popoverRef}
+            style={{
+              width: "300px",
+              height: "300px",
+              backgroundColor: "white",
+              overflow: "auto",
+            }}
           >
-            <div>
-              <div className="bg-lightBlue-600 text-white opacity-75 font-semibold p-3 mb-0 border-b border-solid border-blueGray-100 uppercase rounded-t-lg">
-                <img
-                  src={publication.img}
-                  alt="Publication"
-                  className="w-full h-32 object-cover rounded mb-2"
-                />
-              </div>
-              {/* <div className="text-white break-words  p-3">
-                {publication.description}
-              </div> */}
+            <div className="p-3">
+              <img
+                src={publication.img}
+                alt="Publication"
+                className="w-full h-32 object-cover rounded mb-2"
+              />
+
+              {/* Divider line */}
+
+<hr className="border-black my-2" />
+
               <div
-                className="text-white p-3 break-words whitespace-normal"
-                style={{ width: "350px", paddingBottom: "30px" }}
+                className="text-black break-words whitespace-normal text-sm"
+                style={{ paddingBottom: "30px" }}
               >
                 {publication.description}
               </div>

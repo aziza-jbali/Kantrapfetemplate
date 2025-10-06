@@ -1499,7 +1499,8 @@ const voitures = [
       support: "حزام أمان إضافي",
       image: "https://example.com/images/renault-kangoo.jpg",
       status: "Disponible",
-      datePublication: "2025-10-8"
+      datePublication: "2025-10-8",
+      statuspub: "en-attent",
     }
   },
   {
@@ -1524,7 +1525,8 @@ const voitures = [
       support: "حزام أمان إضافي",
       image: "https://example.com/images/citroen-berlingo.jpg",
       status: "Disponible",
-      datePublication: "2025-7-18"
+      datePublication: "2025-07-18",
+      statuspub: "en-attend",
     }
   }
 ];
@@ -1611,7 +1613,7 @@ export default function CardsPublicationadminprincipale({ color = "light" }) {
                 <th
                   key={header}
                   className={
-                    "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
+                    "px-6 align-middle border border-solid py-3 text-xl uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center " +
                     (color === "light"
                       ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
                       : "bg-blueGray-400 text-lightBlue-300 border-lightBlue-700")
@@ -1625,16 +1627,17 @@ export default function CardsPublicationadminprincipale({ color = "light" }) {
           <tbody>
             {filteredRows.map((row) => (
               <tr key={`${row.userId}-${row.publicationId}`}>
-                <td className="border-t-0 px-6 align-middle text-xl whitespace-nowrap p-4 border">{row.userId}</td>
-                <td className="border p-2 text-xl">{row.fullName}</td>
+                <td className="border-t-0 px-6 align-middle text-xl whitespace-nowrap p-4 border text-center">{row.userId}</td>
+                <td className="border p-2 text-xl text-center">{row.fullName}</td>
                 <td className="border-t-0 px-6 align-middle text-xl whitespace-nowrap p-4 border">{row.email}</td>
                 <td className="border p-2 text-xl">{row.motDePasse}</td>
                 <td className="border p-2 text-xl">{row.datePublication}</td>
                 <td className="border p-2 text-xl">
+                  {row.status}
                   <select
                     value={row.status}
                     onChange={(e) => handleStatusChange(row.publicationId, e.target.value)}
-                    className="border rounded p-1 bg-lightBlue-600 text-white"
+                    className="border rounded p-1 bg-lightBlue-600 text-white ml-2"
                   >
                     <option value="Approuvé">Approuvé</option>
                     <option value="Rejeté">Rejeté</option>

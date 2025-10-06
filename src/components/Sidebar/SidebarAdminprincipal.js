@@ -6,7 +6,7 @@ import NotificationDropdown from "components/Dropdowns/NotificationDropdown.js";
 import UserDropdown from "components/Dropdowns/UserDropdown.js";
 import "../component.css";
 
-export default function Sidebar() {
+export default function SidebarAdminprincipal() {
   const [collapseShow, setCollapseShow] = React.useState("hidden");
   return (
     <>
@@ -91,21 +91,21 @@ export default function Sidebar() {
                 <Link
                   className={
                     "text-xs uppercase py-3 font-bold block " +
-                    (window.location.href.indexOf("/admin/dashboard") !== -1
+                    (window.location.href.indexOf("/AdminPrincipal/tables") !== -1
                       ? "text-lightBlue-500 hover:text-lightBlue-600"
                       : "text-blueGray-700 hover:text-blueGray-500")
                   }
-                  to="/AddCarPage"
+                  to="/AdminPrincipal/tables"
                 >
                   <i
                     className={
-                      "fas fa-plus-circle mr-2 text-sm " +
-                      (window.location.href.indexOf("/admin/dashboard") !== -1
+                      "fas fa-table mr-2 text-sm " +
+                      (window.location.href.indexOf("/AdminPrincipal/tables") !== -1
                         ? "opacity-75"
                         : "text-blueGray-300")
                     }
                   ></i>{" "}
-                  Flotte de véhicules
+                  les fornisseurs des véhicules
                 </Link>
               </li>
 
@@ -135,44 +135,26 @@ export default function Sidebar() {
                 <Link
                   className={
                     "text-xs uppercase py-3 font-bold block " +
-                    (window.location.href.indexOf("/Adminagencedevoiture/tables") !== -1
+                    (window.location.href.indexOf("/AdminPrincipal/tables1") !== -1
                       ? "text-lightBlue-500 hover:text-lightBlue-600"
                       : "text-blueGray-700 hover:text-blueGray-500")
                   }
-                  to="/Adminagencedevoiture/tables"
+                  to="/AdminPrincipal/tables1"
                 >
                   <i
                     className={
                       "fas fa-table mr-2 text-sm " +
-                      (window.location.href.indexOf("/Adminagencedevoiture/tables") !== -1
+                      (window.location.href.indexOf("/AdminPrincipal/tables1") !== -1
                         ? "opacity-75"
                         : "text-blueGray-300")
                     }
                   ></i>{" "}
-                  Réservations
+                  les Tables des annonceurs
                 </Link>
               </li>
 
               <li className="items-center">
-                <Link
-                  className={
-                    "text-xs uppercase py-3 font-bold block " +
-                    (window.location.href.indexOf("Adminagencedevoiture/Tablesdemesvoiture") !== -1
-                      ? "text-lightBlue-500 hover:text-lightBlue-600"
-                      : "text-blueGray-700 hover:text-blueGray-500")
-                  }
-                  to="/Adminagencedevoiture/Tablesdemesvoiture"
-                >
-                  <i
-                    className={
-                      "fas fa-car mr-2 text-sm " +
-                      (window.location.href.indexOf("Adminagencedevoiture/Tablesdemesvoiture") !== -1
-                        ? "opacity-75"
-                        : "text-blueGray-300")
-                    }
-                  ></i>{" "}
-                  Gestion des véhicules
-                </Link>
+               
               </li>
             </ul>
 

@@ -158,7 +158,9 @@ const publications = [
   {
     id: 2,
     userId: 1,
-    img: "https://example.com/images/handicap-training.jpg",
+    // img: "https://example.com/images/handicap-training.jpg",
+      img: "https://upload.wikimedia.org/wikipedia/commons/a/ac/Disability_training_workshop_3_(10692436714).jpg",
+
     description: "vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvبرنامج تدريبي جديد لمساعدة ذوي الإعاقة على استخدام السيارات الذكية.",
     status: "Pending",
     datePublication: "2025-10-03"
@@ -222,11 +224,11 @@ export default function CardAnnounceAdminPrincipale({ color = "light" }) {
           <div className="relative w-full px-4 max-w-full flex-grow flex-1">
             <h3
               className={
-                "font-semibold text-lg " +
+                "font-semibold text-xl " +
                 (color === "light" ? "text-blueGray-700" : "text-white")
               }
             >
-              La table des utilisateurs et leurs publications
+              La table des utilisateurs et leurs publications :
             </h3>
             <div className="mb-3 pt-0">
               <input
@@ -245,12 +247,12 @@ export default function CardAnnounceAdminPrincipale({ color = "light" }) {
       <div className="block w-full overflow-x-auto">
         <table className="items-center w-full bg-transparent border-collapse">
           <thead>
-            <tr>
-              {["ID", "Nom", "Email", "Mot de passe", "Date publication", "Status", "Actions"].map(header => (
+            <tr className="">
+              {["ID Utilisateur", "Nom", "Email", "Mot de passe", "Date publication", "Status", "Actions"].map(header => (
                 <th
                   key={header}
                   className={
-                    "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
+                    "px-6 align-middle border border-solid py-3 text-xl uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center " +
                     (color === "light"
                       ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
                       : "bg-blueGray-400 text-lightBlue-300 border-lightBlue-700")
@@ -264,17 +266,19 @@ export default function CardAnnounceAdminPrincipale({ color = "light" }) {
           <tbody>
             {filteredRows.map(row => (
               <tr key={row.publication.id} className="text-center">
-                <td className="border px-6 py-2">{row.id}</td>
-                <td className="border px-6 py-2">{row.nom}</td>
-                <td className="border px-6 py-2">{row.email}</td>
-                <td className="border px-6 py-2">{row.motDePasse}</td>
-                <td className="border px-6 py-2">{row.publication.datePublication}</td>
-                <td className="border px-6 py-2">
+                <td className="border px-6 py-2 text-xl">{row.id}</td>
+                <td className="border px-6 py-2 text-xl">{row.nom}</td>
+                <td className="border px-6 py-2 text-xl">{row.email}</td>
+                <td className="border px-6 py-2 text-xl">{row.motDePasse}</td>
+                <td className="border px-6 py-2 text-xl">{row.publication.datePublication}</td>
+                <td className="border px-6 py-2 text-xl">
+                  {row.publication.status} 
                   <select
                     value={row.publication.status}
                     onChange={e => handleStatusChange(row.publication.id, e.target.value)}
-                    className="border rounded p-1 bg-lightBlue-600 text-white"
+                    className="border rounded p-1 bg-lightBlue-600 text-white text-xl ml-2 font-bold outline-none"
                   >
+                    {row.publication.status} hhhhh
                     <option value="Pending">Pending</option>
                     <option value="Approuvé">Approuvé</option>
                     <option value="Rejeté">Rejeté</option>

@@ -86,7 +86,7 @@ export default function Adminagencedevoiture() {
         <AdminNavbar />
         <HeaderStats title1="Véhicules"   title3="Reservation"  />
 
-        <div className="px-4 md:px-10 mx-auto w-full -m-24">
+        <div className="px-4 md:px-10 mx-auto w-full -m-24 ">
           <Switch>
             {/* Dashboard أولاً */}
             <Route
