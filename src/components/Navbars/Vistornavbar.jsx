@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
 
 function Vistornavbar() {
   return (
@@ -45,6 +47,14 @@ function Vistornavbar() {
               >
                 Setting
               </a>
+            </li>
+                <li className="nav-item">
+              <Link
+                className="px-3 py-2 no-underline flex items-center text-lg uppercase font-bold leading-snug color-black hover:opacity-75"
+                to="/Articles"
+              >
+                blog
+              </Link>
             </li>
           </ul>
         </div>

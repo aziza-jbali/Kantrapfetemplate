@@ -23,6 +23,7 @@ import AddCarPage from "views/Agencedevoitureadmin/AddCarPage"
 import Tablesagencedevoiture from "views/admin/Tablesagencedevoiture"
 import CustomerDetails from "views/Agencedevoitureadmin/CustomerDetails.jsx";
 import CarDetails from "views/Agencedevoitureadmin/CarDetails";
+import PageArticle from "views/user/PageArticle.jsx";
 
 
 ReactDOM.render(
@@ -49,7 +50,9 @@ ReactDOM.render(
      
         <Route path="/customer-details" exact component={CustomerDetails} />
         <Route path="/car-details" element component={CarDetails } />
+        {/* the page of article */}
 
+        <Route path="/Articles" element component={PageArticle } />
 
 
       {/* add redirect for first page */}
