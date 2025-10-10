@@ -11,6 +11,7 @@ import Admin from "layouts/Admin.js";
 import Adminagencedevoiture from "layouts/Adminagencedevoiture";
 import AdminPrincipal from "layouts/AdminPrincipal"
 import Auth from "layouts/Auth.js";
+import Utilisateurpub from "layouts/Utilisateurpub.js"
 
 // views without layouts
 
@@ -25,13 +26,15 @@ import CustomerDetails from "views/Agencedevoitureadmin/CustomerDetails.jsx";
 import CarDetails from "views/Agencedevoitureadmin/CarDetails";
 import PageArticle from "views/user/PageArticle.jsx";
 
-
+//Utilisateurpub 
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
       {/* add routes with layouts */}
       { <Route path="/Adminagencedevoiture" component={Adminagencedevoiture} /> }
-            { <Route path="/AdminPrincipal" component={AdminPrincipal} /> }
+        { <Route path="/AdminPrincipal" component={AdminPrincipal} /> }
+        { <Route path="/Utilisateur" component={Utilisateurpub} /> }
+
 
       <Route path="/admin" component={Admin} />
 

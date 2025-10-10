@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import Vistornavbar from "../../components/Navbars/Vistornavbar.jsx";
-// import { black } from "tailwindcss/colors";
 
 const container = {
   direction: "ltr",
@@ -41,13 +40,12 @@ const inputStyle = {
   marginRight: "3px",
 };
 
-//"#2563EB"
 const button = {
   padding: "15px 20px",
   fontSize: "16px",
   borderRadius: "20px",
   border: "none",
-  backgroundColor:"black" ,
+  backgroundColor: "black",
   color: "white",
   cursor: "pointer",
 };
@@ -110,23 +108,24 @@ export default function PageArticle() {
   const [query, setQuery] = useState("ذوي الإعاقة");
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [errormessage, seterrormessage] = useState("");
-const detectLanguage = (text) => {
-  const arabicRegex = /[\u0600-\u06FF]/;
-  const frenchRegex = /[a-zA-Zàâçéèêëîïôûùüÿñæœ]/; // أحرف فرنسية/إنجليزية
-  if (arabicRegex.test(text)) return "ar";
-  if (frenchRegex.test(text)) return "fr";
-  return "en"; // أي نص آخر نعتبره إنجليزي
-};
+  const [errormessage, setErrormessage] = useState("");
 
-const lang = detectLanguage(query);
+  // 🔍 دالة لتحديد اللغة حسب النص المدخل
+  const detectLanguage = (text) => {
+    const arabicRegex = /[\u0600-\u06FF]/;
+    const frenchRegex = /[a-zA-Zàâçéèêëîïôûùüÿñæœ]/; // أحرف فرنسية/إنجليزية
+    if (arabicRegex.test(text)) return "ar";
+    if (frenchRegex.test(text)) return "fr";
+    return "en"; // أي نص آخر نعتبره إنجليزي
+  };
 
-  const fetchArticles = async () => {
+  // 📡 دالة لجلب المقالات من الـ API
+  const fetchArticles = async (langToUse) => {
     setLoading(true);
-    seterrormessage("");
+    setErrormessage("");
     try {
       const res = await fetch(
-        `https://newsdata.io/api/1/news?apikey=pub_5fa926f0089246d0ad42555ad7268079&language=${lang}&q=${encodeURIComponent(
+        `https://newsdata.io/api/1/news?apikey=pub_5fa926f0089246d0ad42555ad7268079&language=${langToUse}&q=${encodeURIComponent(
           query
         )}`
       );
@@ -140,19 +139,23 @@ const lang = detectLanguage(query);
         throw new Error("Aucun article trouvé pour ce sujet.");
       setArticles(data.results || []);
     } catch (error) {
-      seterrormessage(error.message);
+      setErrormessage(error.message);
       setArticles([]);
     } finally {
       setLoading(false);
     }
   };
 
+  // 🧠 عند أول تحميل للصفحة
   useEffect(() => {
-    fetchArticles();
+    const initialLang = detectLanguage(query);
+    fetchArticles(initialLang);
   }, []);
 
+  // 🔎 عند الضغط على زر البحث
   const handleSearch = () => {
-    fetchArticles();
+    const lang = detectLanguage(query); // ✅ نحدد اللغة هنا
+    fetchArticles(lang);
   };
 
   return (
@@ -166,7 +169,7 @@ const lang = detectLanguage(query);
           Écrivez un sujet pour lire des articles intéressants.
         </p>
         <div>
-          <input 
+          <input
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
@@ -179,43 +182,26 @@ const lang = detectLanguage(query);
         </div>
       </section>
 
-      {/* Chargement */}
-      {loading && (
-        <p style={{ textAlign: "center", color: "#1E3A8A", fontSize: "20px" }}>
-          Chargement des articles...
-        </p>
-      )}
-
-      {/* Articles */}
+      {/* Zone principale */}
       <main style={articlesGrid}>
         {loading && <Loader />}
         {!errormessage && !loading && <Articles articles={articles} />}
         {errormessage && <ErrorMessage errormessage={errormessage} />}
       </main>
-
-      {/* Pied de page */}
-      {/* <footer style={footer}>
-        <p>© 2025 Plateforme Inspiration - Tous droits réservés</p>
-        <div>
-          <a href="#" style={footerLink}>
-            Facebook
-          </a>
-          <a href="#" style={footerLink}>
-            Instagram
-          </a>
-          <a href="#" style={footerLink}>
-            Twitter
-          </a>
-        </div>
-      </footer> */}
     </div>
   );
 }
 
+// 🌀 مكوّن تحميل
 function Loader() {
-  return <p>Chargement...</p>;
+  return (
+    <p style={{ textAlign: "center", color: "#1E3A8A", fontSize: "20px" }}>
+      Chargement des articles...
+    </p>
+  );
 }
 
+// ⚠️ مكوّن الخطأ
 function ErrorMessage({ errormessage }) {
   return (
     <div
@@ -235,6 +221,7 @@ function ErrorMessage({ errormessage }) {
   );
 }
 
+// 📰 مكوّن عرض المقالات
 function Articles({ articles }) {
   return (
     <>
