@@ -2,7 +2,7 @@ function Animatedintrod({ name = "Aziza" }) {
   return (
     <>
       <li className="flex items-center gap-3">
-        {/* رسالة الترحيب المتحركة */}
+        {/* رسالة الترحيب المتحركة ff*/}
         <p
           className="font-bold text-white text-xl"
           style={{
