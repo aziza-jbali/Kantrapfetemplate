@@ -15,47 +15,69 @@ import Tablesdemesannoncesuser from "views/admin/Tablesdemesannoncesuser";
 
 export default function Adminagencedevoiture() {
   return (
-    <>
-      <Sidebarutilisateur/>
-      <div className="relative md:ml-64 bg-blueGray-800" style={{height:"100vh"}}>
-        <AdminNavbar />
-        <HeaderStats title1="Véhicules"   title3="Reservation"  />
+    // <div >
+    //   <Sidebarutilisateur/>
+    //   <div className="relative md:ml-64 bg-blueGray-800" style={{height:"100vh"}}>
+    //     <AdminNavbar />
+    //     <HeaderStats title1="Véhicules"   title3="Reservation"  />
 
-        <div className="px-4 md:px-10 mx-auto w-full -m-24 ">
-          <Switch>
-            {/* Dashboard أولاً */}
-            {/* <Route
-              path="/Utilisateur/dashboardutilisateur"
-              exact
-              component={Dashboard}
-            /> */}
+    //     <div className="px-4 md:px-10 mx-auto w-full -m-24 ">
+    //       <Switch>
+    //         {/* Dashboard أولاً */}
+    //         {/* <Route
+    //           path="/Utilisateur/dashboardutilisateur"
+    //           exact
+    //           component={Dashboard}
+    //         /> */}
 
-            {/* Settings */}
-            <Route
-              path="/Utilisateur/settings"
-              exact
-              component={Settings}
-            />
+    //         {/* Settings */}
+    //         <Route
+    //           path="/Utilisateur/settings"
+    //           exact
+    //           component={Settings}
+    //         />
 
-            {/* Tables */}
-            <Route
-              path="/Utilisateur/Mes-Annonces"
-              exact
-              component={Tablesdemesannoncesuser}
-            />
-             {/* Tables */}
+    //         {/* Tables */}
+    //         <Route
+    //           path="/Utilisateur/Mes-Annonces"
+    //           exact
+    //           component={Tablesdemesannoncesuser}
+    //         />
+    //          {/* Tables */}
           
 
-            {/* أي Route غير معروف يعيد التوجيه للـ Dashboard */}
-            <Redirect
-              from="/Utilisateur"
-              to="/Utilisateur/Mes-Annonces"
-            />
+    //         {/* أي Route غير معروف يعيد التوجيه للـ Dashboard */}
+    //         <Redirect
+    //           from="/Utilisateur"
+    //           to="/Utilisateur/Mes-Annonces"
+    //         />
+    //       </Switch>
+
+    //       <FooterAdmin />
+    //     </div>
+    //   </div>
+    // </div>
+     <div className="bg-blueGray-800 min-h-screen">
+      <Sidebarutilisateur />
+      <div className="relative md:ml-64">
+        <AdminNavbar />
+        <HeaderStats title1="Véhicules" title3="Reservation" />
+
+        <div className="px-4 md:px-10 mx-auto w-full -m-24">
+          <Switch>
+            {/* Settings */}
+            <Route path="/Utilisateur/settings" exact component={Settings} />
+            
+            {/* Mes Annonces */}
+            <Route path="/Utilisateur/Mes-Annonces" exact component={Tablesdemesannoncesuser} />
+            
+            {/* Redirect unknown paths to Mes Annonces */}
+            <Redirect from="/Utilisateur" to="/Utilisateur/Mes-Annonces" />
           </Switch>
 
           <FooterAdmin />
         </div>
       </div>
-    </>
+    </div> 
   );
 }
