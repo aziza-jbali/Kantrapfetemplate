@@ -16,6 +16,7 @@ import Utilisateurpub from "layouts/Utilisateurpub.js"
 // views without layouts
 
 import Landing from "views/Landing.js";
+import Pagedepub from "views/Pagedepub";
 import Profile from "views/Profile.js";
 import Index from "views/Index.js";
 import CarBooking from "views/user/Carbooking";
@@ -45,8 +46,11 @@ ReactDOM.render(
       
       {/* add routes without layouts */}
       <Route path="/landing" exact component={Landing} />
+            <Route path="/Pagedepub" exact component={Pagedepub} />
+
       <Route path="/profile" exact component={Profile} />
       <Route path="/" exact component={Index} />
+
       <Route path="/booking/:id" element component={CarBooking} />
       {/* <Route path="/Dashboardagencedevoiture" element component={Dashboardagencedevoiture} /> */}
 
