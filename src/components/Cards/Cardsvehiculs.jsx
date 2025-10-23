@@ -463,8 +463,8 @@ function Cardsvehiculs() {
 
   return (
     <section style={{ position: "relative", width: "100vw", minHeight: "100vh", overflow: "hidden" }}>
-      <div className="container py-5" style={{ border: "1px solid red" }}>
-        <h2 className="text-center text-black mb-4" style={{ border: "1px solid red" }}>
+      <div className="container py-5" >
+        <h2 className="text-center text-black mb-4" >
           Découvrez nos véhicules adaptés pour votre confort et liberté
         </h2>
         <Searchcar/>
