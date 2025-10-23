@@ -1,30 +1,31 @@
 import React from "react";
 import img1 from "../../assets/img/chat.png";
 import "../component.css"
+
 export default function KarmaAutoSection() {
   return (
     <section className="karma-section">
       <div className="karma-content">
-        {/* Left Text */}
+        {/* Texte gauche */}
         <div className="karma-text">
-          <h2>Karma Auto – Accessible Car Rentals</h2>
+          <h2>Karma Auto – Location de Véhicules Accessibles</h2>
           <p>
-            <strong>Karma Auto</strong> is a platform dedicated to 
-            <strong> renting adapted cars</strong> and 
-            <strong> selling smart prosthetic devices</strong> for people with disabilities.  
+            <strong>Karma Auto est une plateforme dédiée à </strong>
+            <strong> la location de véhicules adaptés</strong>, 
+            <strong> la vente des piéces</strong> 
+            <strong> pour les personnes en situation de handicap, et propose également des annonces pour faciliter leur quotidien : offres d'emploi, auto-écoles spécialisées pour passer le permis, associations d'aide aux personnes handicapées et bien plus encore.</strong>
             <br /><br />
-            Our mission is to make mobility easier, safer, and more dignified, 
-            by combining modern technology with practical solutions that empower independence.
+            Notre mission est de rendre la mobilité plus simple, plus sûre et plus digne, 
+            en alliant technologie moderne et solutions pratiques qui renforcent l'autonomie.
           </p>
-          <button className="style-button">Discover Our Cars</button>
+          <button className="style-button">Découvrir Nos Véhicules</button>
         </div>
 
-        {/* Right Image */}
+        {/* Image droite */}
         <div className="karma-image">
-          <img src={img1} alt="Woman in wheelchair" />
+          <img src={img1} alt="Femme en fauteuil roulant" />
         </div>
       </div>
     </section>
   );
-  
 }

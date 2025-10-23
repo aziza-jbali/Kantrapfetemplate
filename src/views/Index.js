@@ -26,19 +26,20 @@ export default function Index() {
       <Vistornavbar />
       <section>
         <KarmaAutoSection />
+         <ServicesAndWhyUs />
       </section>
       <div style={{ width: "100%" }}>
-        <div
+        {/* <div
           style={{ maxWidth: "1200px", margin: "auto", paddingBottom: "10px" }}
-        ></div>
+        ></div> */}
         <section>
-          <ServicesAndWhyUs />
+         
           
         </section>
       </div>
       <div style={{ width: "100%" }} className="bago">
         <div
-          style={{ maxWidth: "1200px", margin: "auto", paddingBottom: "10px" }}
+          style={{ maxWidth: "1200px", margin: "auto", paddingBottom: "20px" }}
         >
           <section>
             <Backgroundscards video={video1} whyofrendrenig={0} />
@@ -55,7 +56,7 @@ export default function Index() {
         </div>
       </div>
 
-      <section className="pb-40 relative bg-blueGray-100" style={{border:"1px red solid"}}>
+      <section className="pb-40 relative bg-blueGray-100"  style={{paddingTop:"8px"}}>
         <div className="justify-center text-center flex flex-wrap mt-24">
           <div className="w-full md:w-6/12 px-12 md:px-4">
             <h2 className="font-semibold text-4xl">Beautiful Example Pages</h2>
