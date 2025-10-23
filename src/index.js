@@ -46,7 +46,7 @@ ReactDOM.render(
       
       {/* add routes without layouts */}
       <Route path="/landing" exact component={Landing} />
-            <Route path="/Pagedepub" exact component={Pagedepub} />
+        <Route path="/Pagedepub" exact component={Pagedepub} />
 
       <Route path="/profile" exact component={Profile} />
       <Route path="/" exact component={Index} />
