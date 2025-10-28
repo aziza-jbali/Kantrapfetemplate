@@ -11,4 +11,10 @@ export async function getVehicules() {
 export async function addVehicule(VehiculeData) {
   return await axios.post(`${apiUrl}/addVehicule`,VehiculeData );
 }
+
+// delete vehicule
+export async function deletevehiculeById(id) {
+  return await axios.delete(`${apiUrl}/deleteVehicules/${id}`);
+}
+
 //VehiculeData el bach t3adha el agence ki ajouter vehicule

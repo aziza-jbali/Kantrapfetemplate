@@ -678,14 +678,14 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import TableDropdownmesvoiture from "components/Dropdowns/TableDropdownmesvoiture.js";
 import AddCarForm from "views/Agencedevoitureadmin/AddCarPage.jsx";
-import { getVehicules } from "../../service/apiGestionvehicules";
+import { getVehicules,deletevehiculeById } from "../../service/apiGestionvehicules";
 
 export default function CardTable({ color }) {
   const [Vehicules, setVehicules] = useState([]);
 
   // ⚡ هنا تحط الـ ID متاع الوكالة (بصفة مؤقتة أو تجيبه من الـtoken)
   const agenceId = "68f6aa0e912121c2e413dd49";
-
+// getVehicule hadhi tmathel envolope
   const getVehicule = async () => {
     try {
       const response = await getVehicules();
@@ -700,9 +700,51 @@ export default function CardTable({ color }) {
     }
   };
 
+  // useEffect(() => {
+  //   getVehicule();
+  // }, []);
+  // lhna njmo kol 5 second nzido vehicule
   useEffect(() => {
+  // استدعاء أولي لجلب السيارات عند تحميل المكون
+  getVehicule();
+
+  // إنشاء interval لتحديث السيارات كل 5 ثواني
+  const interval = setInterval(() => {
     getVehicule();
-  }, []);
+  }, 5000); // 5000ms = 5 ثواني
+
+  // تنظيف interval عند إزالة المكون من DOM
+  return () => clearInterval(interval);
+}, []);
+
+  // response هذا المتغير يمثل الرد الذي ترسله الـ API بعد نجاح الحذف. if this true kima {succes:true}
+  // const deletevehicule = async (id) => {
+  //   try {
+  //     await deletevehiculeById(id)
+  //       .then((response) => {
+  //             getVehicule();
+  //         console.log("vehicule supprimé");
+  //       })
+  //       .catch((error) => {
+  //         console.log("Error while calling deleteUserById API ", error);
+  //       });
+  //   } catch (error) {
+  //     console.log("Error while calling getVehicule API ", error);
+  //   }
+  // };
+  const deletevehicule = async (id) => {
+  try {
+    await deletevehiculeById(id);
+    getVehicule();
+    console.log("vehicule supprimé");
+  } catch (error) {
+    console.log("Erreur lors de la suppression", error);
+  }
+};
+
+
+
+
 
   const handleAction = (action, v) => {
     if (action === "edit") {
@@ -787,11 +829,20 @@ export default function CardTable({ color }) {
                   <td className="border p-2 text-center">{v.annee}</td>
 
                   <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xl whitespace-nowrap p-4 text-center border p-2">
-                    <span>Supprimer/Modifier</span>
-                    <TableDropdownmesvoiture
-                      booking={v}
-                      onAction={(action) => handleAction(action, v)}
-                    />
+                     <button
+                      className="bg-lightBlue-500 text-white font-bold uppercase text-sm px-4 py-2 rounded shadow hover:shadow-lg"
+                      type="button"
+                     
+                    >
+                      Modifier
+                    </button>
+                    <button
+                      className="bg-red-500 text-white font-bold uppercase text-sm px-4 py-2 rounded shadow hover:shadow-lg"
+                      type="button"
+                      onClick={() =>deletevehicule(v._id)}
+                    >
+                      Supprimer
+                    </button>
                   </td>
                 </tr>
               ))}
