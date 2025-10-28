@@ -7,9 +7,13 @@ export async function getVehicules() {
   return await axios.get(`${apiUrl}/getVehicules`);
 }
 
-// add vehicule
-export async function addVehicule(VehiculeData) {
-  return await axios.post(`${apiUrl}/addVehicule`,VehiculeData );
+// add vehicule with image lazem ykon bl image 3ibra 3la produit 
+export async function addVehiculeWithImg(formData, agenceId) {
+  return await axios.post(`${apiUrl}/addVehicule/${agenceId}`, formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
 }
 
 // delete vehicule
