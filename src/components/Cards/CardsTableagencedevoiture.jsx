@@ -4,73 +4,7 @@ import PropTypes from "prop-types";
 // components
 
 import TableDropdownagencedevoiture from "components/Dropdowns/TableDropdownagencedevoiture.js";
-// const bookings = [
-//   {
-//     id: 1,
-//     car: "Peugeot Partner",
-//     price: "120 DT/يوم",
-//     startDate: "2025-10-02",
-//     endDate: "2025-10-05",
-//     status: "venue",
-//     customer: {
-//       name: "محمد علي",
-//       phone: "12345678",
-//       email: "mohamed@example.com",
-//       address: "تونس، شارع الحبيب بورقيبة",
-//     },
 
-//     carDetails: {
-//       nom: "Peugeot Partner",
-//       marque: "Peugeot",
-//       modèle: "Partner",
-//       année: 2022,
-//       carburant: "Diesel",
-//       kilométrage: 50000,
-//       sièges: 5,
-//       catégorie: "Utilitaire",
-//       transmission: "Manuelle",
-//       description: "سيارة مجهزة لذوي الاحتياجات الخاصة",
-//       rampe: true,
-//       élévateur: false,
-//       commandeManuelle: true,
-//       guide: false,
-//       espaceFauteuil: "واسع",
-//       support: "حزام أمان إضافي",
-//     },
-//   },{
-//     id: 2,
-//     car: "Renault Kangoo",
-//     price: "120 DT/يوم",
-//     startDate: "2025-10-02",
-//     endDate: "2025-10-05",
-//     status: "venue",
-//     customer: {
-//       name: "   سمد علي",
-//       phone: "14345678",
-//       email: "moohamed@example.com",
-//       address: "تونس، شارع الحبيب بورقيبة",
-//     },
-
-//     carDetails: {
-//       nom: "Peugeot Partner",
-//       marque: "Peugeot",
-//       modèle: "Partner",
-//       année: 2022,
-//       carburant: "Diesel",
-//       kilométrage: 50000,
-//       sièges: 5,
-//       catégorie: "Utilitaire",
-//       transmission: "Manuelle",
-//       description: "سيارة مجهزة لذوي الاحتياجات الخاصة",
-//       rampe: true,
-//       élévateur: false,
-//       commandeManuelle: true,
-//       guide: false,
-//       espaceFauteuil: "واسع",
-//       support: "حزام أمان إضافي",
-//     },
-//   },
-// ];
 
 const bookings = [
   {
