@@ -1,331 +1,49 @@
-// import React from "react";
-// import { useLocation } from "react-router-dom";
-
-// export default function CarDetails() {
-//   const location = useLocation();
-//   const searchParams = new URLSearchParams(location.search);
-//   const id = searchParams.get("id");
-
-//   // بيانات الحجز مع إضافة image
-// //   const bookings = [
-// //     {
-// //       id: "1",
-// //       carDetails: {
-// //         nom: "Peugeot Partner",
-// //         marque: "Peugeot",
-// //         modèle: "Partner XL",
-// //         année: 2022,
-// //         carburant: "Diesel",
-// //         rampe: true,
-// //         élévateur: false,
-// //         commandeManuelle: true,
-// //         guide: false,
-// //         espaceFauteuil: "Large",
-// //         image: "https://example.com/images/peugeot-partner.jpg",
-// //       },
-// //     },
-// //     {
-// //       id: "2",
-// //       carDetails: {
-// //         nom: "Renault Kangoo",
-// //         marque: "Renault",
-// //         modèle: "Kangoo Life",
-// //         année: 2021,
-// //         carburant: "Essence",
-// //         rampe: false,
-// //         élévateur: true,
-// //         commandeManuelle: false,
-// //         guide: true,
-// //         espaceFauteuil: "Moyen",
-// //         image: "https://example.com/images/renault-kangoo.jpg",
-// //       },
-// //     },
-// //   ];
-// const bookings = [
-//   {
-//     id: "1",
-//     car: "Peugeot Partner",
-//     price: "120 DT/يوم",
-//     startDate: "2025-10-02",
-//     endDate: "2025-10-05",
-//    datedebooking:"2025-09-04",
-//     status: "venue",
-//     customer: {
-//       name: "محمد علي",
-//       phone: "12345678",
-//       email: "mohamed@example.com",
-//       address: "تونس، شارع الحبيب بورقيبة",
-//     },
-//     carDetails: {
-//       nom: "Peugeot Partner",
-//       marque: "Peugeot",
-//       modèle: "Partner XL",
-//       année: 2022,
-//       carburant: "Diesel",
-//       kilométrage: 50000,
-//       sièges: 3,
-//       catégorie: "Utilitaire",
-//       transmission: "Manuelle",
-//       description: "سيارة مجهزة لذوي الاحتياجات الخاصة",
-//       rampe: true,
-//       élévateur: false,
-//       commandeManuelle: true,
-//       guide: false,
-//       espaceFauteuil: "Large",
-//       support: "حزام أمان إضافي",
-//       image: "https://example.com/images/peugeot-partner.jpg",
-//     },
-//   },
-//   {
-//     id: "2",
-//     car: "Renault Kangoo",
-//     price: "120 DT/يوم",
-//     startDate: "2025-10-02",
-//     endDate: "2025-10-05",
-//    datedebooking:"2025-09-10",
-
-//     status: "venue",
-//     customer: {
-//       name: "سمد علي",
-//       phone: "14345678",
-//       email: "moohamed@example.com",
-//       address: "تونس، شارع الحبيب بورقيبة",
-//     },
-//     carDetails: {
-//       nom: "Renault Kangoo",
-//       marque: "Renault",
-//       modèle: "Kangoo Life",
-//       année: 2021,
-//       carburant: "Essence",
-//       kilométrage: 60000,
-//       sièges: 5,
-//       catégorie: "Utilitaire",
-//       transmission: "Manuelle",
-//       description: "سيارة مجهزة لذوي الاحتياجات الخاصة",
-//       rampe: false,
-//       élévateur: true,
-//       commandeManuelle: false,
-//       guide: true,
-//       espaceFauteuil: "Moyen",
-//       support: "حزام أمان إضافي",
-//       image: "https://example.com/images/renault-kangoo.jpg",
-//     },
-//   },
-// ];
-
-//   const booking = bookings.find((b) => b.id === id);
-//   const car = booking?.carDetails || {};
-
-//   return (
-//     <div className="p-6 bg-gray-100 min-h-screen" style={{width:"250px"}}>
-//       <h1 className="text-2xl font-bold mb-6">🚗 Détails de la voiture</h1>
-//       <div className="bg-white rounded-lg shadow p-4 flex flex-col md:flex-row gap-6">
-//         {/* صورة السيارة */}
-//         {car.image && (
-//           <img
-//             src={car.image}
-//             alt={car.nom}
-//             className="w-full md:w-1/3 rounded-lg border"
-//           />
-//         )}
-
-//         {/* بيانات السيارة */}
-//         <div className="flex-1">
-//           <p><b>Nom:</b> {car.nom}</p>
-//           <p><b>Marque:</b> {car.marque}</p>
-//           <p><b>Modèle:</b> {car.modèle}</p>
-//           <p><b>Année:</b> {car.année}</p>
-//           <p><b>Carburant:</b> {car.carburant}</p>
-//           <p><b>Rampe:</b> {car.rampe ? "Oui" : "Non"}</p>
-//           <p><b>Élévateur:</b> {car.élévateur ? "Oui" : "Non"}</p>
-//           <p><b>Commande manuelle:</b> {car.commandeManuelle ? "Oui" : "Non"}</p>
-//           <p><b>Guide:</b> {car.guide ? "Oui" : "Non"}</p>
-//           <p><b>Espace fauteuil:</b> {car.espaceFauteuil}</p>
-//           {/* sièges */}
-//          <p><b>sièges:</b> {car.sièges}</p>
-//         {/* <p><b>date de reservation:</b> {car.datedebooking}</p> */}
-//      <p><b>date de reservation:</b> {booking.datedebooking}</p>
-
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
-
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import car1 from "../../assets/img/car1.jpg";
-import car2 from "../../assets/img/car2.jpg";
-import video from "../../assets/videos/choco.mp4"
+import video from "../../assets/videos/choco.mp4";
+import { getVehicules } from "../../service/apiGestionvehicules";
+
 export default function CarDetails() {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const id = searchParams.get("id");
 
-  const bookings = [
-    {
-      id: "1",
-      car: "Peugeot Partner",
-      price: "120 DT/يوم",
-      startDate: "2025-10-02",
-      endDate: "2025-10-05",
-      datedebooking: "2025-09-04",
-      status: "venue",
-      customer: {
-        name: "محمد علي",
-        phone: "12345678",
-        email: "mohamed@example.com",
-        address: "تونس، شارع الحبيب بورقيبة",
-      },
-      carDetails: {
-        nom: "Peugeot Partner",
-        marque: "Peugeot",
-        modèle: "Partner XL",
-        année: 2022,
-        carburant: "Diesel",
-        kilométrage: 50000,
-        sièges: 3,
-        catégorie: "Utilitaire",
-        transmission: "Manuelle",
-        description: "سيارة مجهزة لذوي الاحتياجات الخاصة",
-        rampe: true,
-        élévateur: false,
-        commandeManuelle: true,
-        guide: false,
-        espaceFauteuil: "Large",
-        support: "حزام أمان إضافي",
-        image: car1,
-         status: "Indisponible"
-      },
-    },
-    {
-      id: "2",
-      car: "Renault Kangoo",
-      price: "120 DT/يوم",
-      startDate: "2025-10-02",
-      endDate: "2025-10-05",
-      datedebooking: "2025-09-10",
-      status: "venue",
-      customer: {
-        name: "سمد علي",
-        phone: "14345678",
-        email: "moohamed@example.com",
-        address: "تونس، شارع الحبيب بورقيبة",
-      },
-      carDetails: {
-        nom: "Renault Kangoo",
-        marque: "Renault",
-        modèle: "Kangoo Life",
-        année: 2021,
-        carburant: "Essence",
-        kilométrage: 60000,
-        sièges: 5,
-        catégorie: "Utilitaire",
-        transmission: "Manuelle",
-        description: "سيارة مجهزة لذوي الاحتياجات الخاصة",
-        rampe: false,
-        élévateur: true,
-        commandeManuelle: false,
-        guide: true,
-        espaceFauteuil: "Moyen",
-        support: "حزام أمان إضافي",
-        image: car2,
-         status: "Disponible"
-      },
-    },
-  ];
-const agences = [
-  { id: 1, nom: "Tunis Mobility", email: "contact@tunis-mobility.com", motDePasse: "Tunis123" },
-  { id: 2, nom: "Carthage Auto", email: "contact@carthage-auto.com", motDePasse: "Carthage456" },
-];
+  const [car, setCar] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-// بيانات السيارات المرتبطة بالوكالات
-const voitures = [
-  {
-    id: 101,
-    agenceId: 1,
-    carDetails: {
-      nom: "Peugeot Partner",
-      marque: "Peugeot",
-      modele: "Partner XL",
-      annee: 2022,
-      carburant: "Diesel",
-      kilometrage: 50000,
-      sieges: 3,
-      categorie: "Utilitaire",
-      transmission: "Manuelle",
-      description: "سيارة مجهزة لذوي الاحتياجات الخاصة",
-      rampe: true,
-      elevateur: false,
-      commandeManuelle: true,
-      guide: false,
-      espaceFauteuil: "Large",
-      support: "حزام أمان إضافي",
-      image: "https://example.com/images/peugeot-partner.jpg",
-      status: "Indisponible",
-      datePublication: "2025-1-8"
-    }
-  },
-  {
-    id: 102,
-    agenceId: 1,
-    carDetails: {
-      nom: "Renault Kangoo",
-      marque: "Renault",
-      modele: "Kangoo Life",
-      annee: 2023,
-      carburant: "Essence",
-      kilometrage: 30000,
-      sieges: 4,
-      categorie: "Utilitaire",
-      transmission: "Automatique",
-      description: "سيارة صغيرة وعملية",
-      rampe: false,
-      elevateur: false,
-      commandeManuelle: false,
-      guide: false,
-      espaceFauteuil: "Medium",
-      support: "حزام أمان إضافي",
-      image: "https://example.com/images/renault-kangoo.jpg",
-      status: "Disponible",
-      datePublication: "2025-10-8"
-    }
-  },
-  {
-    id: 103,
-    agenceId: 2,
-    carDetails: {
-      nom: "Citroën Berlingo",
-      marque: "Citroën",
-      modele: "Berlingo XL",
-      annee: 2021,
-      carburant: "Diesel",
-      kilometrage: 60000,
-      sieges: 5,
-      categorie: "Utilitaire",
-      transmission: "Manuelle",
-      description: "سيارة واسعة للركاب والبضائع",
-      rampe: true,
-      elevateur: true,
-      commandeManuelle: true,
-      guide: true,
-      espaceFauteuil: "Large",
-      support: "حزام أمان إضافي",
-      image: "https://example.com/images/citroen-berlingo.jpg",
-      status: "Disponible",
-      datePublication: "2025-7-18"
-    }
+  useEffect(() => {
+    const fetchVehicules = async () => {
+      try {
+        const response = await getVehicules();
+        const allVehicules = response.data;
+        const selectedCar = allVehicules.find((v) => v._id === id);
+        setCar(selectedCar || null);
+      } catch (error) {
+        console.error("Erreur lors du chargement des véhicules :", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchVehicules();
+  }, [id]);
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center min-h-screen text-xl text-white">
+        ⏳ Chargement...
+      </div>
+    );
   }
-];
-  // const booking = bookings.find((b) => b.id === id);
-  // const car = booking?.carDetails || {};
-const booking = bookings.find((b) => b.id === id);
-const voiture = voitures.find((v) => v.id.toString() === id); // حطنا toString لأن id من URL نصي
-const car = booking?.carDetails || voiture?.carDetails || {};
 
+  if (!car) {
+    return (
+      <div className="flex justify-center items-center min-h-screen text-xl text-red-500">
+        ❌ Aucune voiture trouvée pour cet ID.
+      </div>
+    );
+  }
 
   return (
-    // <div className="p-6  min-h-screen flex justify-center items-start" style={{border:"30px red solid",display:"flex"}}>
     <div
       style={{
         position: "relative",
@@ -335,17 +53,9 @@ const car = booking?.carDetails || voiture?.carDetails || {};
         justifyContent: "center",
         alignItems: "center",
         padding: "20px",
-        border: "8px green soild",
       }}
     >
-      {/* <video
-        autoPlay
-        loop
-        muted
-        className="absolute top-0 left-0 w-full h-full object-cover z-0"
-      >
-        <source src="https://www.w3schools.com/howto/rain.mp4" type="video/mp4" />
-      </video> */}
+      {/* فيديو الخلفية */}
       <video
         autoPlay
         loop
@@ -360,14 +70,10 @@ const car = booking?.carDetails || voiture?.carDetails || {};
           zIndex: -2,
         }}
       >
-        {" "}
-        <source
-          src={video}
-          type="video/mp4"
-        />
+        <source src={video} type="video/mp4" />
       </video>
 
-      {/* Overlay داكن */}
+      {/* خلفية شفافة */}
       <div
         style={{
           position: "absolute",
@@ -379,94 +85,79 @@ const car = booking?.carDetails || voiture?.carDetails || {};
           zIndex: -1,
         }}
       ></div>
+
+      {/* كارد التفاصيل */}
       <div
-        className=" rounded-lg shadow-lg p-6 w-full max-w-3xl"
+        className="rounded-lg shadow-lg p-6"
         style={{
-          border: "16px red green",
           display: "flex",
+          flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
-          width: "800px",
-            background: "rgba(255, 255, 255, 0.4)"
+          width: "600px", // عرض أصغر للكارد
+          background: "rgba(255, 255, 255, 0.4)",
+          backdropFilter: "blur(6px)",
+          borderRadius: "15px",
+          boxShadow: "0 4px 15px rgba(0,0,0,0.3)",
         }}
       >
-        {/* <h1 className="text-2xl font-bold mb-6 flex items-center gap-2">
-          <i className="fas fa-car text-blue-500"></i> Détails de la voiture
-        </h1> */}
+        {/* صورة السيارة في الأعلى */}
+        {car.image && (
+          <img
+            src={
+              car.image.startsWith("/images")
+                ? `http://localhost:5011${car.image}`
+                : car.image
+            }
+            alt={car.nom}
+            style={{
+              width: "250px",
+              height: "auto",
+              objectFit: "cover",
+              borderRadius: "12px",
+              marginBottom: "20px",
+            }}
+          />
+        )}
 
+        {/* بيانات السيارة */}
         <div
-          className="flex flex-col md:flex-row gap-6"
-          style={{ width: "800px", height: "550px" }}
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "flex-start",
+            gap: "10px",
+            width: "100%",
+          }}
         >
-          {/* صورة السيارة */}
+          <h1 className="text-xl font-bold text-gray-800 mb-2 text-center w-full">
+            <i className="fas fa-car text-blue-500 mr-2"></i>
+            Détails de la voiture
+          </h1>
 
-          {car.image && (
-            <img
-              src={car.image}
-              alt={car.nom}
-              className="w-full md:w-1/4 rounded-lg border border-gray-300"
-              style={{ width: "450px" }}
-            />
-          )}
+      <div className="grid grid-cols-2 gap-3 w-full text-xl" style={{paddingLeft:"18px"}}>
+  <p><i className="fas fa-tag mr-2 text-gray-500"></i><b>Nom :</b> {car.nom}</p>
+  <p><i className="fas fa-users mr-2 text-gray-500"></i><b>Sièges :</b> {car.sieges}</p>
+  <p><i className="fas fa-chair mr-2 text-gray-500"></i><b>Espace fauteuil :</b> {car.espaceFauteuil}</p>
+  <p><i className="fas fa-shield-alt mr-2 text-gray-500"></i><b>Support :</b> {car.support}</p>
+  {/* <p><i className="fas fa-industry mr-2 text-gray-500"></i><b>Marque :</b> {car.marque}</p> */}
+  <p><i className="fas fa-cogs mr-2 text-gray-500"></i><b>Modèle :</b> {car.modele}</p>
+  <p><i className="fas fa-calendar-alt mr-2 text-gray-500"></i><b>Année :</b> {car.annee}</p>
+  <p><i className="fas fa-gas-pump mr-2 text-gray-500"></i><b>Carburant :</b> {car.carburant}</p>
+  <p><i className="fas fa-car-side mr-2 text-gray-500"></i><b>Catégorie :</b> {car.categorie}</p>
+  <p><i className="fas fa-wheelchair mr-2 text-gray-500"></i><b>Rampe :</b> {car.rampe ? "Oui" : "Non"}</p>
+  <p><i className="fas fa-arrow-up mr-2 text-gray-500"></i><b>Élévateur :</b> {car.elevator ? "Oui" : "Non"}</p>
+  <p><i className="fas fa-user-tie mr-2 text-gray-500"></i><b>Avec Chauffeur :</b> {car.avecChauffeur ? "Oui" : "Non"}</p>
+  <p><i className="fas fa-hand-paper mr-2 text-gray-500"></i><b>Commande manuelle :</b> {car.commandeManuelle ? "Oui" : "Non"}</p>
+  <p><i className="fas fa-user-check mr-2 text-gray-500"></i><b>Guide :</b> {car.guide ? "Oui" : "Non"}</p>
+  <p><i className="fas fa-check-circle mr-2 text-gray-500"></i><b>Disponibilité :</b> {car.statusVehicule}</p>
+  <p><i className="fas fa-calendar-day mr-2 text-gray-500"></i><b>Date d'ajout :</b> {new Date(car.dateAjout || car.createdAt).toLocaleDateString()}</p>
+  <p className="col-span-2"><i className="fas fa-info-circle mr-2 text-gray-500"></i><b>Description :</b> {car.description}</p>
+  <p><i className="fas fa-road mr-2 text-gray-500"></i><b>Kilométrage :</b> {car.kilometrage} km</p>
+  <p><i className="fas fa-cogs mr-2 text-gray-500"></i><b>Transmission :</b> {car.transmission || "Non spécifiée"}</p>
+</div>
 
-          {/* بيانات السيارة */}
-          <div className="flex-1 space-y-2 text-gray-700 ml-3" style={{marginLeft:"42px"}}>
-            <h4><i className="fas fa-info-circle mr-2 text-gray-500"></i>Détails de la voiture :</h4>
-            <p>
-              <i className="fas fa-tag mr-2 text-gray-500"></i>
-              <b>Nom:</b> {car.nom}
-            </p>
-            <p>
-              <i className="fas fa-industry mr-2 text-gray-500"></i>
-              <b>Marque:</b> {car.marque}
-            </p>
-            <p>
-              <i className="fas fa-cogs mr-2 text-gray-500"></i>
-              <b>Modèle:</b> {car.modèle}
-            </p>
-            <p>
-              <i className="fas fa-calendar-alt mr-2 text-gray-500"></i>
-              <b>Année:</b> {car.année}
-            </p>
-            <p>
-              <i className="fas fa-gas-pump mr-2 text-gray-500"></i>
-              <b>Carburant:</b> {car.carburant}
-            </p>
-            <p>
-              <i className="fas fa-wheelchair mr-2 text-gray-500"></i>
-              <b>Rampe:</b> {car.rampe ? "Oui" : "Non"}
-            </p>
-            <p>
-              <i className="fas fa-arrow-up mr-2 text-gray-500"></i>
-              <b>Élévateur:</b> {car.élévateur ? "Oui" : "Non"}
-            </p>
-            <p>
-              <i className="fas fa-hand-paper mr-2 text-gray-500"></i>
-              <b>Commande manuelle:</b> {car.commandeManuelle ? "Oui" : "Non"}
-            </p>
-            <p>
-              <i className="fas fa-user-check mr-2 text-gray-500"></i>
-              <b>Guide:</b> {car.guide ? "Oui" : "Non"}
-            </p>
-            <p>
-              <i className="fas fa-chair mr-2 text-gray-500"></i>
-              <b>Espace fauteuil:</b> {car.espaceFauteuil}
-            </p>
-            <p>
-              <i className="fas fa-users mr-2 text-gray-500"></i>
-              <b>Sièges:</b> {car.sièges}
-            </p>
-              <p>
-              <i className="fas fa-check-circle  mr-2 text-gray-500"></i>
-              <b>disponibilté</b> {car.status}
-            </p>
-            <p>
-              <i className="fas fa-calendar-day mr-2 text-gray-500"></i>
-              {/* <b>Date de réservation:</b> {booking.datedebooking} */}
-                <b>Date:</b> {booking ? booking.datedebooking : voiture?.carDetails?.datePublication}
-
-            </p>
-          </div>
         </div>
       </div>
     </div>

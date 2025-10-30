@@ -34,8 +34,7 @@ export default function TableReservation({ color }) {
       // ✅ الفلترة: فقط الحجوزات التي تحتوي على مركبة من هذه الوكالة
       const filteredReservations = allReservations.filter(
         (res) =>
-          res.idVehicule &&
-          Vehicules.some((v) => v._id === res.idVehicule._id)
+          res.idVehicule && Vehicules.some((v) => v._id === res.idVehicule._id)
       );
 
       setReservations(filteredReservations);
@@ -100,17 +99,17 @@ export default function TableReservation({ color }) {
             <thead>
               <tr>
                 {[
-                  "date Réservation",
+                  "date de Réservation",
                   "Voiture",
-                  "Date de réservation",
-                  "Statut",
+                  "Date début et fin réservation",
+                  "Duree",
                   "Prix total",
                   "Actions",
                 ].map((title, index) => (
                   <th
                     key={index}
                     className={
-                      "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
+                      "px-6 align-middle border border-solid py-3 text-xl font-bold uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center " +
                       (color === "light"
                         ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
                         : "bg-blueGray-400 text-lightBlue-300 border-lightBlue-700")
@@ -125,40 +124,33 @@ export default function TableReservation({ color }) {
               {Reservations.length > 0 ? (
                 Reservations.map((res) => (
                   <tr key={res._id}>
-                    <td className="border-t-0 px-6 align-middle text-xl whitespace-nowrap p-4 border p-2">
+                    <td className="border-t-0 px-6 align-middle text-xl whitespace-nowrap p-4 border p-2 text-center font-bold">
                       {new Date(res.createdAt).toLocaleDateString()}
                     </td>
-                    <td className="border p-2 text-xl">
+                    <td className="border p-2 text-xl text-center font-bold">
                       {res.idVehicule?.nom || "—"}
                     </td>
-                    <td className="border-t-0 px-6 align-middle text-xl whitespace-nowrap p-4 border p-2">
+                    <td className="border-t-0 px-6 align-middle text-xl whitespace-nowrap p-4 border p-2 text-center font-bold">
                       {new Date(res.dateDebut).toLocaleDateString()} -{" "}
                       {new Date(res.dateFin).toLocaleDateString()}
                     </td>
 
-                    <td className="border p-2 text-xl">
-                      {/* {res.status || "en attente"}
-                      <select
-                        value={res.status || "en attente"}
-                        onChange={(e) =>
-                          handleStatusChange(res._id, e.target.value)
-                        }
-                        className="border rounded p-1 ml-2 bg-lightBlue-600"
-                        style={{ paddingLeft: "15px" }}
-                      >
-                        <option value="venir">À venir</option>
-                        <option value="termine">Terminé</option>
-                        <option value="annule">Annulé</option>
-                      </select> */}
+                    <td className="border p-2 text-xl text-center font-bold">
+                   
+                      {res.duree}
                     </td>
 
-                    <td className="border p-2 text-xl">
+                    <td className="border p-2 text-xl text-center font-bold">
                       {res.totalPrix ? `${res.totalPrix} DT` : "—"}
                     </td>
 
-                    <td className="border-t-0 text-xl px-6 align-middle text-center border p-2">
+                    <td className="border-t-0 text-xl px-6 align-middle text-center border p-2 font-bold">
                       <span>Consulter</span>
-                      <TableDropdownagencedevoiture bookingId={res._id} />
+                      <TableDropdownagencedevoiture
+                        // bookingId={res._id}
+                        clientId={res.idClient?._id}
+                        vehiculeId={res.idVehicule?._id}
+                      />
                     </td>
                   </tr>
                 ))

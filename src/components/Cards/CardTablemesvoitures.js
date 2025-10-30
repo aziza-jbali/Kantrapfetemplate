@@ -1187,11 +1187,11 @@ export default function CardTable({ color }) {
         <table className="items-center w-full bg-transparent border-collapse">
           <thead>
             <tr>
-              <th className={headerClass(color)}>Image</th>
-              <th className={headerClass(color)}>Nom / Modèle</th>
+              <th className={headerClass(color)}>Image / Nom</th>
+              <th className={headerClass(color)}> Siéges</th>
               <th className={headerClass(color)}>Catégorie</th>
               <th className={headerClass(color)}>Statut</th>
-              <th className={headerClass(color)}>Année</th>
+              <th className={headerClass(color)}>décision</th>
               <th className={headerClass(color)}>Actions</th>
             </tr>
           </thead>
@@ -1199,20 +1199,21 @@ export default function CardTable({ color }) {
           <tbody>
             {Vehicules.map((v) => (
               <tr key={v._id}>
-                <td className="border p-3 text-center">
+                <td  className="border  p-2  px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-3 text-left flex items-center">
                   <img
                     src={`http://localhost:5011${v.image}`}
                     className="h-12 w-12 bg-white rounded-full border"
                     alt="voiture"
                   />
+                  <span className="ml-2 font-bold text-xl ">{v.nom} </span>
                 </td>
-                <td className="border p-2 text-center text-xl">
-                  {v.nom} / {v.modele}
+                <td className="border p-2 font-bold text-center text-xl">
+                   {v.sieges}
                 </td>
-                <td className="border p-2 text-center text-xl">
+                <td className="border p-2  font-bold text-center text-xl">
                   {v.carburant}{" "}
                 </td>
-                <td className="border p-2 text-center text-xl">
+                <td className="border p-2 font-bold text-center text-xl">
                   {v.statusVehicule}
                   {
                     <select
@@ -1227,7 +1228,17 @@ export default function CardTable({ color }) {
                     </select>
                   }
                 </td>
-                <td className="border p-2 text-center text-xl">{v.annee}</td>
+                <td className="border p-2 text-center  font-bold text-xl">   <span
+                      className={
+                        v.statut.trim() === "Approuvé"
+                          ? "text-emerald-500 font-bold"
+                          : v.statut.trim() === "Rejeté"
+                          ? "text-red-500 font-bold"
+                          : "text-yellow-500 font-bold"
+                      }
+                    >
+                      {v.statut}
+                    </span></td>
                 <td className="border p-2 text-center">
                   <button
                     className="bg-lightBlue-500 text-white font-bold px-4 py-2 rounded mr-2"

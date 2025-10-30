@@ -199,41 +199,155 @@
 
 
 
+// import { useLocation } from "react-router-dom";
+// import video1 from "../../assets/videos/n1.mp4";
+// import{getallclient} from "../../service/apiUsers"
+// export default function CustomerDetails() {
+//   const location = useLocation();
+//   const searchParams = new URLSearchParams(location.search);
+//   const id = searchParams.get("id");
+
+//   const bookings = [
+//     {
+//       id: "1",
+//       car: "Peugeot Partner",
+//       customer: {
+//         id: "1",
+//         name: "Mohamed Ali",
+//         phone: "12345678",
+//         email: "mohamed@example.com",
+//         address: "Tunis, Avenue Habib Bourguiba",
+//       },
+//     },
+//     {
+//       id: "2",
+//       car: "Renault Kangoo",
+//       customer: {
+//         id: "2",
+//         name: "Samed Ali",
+//         phone: "14345678",
+//         email: "moohamed@example.com",
+//         address: "Tunis, Avenue Habib Thamer",
+//       },
+//     },
+//   ];
+
+//   const booking = bookings.find((b) => b.id === id);
+//   const customer = booking?.customer || {};
+
+//   return (
+//     <>
+//       <style>{`
+//         .customer-page {
+//           position: relative;
+//           width: 100%;
+//           height: 100vh;
+//           display: flex;
+//           align-items: center;
+//           justify-content: center;
+//           overflow: hidden;
+//         }
+//         .bg-video {
+//           position: absolute;
+//           top: 0;
+//           left: 0;
+//           width: 100%;
+//           height: 100%;
+//           object-fit: cover;
+//           z-index: -2;
+//         }
+//         .overlay {
+//           position: absolute;
+//           top: 0;
+//           left: 0;
+//           width: 100%;
+//           height: 100%;
+//           background: rgba(0,0,0,0.5);
+//           z-index: -1;
+//         }
+//         .customer-card {
+//           background: rgba(255, 255, 255, 0.7);
+//           border-radius: 12px;
+//           padding: 20px;
+//           max-width: 500px;
+//           width: 90%;
+//           text-align: center;
+//           box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+//         }
+//       `}</style>
+
+//       <div className="customer-page">
+//         {/* Vidéo en arrière-plan */}
+//         <video autoPlay loop muted className="bg-video">
+//           <source src={video1} type="video/mp4" />
+//         </video>
+
+//         {/* Overlay sombre */}
+//         <div className="overlay"></div>
+
+//         {/* Carte centrée */}
+//         <div className="customer-card">
+//           <h1 className="text-2xl font-bold mb-6 text-gray-800">
+//             <i className="fas fa-user-circle mr-2 text-lg"></i>
+//             Détails du client
+//           </h1>
+//           <p><i className="fas fa-id-badge mr-2 text-sm"></i><b>ID:</b> {customer.id}</p>
+//           <p><i className="fas fa-user mr-2 text-sm"></i><b>Nom:</b> {customer.name}</p>
+//           <p><i className="fas fa-phone mr-2 text-sm"></i><b>Téléphone:</b> {customer.phone}</p>
+//           <p><i className="fas fa-envelope mr-2 text-sm"></i><b>Email:</b> {customer.email}</p>
+//           <p><i className="fas fa-map-marker-alt mr-2 text-sm"></i><b>Adresse:</b> {customer.address}</p>
+//         </div>
+//       </div>
+//     </>
+//   );
+// }
+
+
+import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import video1 from "../../assets/videos/n1.mp4";
+import { getallclient } from "../../service/apiUsers";
 
 export default function CustomerDetails() {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const id = searchParams.get("id");
 
-  const bookings = [
-    {
-      id: "1",
-      car: "Peugeot Partner",
-      customer: {
-        id: "1",
-        name: "Mohamed Ali",
-        phone: "12345678",
-        email: "mohamed@example.com",
-        address: "Tunis, Avenue Habib Bourguiba",
-      },
-    },
-    {
-      id: "2",
-      car: "Renault Kangoo",
-      customer: {
-        id: "2",
-        name: "Samed Ali",
-        phone: "14345678",
-        email: "moohamed@example.com",
-        address: "Tunis, Avenue Habib Thamer",
-      },
-    },
-  ];
+  const [customer, setCustomer] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  const booking = bookings.find((b) => b.id === id);
-  const customer = booking?.customer || {};
+  useEffect(() => {
+    const fetchClient = async () => {
+      try {
+        const response = await getallclient(); // جلب جميع العملاء
+        const allClients = response.data;
+        const foundClient = allClients.find((c) => c._id === id);
+        setCustomer(foundClient || null);
+      } catch (error) {
+        console.error("Erreur lors de la récupération du client :", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchClient();
+  }, [id]);
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center h-screen text-xl">
+        Chargement des détails du client...
+      </div>
+    );
+  }
+
+  if (!customer) {
+    return (
+      <div className="flex items-center justify-center h-screen text-xl text-red-600">
+        ❌ Client introuvable
+      </div>
+    );
+  }
 
   return (
     <>
@@ -266,36 +380,37 @@ export default function CustomerDetails() {
           z-index: -1;
         }
         .customer-card {
-          background: rgba(255, 255, 255, 0.7);
+          background: rgba(255, 255, 255, 0.8);
           border-radius: 12px;
-          padding: 20px;
+          padding: 25px;
           max-width: 500px;
           width: 90%;
           text-align: center;
           box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+          color: #222;
         }
       `}</style>
 
       <div className="customer-page">
-        {/* Vidéo en arrière-plan */}
+        {/* خلفية الفيديو */}
         <video autoPlay loop muted className="bg-video">
           <source src={video1} type="video/mp4" />
         </video>
 
-        {/* Overlay sombre */}
         <div className="overlay"></div>
 
-        {/* Carte centrée */}
         <div className="customer-card">
           <h1 className="text-2xl font-bold mb-6 text-gray-800">
             <i className="fas fa-user-circle mr-2 text-lg"></i>
             Détails du client
           </h1>
-          <p><i className="fas fa-id-badge mr-2 text-sm"></i><b>ID:</b> {customer.id}</p>
-          <p><i className="fas fa-user mr-2 text-sm"></i><b>Nom:</b> {customer.name}</p>
-          <p><i className="fas fa-phone mr-2 text-sm"></i><b>Téléphone:</b> {customer.phone}</p>
+          <p><i className="fas fa-id-badge mr-2 text-sm"></i><b>ID:</b> {customer._id}</p>
+          <p><i className="fas fa-user mr-2 text-sm"></i><b>Nom:</b> {customer.nom} {customer.prenom}</p>
+          <p><i className="fas fa-phone mr-2 text-sm"></i><b>Téléphone:</b> {customer.phones?.join(", ")}</p>
           <p><i className="fas fa-envelope mr-2 text-sm"></i><b>Email:</b> {customer.email}</p>
+          {/* <p><i className="fas fa-user-tag mr-2 text-sm"></i><b>Rôle:</b> {customer.role}</p> */}
           <p><i className="fas fa-map-marker-alt mr-2 text-sm"></i><b>Adresse:</b> {customer.address}</p>
+
         </div>
       </div>
     </>
