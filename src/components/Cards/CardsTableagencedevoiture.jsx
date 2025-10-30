@@ -1,93 +1,66 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-
-// components
-
+import { gettousReservations } from "../../service/apiGestionreservations";
+import { getVehicules } from "../../service/apiGestionvehicules";
 import TableDropdownagencedevoiture from "components/Dropdowns/TableDropdownagencedevoiture.js";
 
+export default function TableReservation({ color }) {
+  const [Reservations, setReservations] = useState([]);
+  const [Vehicules, setVehicules] = useState([]);
 
-const bookings = [
-  {
-    id: "1",
-    car: "Peugeot Partner",
-    price: "120 DT/يوم",
-    startDate: "2025-10-02",
-    endDate: "2025-10-05",
-    datedebooking: "2025-09-04",
-    status: "venue",
-    customer: {
-      id: "1",
-      name: "محمد علي",
-      phone: "12345678",
-      email: "mohamed@example.com",
-      address: "تونس، شارع الحبيب بورقيبة",
-    },
-    carDetails: {
-      nom: "Peugeot Partner",
-      marque: "Peugeot",
-      modèle: "Partner XL",
-      année: 2022,
-      carburant: "Diesel",
-      kilométrage: 50000,
-      sièges: 3,
-      catégorie: "Utilitaire",
-      transmission: "Manuelle",
-      description: "سيارة مجهزة لذوي الاحتياجات الخاصة",
-      rampe: true,
-      élévateur: false,
-      commandeManuelle: true,
-      guide: false,
-      espaceFauteuil: "Large",
-      support: "حزام أمان إضافي",
-      image: "https://example.com/images/peugeot-partner.jpg",
-       status: "Indisponible"
-    },
-  },
-  {
-    id: "2",
-    car: "Renault Kangoo",
-    price: "120 DT/يوم",
-    startDate: "2025-10-02",
-    endDate: "2025-10-05",
-    datedebooking: "2025-09-10",
+  // 🔹 مؤقتًا نكتب الـ agenceId يدويًا
+  const agenceId = "68f6aa0e912121c2e413dd49";
 
-    status: "venue",
-    customer: {
-      id: "2",
-      name: "سمد علي",
-      phone: "14345678",
-      email: "moohamed@example.com",
-      address: "تونس، شارع الحبيب بورقيبة",
-    },
-    carDetails: {
-      nom: "Renault Kangoo",
-      marque: "Renault",
-      modèle: "Kangoo Life",
-      année: 2021,
-      carburant: "Essence",
-      kilométrage: 60000,
-      sièges: 5,
-      catégorie: "Utilitaire",
-      transmission: "Manuelle",
-      description: "سيارة مجهزة لذوي الاحتياجات الخاصة",
-      rampe: false,
-      élévateur: true,
-      commandeManuelle: false,
-      guide: true,
-      espaceFauteuil: "Moyen",
-      support: "حزام أمان إضافي",
-      image: "https://example.com/images/renault-kangoo.jpg",
-       status: "Disponible"
-    },
-  },
-];
+  // 🟢 جلب المركبات التابعة للوكالة
+  const getVehicule = async () => {
+    try {
+      const response = await getVehicules();
+      const filteredVehicules = response.data.filter(
+        (v) => v.idagencedevehicule === agenceId
+      );
+      setVehicules(filteredVehicules);
+      console.log("🚗 Vehicules of this agence:", filteredVehicules);
+    } catch (error) {
+      console.log("Error while calling getVehicules API ", error);
+    }
+  };
 
-export default function CardTable({ color }) {
-  const [booking, setBooking] = useState(bookings);
+  // 🟢 جلب الحجوزات وتصفية الخاصة بالوكالة فقط
+  const getReservations = async () => {
+    try {
+      const response = await gettousReservations();
+      const allReservations = response.data.reservations;
 
+      // ✅ الفلترة: فقط الحجوزات التي تحتوي على مركبة من هذه الوكالة
+      const filteredReservations = allReservations.filter(
+        (res) =>
+          res.idVehicule &&
+          Vehicules.some((v) => v._id === res.idVehicule._id)
+      );
+
+      setReservations(filteredReservations);
+      console.log("📅 Filtered Reservations:", filteredReservations);
+    } catch (error) {
+      console.error("Erreur lors de l'appel à l'API getReservations:", error);
+    }
+  };
+
+  // 🟢 عند تحميل الصفحة: جلب المركبات أولاً
+  useEffect(() => {
+    getVehicule();
+  }, []);
+
+  // 🟢 بعد ما يتم تحميل المركبات، نجيب الحجوزات
+  useEffect(() => {
+    if (Vehicules.length > 0) {
+      getReservations();
+    }
+  }, [Vehicules]);
+
+  // 🟢 تغيير حالة الحجز (محلي فقط)
   const handleStatusChange = (id, newStatus) => {
-    setBooking((prev) =>
-      prev.map((b) => (b.id === id ? { ...b, status: newStatus } : b))
+    setReservations((prev) =>
+      prev.map((r) => (r._id === id ? { ...r, status: newStatus } : r))
     );
   };
 
@@ -108,121 +81,97 @@ export default function CardTable({ color }) {
                   (color === "light" ? "text-blueGray-700" : "text-white")
                 }
               >
-                La table de Reservations:
+                La table de Réservations:
               </h3>
-              <div class="mb-3 pt-0">
-                <input 
+              <div className="mb-3 pt-0">
+                <input
                   type="text"
                   placeholder="search here"
-                  class="px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm shadow outline-none focus:outline-none focus:shadow-outline w-1/2"
+                  className="px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white rounded text-xl shadow outline-none focus:outline-none focus:shadow-outline w-1/2"
                 />
               </div>
             </div>
           </div>
         </div>
+
         <div className="block w-full overflow-x-auto">
-          {/* Projects table */}
+          {/* جدول الحجوزات */}
           <table className="items-center w-full bg-transparent border-collapse">
             <thead>
               <tr>
-                <th
-                  className={
-                    "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
-                    (color === "light"
-                      ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
-                      : "bg-blueGray-400 text-lightBlue-300 border-lightBlue-700")
-                  }
-                >
-                  id reservation
-                </th>
-                <th
-                  className={
-                    "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
-                    (color === "light"
-                      ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
-                      : "bg-blueGray-400 text-lightBlue-300 border-lightBlue-700")
-                  }
-                >
-                  Voiture
-                </th>
-                <th
-                  className={
-                    "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
-                    (color === "light"
-                      ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
-                      : "bg-blueGray-400 text-lightBlue-300 border-lightBlue-700")
-                  }
-                >
-                  Date de réservation
-                </th>
-                <th
-                  className={
-                    "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
-                    (color === "light"
-                      ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
-                      : "bg-blueGray-400 text-lightBlue-300 border-lightBlue-700")
-                  }
-                >
-                  Statut
-                </th>
-                <th
-                  className={
-                    "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
-                    (color === "light"
-                      ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
-                      : "bg-blueGray-400 text-lightBlue-300 border-lightBlue-700")
-                  }
-                >
-                  Prix total
-                </th>
-                <th
-                  className={
-                    "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center " +
-                    (color === "light"
-                      ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
-                      : "bg-blueGray-400 text-lightBlue-300 border-lightBlue-700")
-                  }
-                >
-                  Actions
-                </th>
+                {[
+                  "date Réservation",
+                  "Voiture",
+                  "Date de réservation",
+                  "Statut",
+                  "Prix total",
+                  "Actions",
+                ].map((title, index) => (
+                  <th
+                    key={index}
+                    className={
+                      "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
+                      (color === "light"
+                        ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
+                        : "bg-blueGray-400 text-lightBlue-300 border-lightBlue-700")
+                    }
+                  >
+                    {title}
+                  </th>
+                ))}
               </tr>
             </thead>
             <tbody>
-              {booking.map((booking) => (
-                <tr key={booking.id}>
-                  <td className="border-t-0 px-6 align-middle text-xl whitespace-nowrap p-4 border p-2">
-                    {booking.id}
-                  </td>
-                  <td className="border p-2 text-xl">
-                    {booking.carDetails.nom}
-                  </td>
-                  <td className="border-t-0 px-6 align-middle text-xl whitespace-nowrap p-4 border p-2">
-                    {booking.startDate} - {booking.endDate}
-                  </td>
-                  {/* <td>{booking.status}</td> */}
-                  <td className="border p-2 text-xl ">
-                    {booking.status}
-                    <select
-                      value={booking.status}
-                      onChange={(e) =>
-                        handleStatusChange(booking.id, e.target.value)
-                      }
-                      className="border rounded p-1 ml-2 bg-lightBlue-600"
-                      style={{ paddingLeft: "15px" }}
-                    >
-                      <option value="venir">À venir</option>
-                      <option value="Termine">Terminé</option>
-                      <option value="Annule">Annulé</option>
-                    </select>
-                  </td>
+              {Reservations.length > 0 ? (
+                Reservations.map((res) => (
+                  <tr key={res._id}>
+                    <td className="border-t-0 px-6 align-middle text-xl whitespace-nowrap p-4 border p-2">
+                      {new Date(res.createdAt).toLocaleDateString()}
+                    </td>
+                    <td className="border p-2 text-xl">
+                      {res.idVehicule?.nom || "—"}
+                    </td>
+                    <td className="border-t-0 px-6 align-middle text-xl whitespace-nowrap p-4 border p-2">
+                      {new Date(res.dateDebut).toLocaleDateString()} -{" "}
+                      {new Date(res.dateFin).toLocaleDateString()}
+                    </td>
 
-                  <td className="border p-2 text-xl">{booking.price}</td>
-                  <td className="border-t-0 text-xl px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-center border p-2 ">
-                    <span>Consulter</span>
-                    <TableDropdownagencedevoiture bookingId={booking.id} />
+                    <td className="border p-2 text-xl">
+                      {/* {res.status || "en attente"}
+                      <select
+                        value={res.status || "en attente"}
+                        onChange={(e) =>
+                          handleStatusChange(res._id, e.target.value)
+                        }
+                        className="border rounded p-1 ml-2 bg-lightBlue-600"
+                        style={{ paddingLeft: "15px" }}
+                      >
+                        <option value="venir">À venir</option>
+                        <option value="termine">Terminé</option>
+                        <option value="annule">Annulé</option>
+                      </select> */}
+                    </td>
+
+                    <td className="border p-2 text-xl">
+                      {res.totalPrix ? `${res.totalPrix} DT` : "—"}
+                    </td>
+
+                    <td className="border-t-0 text-xl px-6 align-middle text-center border p-2">
+                      <span>Consulter</span>
+                      <TableDropdownagencedevoiture bookingId={res._id} />
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td
+                    colSpan="6"
+                    className="text-center p-4 text-lg text-blueGray-500"
+                  >
+                    Aucune réservation trouvée pour cette agence.
                   </td>
                 </tr>
-              ))}
+              )}
             </tbody>
           </table>
         </div>
@@ -231,10 +180,10 @@ export default function CardTable({ color }) {
   );
 }
 
-CardTable.defaultProps = {
+TableReservation.defaultProps = {
   color: "light",
 };
 
-CardTable.propTypes = {
+TableReservation.propTypes = {
   color: PropTypes.oneOf(["light", "dark"]),
 };

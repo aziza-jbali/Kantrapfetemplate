@@ -889,8 +889,6 @@
 
 
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
-
 import { addVehiculeWithImg } from "../../service/apiGestionvehicules";
 
 export default function AddCarForm() {
@@ -915,30 +913,14 @@ export default function AddCarForm() {
     espaceFauteuil: "",
     support: "",
     avecChauffeur: false,
-    statusVehicule: "diponible",
+    statusVehicule: "disponible",
   });
 
   const agenceId = "68f6aa0e912121c2e413dd49"; // ID الوكالة
 
-  // const handleChange = (e) => {
-  //   const { name, value, type, checked, files } = e.target;
-  //   if (type === "file") {
-  //     setFormData({
-  //       ...formData,
-  //       image: URL.createObjectURL(files[0]),
-  //       file: files[0],
-  //     });
-  //   } else if (type === "checkbox") {
-  //     setFormData({ ...formData, [name]: checked });
-  //   } else {
-  //     setFormData({ ...formData, [name]: value });
-  //   }
-  // };
-  // ← هنا تضع دالة handleChange
   const handleChange = (e) => {
     const { name, value, type, checked, files } = e.target;
     if (type === "file") {
-      // تحرير الصورة القديمة قبل تعيين الجديدة
       if (formData.image) URL.revokeObjectURL(formData.image);
       setFormData({
         ...formData,
@@ -951,15 +933,23 @@ export default function AddCarForm() {
       setFormData({ ...formData, [name]: value });
     }
   };
+
   const handleRemoveImage = () => {
+    if (formData.image) URL.revokeObjectURL(formData.image);
     setFormData((prev) => ({ ...prev, image: null, file: null }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // تحقق من الحقول المطلوبة
+    if (!formData.nom || !formData.marque || !formData.prixParJour) {
+      alert("الرجاء ملء جميع الحقول المطلوبة!");
+      return;
+    }
+
     const data = new FormData();
 
-    // تحويل القيم إلى النوع الصحيح قبل الإرسال
     const payload = {
       ...formData,
       rampe: formData.rampe,
@@ -1006,7 +996,7 @@ export default function AddCarForm() {
         espaceFauteuil: "",
         support: "",
         avecChauffeur: false,
-        statusVehicule: "diponible",
+        statusVehicule: "disponible",
       });
     } catch (error) {
       console.error("❌ خطأ أثناء إضافة السيارة:", error);
@@ -1021,19 +1011,19 @@ export default function AddCarForm() {
 
         {/* Nom */}
         <div className="form-group">
-          <label>Nom de la voiture</label>
+          <label>Nom de la voiture *</label>
           <input type="text" name="nom" value={formData.nom} onChange={handleChange} placeholder="Ex: Renault Kangoo"/>
         </div>
 
         {/* Marque */}
         <div className="form-group">
-          <label>Marque</label>
+          <label>Marque *</label>
           <input type="text" name="marque" value={formData.marque} onChange={handleChange} placeholder="Ex: Renault, Peugeot"/>
         </div>
 
         {/* Prix */}
         <div className="form-group">
-          <label>Prix par jour (Dinar)</label>
+          <label>Prix par jour (Dinar) *</label>
           <input type="number" name="prixParJour" value={formData.prixParJour} onChange={handleChange} placeholder="Ex: 120"/>
         </div>
 
@@ -1095,11 +1085,12 @@ export default function AddCarForm() {
         </div>
 
         {/* Checkboxes */}
-        <div className="form-group">
+        <div className="form-group checkboxes">
           <label><input type="checkbox" name="commandeManuelle" checked={formData.commandeManuelle} onChange={handleChange}/> Commande manuelle</label>
           <label><input type="checkbox" name="guide" checked={formData.guide} onChange={handleChange}/> Guide</label>
           <label><input type="checkbox" name="rampe" checked={formData.rampe} onChange={handleChange}/> Rampe</label>
           <label><input type="checkbox" name="elevateur" checked={formData.elevateur} onChange={handleChange}/> Élévateur</label>
+          <label><input type="checkbox" name="avecChauffeur" checked={formData.avecChauffeur} onChange={handleChange}/> Avec Chauffeur</label>
         </div>
 
         {/* Espace fauteuil */}
@@ -1131,7 +1122,7 @@ export default function AddCarForm() {
         <button type="submit" className="submit-btn">Enregistrer la voiture</button>
       </form>
 
-      {/* CSS القديم */}
+      {/* CSS كامل */}
       <style>{`
         body { background: linear-gradient(135deg,#1e293b,#0f172a); font-family: Arial, sans-serif; color: white; margin: 0; padding: 20px; }
         .form-container { max-width: 1000px; margin:auto; background:#111827; padding:30px; border-radius:12px; box-shadow:0 6px 15px rgba(0,0,0,0.6);}
@@ -1143,6 +1134,7 @@ export default function AddCarForm() {
         textarea { resize:none; }
         .transmission .radio-group { display:flex; gap:20px; margin-top:8px; }
         .radio-group label { display:flex; align-items:center; gap:6px; }
+        .checkboxes label { display:block; margin-top:5px; }
         .image-upload { grid-column:span 2; border:2px dashed #6b7280; border-radius:12px; padding:20px; text-align:center; cursor:pointer; position:relative; background-color:#1f2937; min-height:200px; display:flex; justify-content:center; align-items:center; overflow:hidden; }
         .image-upload input { position:absolute; inset:0; opacity:0; cursor:pointer; }
         .image-preview-wrapper { position:relative; display:inline-block; width:100%; height:100%; }
@@ -1154,4 +1146,5 @@ export default function AddCarForm() {
     </div>
   );
 }
+
 
