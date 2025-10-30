@@ -1057,6 +1057,8 @@ export default function CardTable({ color }) {
   const [Vehicules, setVehicules] = useState([]);
   const [editingVehicule, setEditingVehicule] = useState(null); // السيارة اللي باش نعدلها
   const [formData, setFormData] = useState({});
+  const [searchTerm, setSearchTerm] = useState("");
+
   const agenceId = "68f6aa0e912121c2e413dd49";
 
   const getVehicule = async () => {
@@ -1165,7 +1167,7 @@ export default function CardTable({ color }) {
         (color === "light" ? "bg-white" : "bg-blueGray-400 text-white")
       }
     >
-      <div className="rounded-t mb-0 px-4 py-3 border-0">
+      {/* <div className="rounded-t mb-0 px-4 py-3 border-0">
         <h3
           className={
             "font-semibold text-xl " +
@@ -1180,6 +1182,41 @@ export default function CardTable({ color }) {
             placeholder="search here"
             className="px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-xl shadow outline-none focus:outline-none focus:shadow-outline w-1/2"
           />
+        </div>
+      </div> */}
+
+      <div className="rounded-t mb-0 px-4 py-3 border-0 border p-2">
+        <div className="flex flex-wrap items-center ">
+          <div className="relative w-full px-4 max-w-full flex-grow flex-1 ">
+            <h3
+              className={
+                "font-semibold text-lg " +
+                (color === "light" ? "text-blueGray-700" : "text-white")
+              }
+            >
+              La table de Vehicules:
+            </h3>
+            <div className="mb-3 pt-0">
+              <input
+                type="text"
+                  placeholder="chercher ici par  nom ou sièges"
+
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white rounded text-xl shadow outline-none focus:outline-none focus:shadow-outline w-1/2"
+              />
+              {/* Bloc droit : total des véhicules */}
+
+              <span
+                className="text-lg font-bold text-white"
+                style={{ marginLeft: "680px" }}
+              >
+                <i className="fas fa-calendar-check text-green-400 text-xl mr-1"></i>
+                totale de Vehicules :{Vehicules.length}
+              </span>
+            </div>
+            {/* Bloc droit : total des véhicules */}
+          </div>
         </div>
       </div>
 
@@ -1197,9 +1234,13 @@ export default function CardTable({ color }) {
           </thead>
 
           <tbody>
-            {Vehicules.map((v) => (
+            {Vehicules.filter(
+              (v) =>
+                v.nom.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                v.sieges.toString().includes(searchTerm)
+            ).map((v) => (
               <tr key={v._id}>
-                <td  className="border  p-2  px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-3 text-left flex items-center">
+                <td className="border  p-2  px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-3 text-left flex items-center">
                   <img
                     src={`http://localhost:5011${v.image}`}
                     className="h-12 w-12 bg-white rounded-full border"
@@ -1208,7 +1249,7 @@ export default function CardTable({ color }) {
                   <span className="ml-2 font-bold text-xl ">{v.nom} </span>
                 </td>
                 <td className="border p-2 font-bold text-center text-xl">
-                   {v.sieges}
+                  {v.sieges}
                 </td>
                 <td className="border p-2  font-bold text-center text-xl">
                   {v.carburant}{" "}
@@ -1228,17 +1269,20 @@ export default function CardTable({ color }) {
                     </select>
                   }
                 </td>
-                <td className="border p-2 text-center  font-bold text-xl">   <span
-                      className={
-                        v.statut.trim() === "Approuvé"
-                          ? "text-emerald-500 font-bold"
-                          : v.statut.trim() === "Rejeté"
-                          ? "text-red-500 font-bold"
-                          : "text-yellow-500 font-bold"
-                      }
-                    >
-                      {v.statut}
-                    </span></td>
+                <td className="border p-2 text-center  font-bold text-xl">
+                  {" "}
+                  <span
+                    className={
+                      v.statut.trim() === "Approuvé"
+                        ? "text-emerald-500 font-bold"
+                        : v.statut.trim() === "Rejeté"
+                        ? "text-red-500 font-bold"
+                        : "text-yellow-500 font-bold"
+                    }
+                  >
+                    {v.statut}
+                  </span>
+                </td>
                 <td className="border p-2 text-center">
                   <button
                     className="bg-lightBlue-500 text-white font-bold px-4 py-2 rounded mr-2"

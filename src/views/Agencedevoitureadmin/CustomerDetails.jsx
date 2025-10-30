@@ -401,15 +401,15 @@ export default function CustomerDetails() {
 
         <div className="customer-card">
           <h1 className="text-2xl font-bold mb-6 text-gray-800">
-            <i className="fas fa-user-circle mr-2 text-lg"></i>
+            <i className="fas fa-user-circle mr-2 text-xl"></i>
             Détails du client
           </h1>
-          <p><i className="fas fa-id-badge mr-2 text-sm"></i><b>ID:</b> {customer._id}</p>
-          <p><i className="fas fa-user mr-2 text-sm"></i><b>Nom:</b> {customer.nom} {customer.prenom}</p>
-          <p><i className="fas fa-phone mr-2 text-sm"></i><b>Téléphone:</b> {customer.phones?.join(", ")}</p>
-          <p><i className="fas fa-envelope mr-2 text-sm"></i><b>Email:</b> {customer.email}</p>
+          <p><i className="fas fa-id-badge mr-2 text-xl font-bold"></i><b>ID:</b> {customer._id}</p>
+          <p><i className="fas fa-user mr-2 text-xl font-bold"></i><b>Nom:</b> {customer.nom} {customer.prenom}</p>
+          <p><i className="fas fa-phone mr-2 text-xl font-bold"></i><b>Téléphone:</b> {customer.phones?.join(", ")}</p>
+          <p><i className="fas fa-envelope mr-2 text-xl font-bold"></i><b>Email:</b> {customer.email}</p>
           {/* <p><i className="fas fa-user-tag mr-2 text-sm"></i><b>Rôle:</b> {customer.role}</p> */}
-          <p><i className="fas fa-map-marker-alt mr-2 text-sm"></i><b>Adresse:</b> {customer.address}</p>
+          <p><i className="fas fa-map-marker-alt mr-2 text-xl font-bold"></i><b>Adresse:</b> {customer.address}</p>
 
         </div>
       </div>

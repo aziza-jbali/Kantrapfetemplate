@@ -1006,7 +1006,7 @@ export default function AddCarForm() {
 
   return (
     <div className="form-container">
-      <h2>Ajouter une voiture adaptée</h2>
+      <h2 style={{color:"#6D94C5"}}>Ajouter une voiture adaptée</h2>
       <form className="car-form" onSubmit={handleSubmit}>
 
         {/* Nom */}
@@ -1121,10 +1121,10 @@ export default function AddCarForm() {
 
         <button type="submit" className="submit-btn">Enregistrer la voiture</button>
       </form>
-
+{/* linear-gradient(135deg,#1e293b,#0f172a) */}
       {/* CSS كامل */}
       <style>{`
-        body { background: linear-gradient(135deg,#1e293b,#0f172a); font-family: Arial, sans-serif; color: white; margin: 0; padding: 20px; }
+        body { background:white ; font-family: Arial, sans-serif; color: white; margin: 0; padding: 20px; }
         .form-container { max-width: 1000px; margin:auto; background:#111827; padding:30px; border-radius:12px; box-shadow:0 6px 15px rgba(0,0,0,0.6);}
         h2 { text-align:center; margin-bottom:20px; color:#C2A68C; }
         .car-form { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
@@ -1140,8 +1140,8 @@ export default function AddCarForm() {
         .image-preview-wrapper { position:relative; display:inline-block; width:100%; height:100%; }
         .image-preview { width:100%; height:100%; object-fit:cover; border-radius:12px; }
         .remove-image-btn { position:absolute; top:5px; right:5px; background:rgba(255,0,0,0.7); border:none; color:white; padding:4px 8px; cursor:pointer; border-radius:6px; font-size:12px; }
-        .submit-btn { grid-column:span 2; padding:12px; border:none; border-radius:8px; background:#C2A68C; color:white; font-size:16px; font-weight:bold; cursor:pointer; transition:background 0.3s; }
-        .submit-btn:hover { background:#D2C1B6; }
+        .submit-btn { grid-column:span 2; padding:12px; border:none; border-radius:8px; background:#6D94C5; color:white; font-size:16px; font-weight:bold; cursor:pointer; transition:background 0.3s; }
+        .submit-btn:hover { background:#000B58; }
       `}</style>
     </div>
   );

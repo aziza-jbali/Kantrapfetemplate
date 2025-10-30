@@ -80,9 +80,9 @@ import Tablesdemesvoiture from "views/admin/Tablesdemesvoiture"
 
 export default function Adminagencedevoiture() {
   return (
-    <>
+    <div className="bg-blueGray-800 min-h-screen">
       <Sidebaragencedevoiture />
-      <div className="relative md:ml-64 bg-blueGray-800" style={{height:"100vh"}}>
+      <div className="relative md:ml-64 min-h-screen">
         <AdminNavbar />
         <HeaderStats title1="Véhicules"   title3="Reservation"  />
 
@@ -118,14 +118,14 @@ export default function Adminagencedevoiture() {
             {/* أي Route غير معروف يعيد التوجيه للـ Dashboard */}
             <Redirect
               from="/Adminagencedevoiture"
-              to="/Adminagencedevoiture/dashboardagencedevoiture"
+              to="/Adminagencedevoiture/Tablesdemesvoiture"
             />
           </Switch>
 
           <FooterAdmin />
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
