@@ -57,7 +57,7 @@ export default function AdminPrincipal() {
             {/* أي Route غير معروف يعيد التوجيه للـ Dashboard */}
             <Redirect
               from="/AdminPrincipal"
-              to="/AdminPrincipal"
+              to="/AdminPrincipal/tables"
             />
           </Switch>
 

@@ -43,3 +43,7 @@ export const updateVehiculeWithImg = async (vehiculeData, vehiculeId) => {
 export async function updateVehiculeStatus(id, statusVehicule) {
   return await axios.put(`${apiUrl}/update-statusagence/${id}`, { statusVehicule });
 }
+// get the vehicule with details agence
+export async function getVehiculesandagence() {
+  return await axios.get(`${apiUrl}/getvehiculeswithagence`);
+}
