@@ -47,3 +47,10 @@ export async function updateVehiculeStatus(id, statusVehicule) {
 export async function getVehiculesandagence() {
   return await axios.get(`${apiUrl}/getvehiculeswithagence`);
 }
+//router.put("/update-statutadminprincipal/:id", VehiculesController.updateStatutByAdmin);
+// export async function updateVehiculeStatusbyadmin(id, statusVehiculeap) {
+//   return await axios.put(`${apiUrl}/update-statutadminprincipal/${id}`, { statusVehiculeap });
+// }
+export async function updateVehiculeStatusbyadmin(id, statut, adminId) {
+  return await axios.put(`${apiUrl}/update-statutadminprincipal/${id}`, { statut, adminId });
+}

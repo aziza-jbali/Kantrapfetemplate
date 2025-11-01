@@ -1,5 +1,6 @@
 // import React, { useState } from "react";
-// import TableDropdowndelespublications1 from "../Dropdowns/TableDropdowndelespublications1";
+// import PopupPublication from "../../views/utilisateurfaitdespub/PopupPublication"
+// import{getpubwithannonceur} from "../../service/apiGestionannonces"
 
 // // بيانات المستخدمين
 // const utilisateurs = [
@@ -13,15 +14,17 @@
 //     id: 1,
 //     userId: 1,
 //     img: "https://example.com/images/auto-ecole-handicap.jpg",
-//     description: "إعلان من جمعية الأمل بالتعاون مع مدرسة السياقة، برنامج خاص لتمكين الأشخاص ذوي الإعاقة من اجتياز امتحان رخصة السياقة باستخدام سيارات مجهزة. التسجيل مفتوح الآن.",
+//     description: "إعلان من جمعية الأمل بالتعاون مع مدرسة السياقة...",
 //     status: "Pending",
 //     datePublication: "2025-10-01"
 //   },
 //   {
 //     id: 2,
 //     userId: 1,
-//     img: "https://example.com/images/handicap-training.jpg",
-//     description: "برنامج تدريبي جديد لمساعدة ذوي الإعاقة على استخدام السيارات الذكية.",
+//     // img: "https://example.com/images/handicap-training.jpg",
+//       img: "https://upload.wikimedia.org/wikipedia/commons/a/ac/Disability_training_workshop_3_(10692436714).jpg",
+
+//     description: "vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvبرنامج تدريبي جديد لمساعدة ذوي الإعاقة على استخدام السيارات الذكية.",
 //     status: "Pending",
 //     datePublication: "2025-10-03"
 //   },
@@ -35,21 +38,38 @@
 //   }
 // ];
 
-// export default function CardsPublicationUtilisateur({ color = "light" }) {
+// export default function CardAnnounceAdminPrincipale({ color = "light" }) {
+//   const[pub,setpub]=useState([])
 //   const [search, setSearch] = useState("");
 
-//   // إنشاء صفوف الجدول لكل مستخدم مع بيانات منشوراته
-//   const tableRows = utilisateurs.map((user) => {
-//     const userPublications = publications.filter((p) => p.userId === user.id);
-//     return {
-//       ...user,
-//       publications: userPublications
-//     };
+//   // إنشاء الصفوف لكل منشور كمستقل
+//   const [tableRows, setTableRows] = useState(() => {
+//     const rows = [];
+//     utilisateurs.forEach(user => {
+//       publications
+//         .filter(pub => pub.userId === user.id)
+//         .forEach(pub => {
+//           rows.push({
+//             ...user,
+//             publication: pub
+//           });
+//         });
+//     });
+//     return rows;
 //   });
 
-//   // فلترة حسب الاسم أو البريد
+//   const handleStatusChange = (pubId, newStatus) => {
+//     setTableRows(prev =>
+//       prev.map(row =>
+//         row.publication.id === pubId
+//           ? { ...row, publication: { ...row.publication, status: newStatus } }
+//           : row
+//       )
+//     );
+//   };
+
 //   const filteredRows = tableRows.filter(
-//     (row) =>
+//     row =>
 //       row.nom.toLowerCase().includes(search.toLowerCase()) ||
 //       row.email.toLowerCase().includes(search.toLowerCase())
 //   );
@@ -61,16 +81,17 @@
 //         (color === "light" ? "bg-white" : "bg-blueGray-400 text-white")
 //       }
 //     >
+//       {/* Header و Search */}
 //       <div className="rounded-t mb-0 px-4 py-3 border-0 border p-2">
-//         <div className="flex flex-wrap items-center ">
-//           <div className="relative w-full px-4 max-w-full flex-grow flex-1 ">
+//         <div className="flex flex-wrap items-center">
+//           <div className="relative w-full px-4 max-w-full flex-grow flex-1">
 //             <h3
 //               className={
-//                 "font-semibold text-lg " +
+//                 "font-semibold text-xl " +
 //                 (color === "light" ? "text-blueGray-700" : "text-white")
 //               }
 //             >
-//               Table des utilisateurs et leurs publications
+//               La table des utilisateurs et leurs publications :
 //             </h3>
 //             <div className="mb-3 pt-0">
 //               <input
@@ -78,29 +99,23 @@
 //                 placeholder="Search by name or email"
 //                 className="px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white rounded text-sm shadow outline-none focus:outline-none focus:shadow-outline w-1/2"
 //                 value={search}
-//                 onChange={(e) => setSearch(e.target.value)}
+//                 onChange={e => setSearch(e.target.value)}
 //               />
 //             </div>
 //           </div>
 //         </div>
 //       </div>
 
+//       {/* Table */}
 //       <div className="block w-full overflow-x-auto">
 //         <table className="items-center w-full bg-transparent border-collapse">
 //           <thead>
-//             <tr>
-//               {[
-//                 "ID utilisateur",
-//                 "Nom complet",
-//                 "Email",
-//                 "Mot de passe",
-//                 "Nombre de publications",
-//                 "Actions",
-//               ].map((header) => (
+//             <tr className="">
+//               {["IMAGE/NOM", "ADDRESS", "Email", "PHONES", "Date publication", "Status", "Actions"].map(header => (
 //                 <th
 //                   key={header}
 //                   className={
-//                     "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
+//                     "px-6 align-middle border border-solid py-3 text-xl uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center " +
 //                     (color === "light"
 //                       ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
 //                       : "bg-blueGray-400 text-lightBlue-300 border-lightBlue-700")
@@ -112,16 +127,28 @@
 //             </tr>
 //           </thead>
 //           <tbody>
-//             {filteredRows.map((row) => (
-//               <tr key={row.id}>
-//                 <td className="border-t-0 px-6 align-middle text-xl whitespace-nowrap p-4 border">{row.id}</td>
-//                 <td className="border p-2 text-xl">{row.nom}</td>
-//                 <td className="border-t-0 px-6 align-middle text-xl whitespace-nowrap p-4 border">{row.email}</td>
-//                 <td className="border p-2 text-xl">{row.motDePasse}</td>
-//                 <td className="border p-2 text-xl">{row.publications.length}</td>
-//                 <td className="border-t-0 text-xl px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-center border">
-//                   <span>Consulter</span>
-//                   <TableDropdowndelespublications1 publications={row.publications} />
+//             {filteredRows.map(row => (
+//               <tr key={row.publication.id} className="text-center">
+//                 <td className="border px-6 py-2 text-xl">{row.id}</td>
+//                 <td className="border px-6 py-2 text-xl">{row.nom}</td>
+//                 <td className="border px-6 py-2 text-xl">{row.email}</td>
+//                 <td className="border px-6 py-2 text-xl">{row.motDePasse}</td>
+//                 <td className="border px-6 py-2 text-xl">{row.publication.datePublication}</td>
+//                 <td className="border px-6 py-2 text-xl">
+//                   {row.publication.status}
+//                   <select
+//                     value={row.publication.status}
+//                     onChange={e => handleStatusChange(row.publication.id, e.target.value)}
+//                     className="border rounded p-1 bg-lightBlue-600 text-white text-xl ml-2 font-bold outline-none"
+//                   >
+//                     {row.publication.status} hhhhh
+//                     <option value="Pending">Pending</option>
+//                     <option value="Approuvé">Approuvé</option>
+//                     <option value="Rejeté">Rejeté</option>
+//                   </select>
+//                 </td>
+//                 <td className="border px-6 py-2">
+//                   <PopupPublication publication={row.publication} />
 //                 </td>
 //               </tr>
 //             ))}
@@ -132,111 +159,85 @@
 //   );
 // }
 
-//import PopupPublication from "../../views/utilisateurfaitdespub/PopupPublication"
+import React, { useEffect, useState } from "react";
+import {
+  getpubwithannonceur,
+  updateAnnonceStatusByAdmin,
+} from "../../service/apiGestionannonces";
+import PopupPublication from "../../views/utilisateurfaitdespub/PopupPublication";
 
-
-
-import React, { useState } from "react";
-import PopupPublication from "../../views/utilisateurfaitdespub/PopupPublication"
-
-// بيانات المستخدمين
-const utilisateurs = [
-  { id: 1, nom: "Sara Ben Ali", email: "sara@example.com", motDePasse: "Sara123" },
-  { id: 2, nom: "Mohamed Ali", email: "mohamed@example.com", motDePasse: "Mohamed456" },
-];
-
-// بيانات المنشورات المرتبطة بالمستخدمين
-const publications = [
-  {
-    id: 1,
-    userId: 1,
-    img: "https://example.com/images/auto-ecole-handicap.jpg",
-    description: "إعلان من جمعية الأمل بالتعاون مع مدرسة السياقة...",
-    status: "Pending",
-    datePublication: "2025-10-01"
-  },
-  {
-    id: 2,
-    userId: 1,
-    // img: "https://example.com/images/handicap-training.jpg",
-      img: "https://upload.wikimedia.org/wikipedia/commons/a/ac/Disability_training_workshop_3_(10692436714).jpg",
-
-    description: "vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvبرنامج تدريبي جديد لمساعدة ذوي الإعاقة على استخدام السيارات الذكية.",
-    status: "Pending",
-    datePublication: "2025-10-03"
-  },
-  {
-    id: 3,
-    userId: 2,
-    img: "https://example.com/images/accessible-car.jpg",
-    description: "إعلان عن سيارة مجهزة لذوي الاحتياجات الخاصة متاحة للإيجار.",
-    status: "Pending",
-    datePublication: "2025-09-28"
-  }
-];
-
-export default function CardAnnounceAdminPrincipale({ color = "light" }) {
-  
+export default function CardAnnonceAdmin({ color = "light" }) {
   const [search, setSearch] = useState("");
+  const [tableRows, setTableRows] = useState([]);
 
-  // إنشاء الصفوف لكل منشور كمستقل
-  const [tableRows, setTableRows] = useState(() => {
-    const rows = [];
-    utilisateurs.forEach(user => {
-      publications
-        .filter(pub => pub.userId === user.id)
-        .forEach(pub => {
-          rows.push({
-            ...user,
-            publication: pub
-          });
-        });
-    });
-    return rows;
-  });
+  const getData = async () => {
+    try {
+      const res = await getpubwithannonceur();
+      const rows = res.data.map((annonce) => ({
+        annonceId: annonce._id,
+        annonceur: annonce.idannouncer || {},
+        publication: annonce,
+      }));
+      setTableRows(rows);
+      console.log("annonces",rows)
+    } catch (error) {
+      console.error("Erreur fetch annonces:", error);
+    }
+  };
 
-  const handleStatusChange = (pubId, newStatus) => {
-    setTableRows(prev =>
-      prev.map(row =>
-        row.publication.id === pubId
-          ? { ...row, publication: { ...row.publication, status: newStatus } }
-          : row
-      )
-    );
+  useEffect(() => {
+    getData();
+  }, []);
+
+  const handleStatusChange = async (annonceId, newStatus) => {
+    try {
+      const adminId = "68f66cc315232bd0cc4b943b";
+      await updateAnnonceStatusByAdmin(annonceId, newStatus, adminId);
+
+      setTableRows((prev) =>
+        prev.map((row) =>
+          row.annonceId === annonceId
+            ? { ...row, publication: { ...row.publication, statut: newStatus } }
+            : row
+        )
+      );
+    } catch (error) {
+      console.error("Erreur update statut:", error);
+      alert("Erreur lors de la mise à jour du statut");
+    }
   };
 
   const filteredRows = tableRows.filter(
-    row =>
-      row.nom.toLowerCase().includes(search.toLowerCase()) ||
-      row.email.toLowerCase().includes(search.toLowerCase())
+    (row) =>
+      row.annonceur.nom?.toLowerCase().includes(search.toLowerCase()) ||
+      row.annonceur.email?.toLowerCase().includes(search.toLowerCase()) ||
+      row.publication.description?.toLowerCase().includes(search.toLowerCase())
   );
 
   return (
     <div
-      className={
-        "relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded " +
-        (color === "light" ? "bg-white" : "bg-blueGray-400 text-white")
-      }
+      className={`relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded ${
+        color === "light" ? "bg-white" : "bg-blueGray-400 text-white"
+      }`}
     >
       {/* Header و Search */}
       <div className="rounded-t mb-0 px-4 py-3 border-0 border p-2">
         <div className="flex flex-wrap items-center">
           <div className="relative w-full px-4 max-w-full flex-grow flex-1">
             <h3
-              className={
-                "font-semibold text-xl " +
-                (color === "light" ? "text-blueGray-700" : "text-white")
-              }
+              className={`font-semibold text-lg ${
+                color === "light" ? "text-blueGray-700" : "text-white"
+              }`}
             >
-              La table des utilisateurs et leurs publications :
+              La table des annonces et leurs annonceurs :
             </h3>
             <div className="mb-3 pt-0">
               <input
                 type="text"
-                placeholder="Search by name or email"
+                placeholder="Search here"
                 className="px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white rounded text-sm shadow outline-none focus:outline-none focus:shadow-outline w-1/2"
                 value={search}
-                onChange={e => setSearch(e.target.value)}
+                onChange={(e) => setSearch(e.target.value)}
               />
             </div>
           </div>
@@ -247,16 +248,23 @@ export default function CardAnnounceAdminPrincipale({ color = "light" }) {
       <div className="block w-full overflow-x-auto">
         <table className="items-center w-full bg-transparent border-collapse">
           <thead>
-            <tr className="">
-              {["ID Utilisateur", "Nom", "Email", "Mot de passe", "Date publication", "Status", "Actions"].map(header => (
+            <tr>
+              {[
+                "IMAGE/NOM",
+                "ADDRESS",
+                "Email",
+                "PHONES",
+                "Date publication",
+                "Status",
+                "Actions",
+              ].map((header) => (
                 <th
                   key={header}
-                  className={
-                    "px-6 align-middle border border-solid py-3 text-xl uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center " +
-                    (color === "light"
+                  className={`px-6 align-middle border border-solid py-3 text-xl uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center ${
+                    color === "light"
                       ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
-                      : "bg-blueGray-400 text-lightBlue-300 border-lightBlue-700")
-                  }
+                      : "bg-blueGray-400 text-lightBlue-300 border-lightBlue-700"
+                  }`}
                 >
                   {header}
                 </th>
@@ -264,27 +272,47 @@ export default function CardAnnounceAdminPrincipale({ color = "light" }) {
             </tr>
           </thead>
           <tbody>
-            {filteredRows.map(row => (
-              <tr key={row.publication.id} className="text-center">
-                <td className="border px-6 py-2 text-xl">{row.id}</td>
-                <td className="border px-6 py-2 text-xl">{row.nom}</td>
-                <td className="border px-6 py-2 text-xl">{row.email}</td>
-                <td className="border px-6 py-2 text-xl">{row.motDePasse}</td>
-                <td className="border px-6 py-2 text-xl">{row.publication.datePublication}</td>
-                <td className="border px-6 py-2 text-xl">
-                  {row.publication.status} 
+            {filteredRows.map((row) => (
+              <tr key={row.annonceId}>
+                <td className="border px-6 py-3 text-xl whitespace-nowrap p-3 text-center flex items-center">
+                  <img
+                    src={`http://localhost:5011${row.annonceur.image}`}
+                    alt="annonceur"
+                    className="h-12 w-12 bg-white rounded-full border"
+                  />
+                  <span className="ml-2 font-bold text-xl">
+                    {row.annonceur.nom} {row.annonceur.prenom}
+                  </span>
+                </td>
+                <td className="border px-6 py-3 text-xl font-bold text-center">
+                  {row.annonceur.address || "—"}
+                </td>
+                <td className="border px-6 py-3 text-xl font-bold text-center">
+                  {row.annonceur.email}
+                </td>
+                <td className="border px-6 py-3 text-xl font-bold text-center">
+                  {row.annonceur.phones?.join(", ") || "—"}
+                </td>
+                <td className="border px-6 py-3 text-xl font-bold text-center">
+                  {new Date(
+                    row.publication.datePublication
+                  ).toLocaleDateString()}
+                </td>
+                <td className="border px-6 py-3 text-xl font-bold text-center">
+                  {row.publication.statut}
                   <select
-                    value={row.publication.status}
-                    onChange={e => handleStatusChange(row.publication.id, e.target.value)}
-                    className="border rounded p-1 bg-lightBlue-600 text-white text-xl ml-2 font-bold outline-none"
+                    value={row.publication.statut}
+                    onChange={(e) =>
+                      handleStatusChange(row.annonceId, e.target.value)
+                    }
+                    className="border rounded p-1 bg-lightBlue-600 text-white ml-2"
                   >
-                    {row.publication.status} hhhhh
-                    <option value="Pending">Pending</option>
+                    <option value="En attente">En attente</option>
                     <option value="Approuvé">Approuvé</option>
                     <option value="Rejeté">Rejeté</option>
                   </select>
                 </td>
-                <td className="border px-6 py-2">
+                <td className="border px-6 py-3 text-center">
                   <PopupPublication publication={row.publication} />
                 </td>
               </tr>
@@ -295,4 +323,3 @@ export default function CardAnnounceAdminPrincipale({ color = "light" }) {
     </div>
   );
 }
-

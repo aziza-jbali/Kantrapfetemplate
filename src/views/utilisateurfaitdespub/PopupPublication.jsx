@@ -161,9 +161,11 @@ const PopupPublication = ({ publication }) => {
           >
             <div className="p-3">
               <img
-                src={publication.img}
+                // src={publication.image}
+                  src={`http://localhost:5011${publication.image}`}
+
                 alt="Publication"
-                className="w-full h-32 object-cover rounded mb-2"
+                className="w-full h-32 object-cover rounded mb-2" style={{height:"150px"}}
               />
 
               {/* Divider line */}
