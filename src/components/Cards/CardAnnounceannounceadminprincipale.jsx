@@ -187,6 +187,8 @@ export default function CardAnnonceAdmin({ color = "light" }) {
 
   useEffect(() => {
     getData();
+     const interval = setInterval(() => getData(), 5000);
+    return () => clearInterval(interval);
   }, []);
 
   const handleStatusChange = async (annonceId, newStatus) => {
@@ -234,11 +236,18 @@ export default function CardAnnonceAdmin({ color = "light" }) {
             <div className="mb-3 pt-0">
               <input
                 type="text"
-                placeholder="Search here"
-                className="px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white rounded text-sm shadow outline-none focus:outline-none focus:shadow-outline w-1/2"
+                placeholder="cherecher ici"
+                className="px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white rounded text-xl shadow outline-none focus:outline-none focus:shadow-outline w-1/2"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
               />
+               <span
+                className="text-lg font-bold text-white"
+                style={{ marginLeft: "680px" }}
+              >
+                <i className="fas fa-calendar-check text-green-400 text-xl mr-1"></i>
+                totale des Annonces :{tableRows.length}
+              </span>
             </div>
           </div>
         </div>

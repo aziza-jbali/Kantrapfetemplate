@@ -126,6 +126,13 @@ const handleStatusChange = async (publicationId, newStatus) => {
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
               />
+               <span
+                className="text-lg font-bold text-white"
+                style={{ marginLeft: "680px" }}
+              >
+                <i className="fas fa-calendar-check text-green-400 text-xl mr-1"></i>
+                totale de Vehicules :{tableRows.length}
+              </span>
             </div>
           </div>
         </div>

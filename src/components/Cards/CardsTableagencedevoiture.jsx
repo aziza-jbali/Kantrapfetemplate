@@ -366,7 +366,7 @@ export default function TableReservation({ color }) {
                       {new Date(res.dateFin).toLocaleDateString()}
                     </td>
                     <td className="border p-2 text-xl text-center font-bold">
-                      {res.duree}
+                      {res.duree}  jours
                     </td>
                     <td className="border p-2 text-xl text-center font-bold">
                       {res.totalPrix ? `${res.totalPrix} DT` : "—"}

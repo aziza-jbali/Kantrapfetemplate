@@ -37,6 +37,6 @@ export async function getpubwithannonceur() {
   return await axios.get(`${apiUrl}/getannonceswithannonceur`);
 }
 export async function updateAnnonceStatusByAdmin(id, statut, adminId) {
-  return await axios.put(`${apiUrl}/updateStatut${id}`, { statut, adminId });
+  return await axios.put(`${apiUrl}/updateStatut/${id}`, { statut, adminId });
 }
 

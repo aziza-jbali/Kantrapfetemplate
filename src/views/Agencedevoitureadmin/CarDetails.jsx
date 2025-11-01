@@ -156,6 +156,10 @@ export default function CarDetails() {
   <p className="col-span-2"><i className="fas fa-info-circle mr-2 text-gray-500"></i><b>Description :</b> {car.description}</p>
   <p><i className="fas fa-road mr-2 text-gray-500"></i><b>Kilométrage :</b> {car.kilometrage} km</p>
   <p><i className="fas fa-cogs mr-2 text-gray-500"></i><b>Transmission :</b> {car.transmission || "Non spécifiée"}</p>
+    <p>  <i className="fas fa-money-bill-wave mr-2 text-gray-500"></i>
+<b>Prix/jour :</b> {car.prixParJour} DT</p>
+
+
 </div>
 
         </div>

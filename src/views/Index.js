@@ -69,7 +69,7 @@ export default function Index() {
         </div>
       </section>
 
-      <section className="block relative z-1 bg-blueGray-600">
+      <section className="block relative z-1 " style={{backgroundColor:"#F3F2F3"}}>
         <div className="container mx-auto">
           <div className="justify-center flex flex-wrap">
             <div className="w-full lg:w-12/12 px-4  -mt-24">
@@ -80,10 +80,10 @@ export default function Index() {
                   </h5>
                   <Link to="/auth/login">
                     <div className="hover:-mt-4 relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg ease-linear transition-all duration-150">
-                      <img
+                      <img  style={{height:"274px"}}
                         alt="..."
-                        className="align-middle border-none max-w-full h-auto rounded-lg"
-                        src={require("assets/img/login.jpg").default}
+                        className="align-middle border-none max-w-full  rounded-lg"
+                        src={require("assets/img/connexion.png").default}
                       />
                     </div>
                   </Link>
@@ -106,14 +106,14 @@ export default function Index() {
 
                 <div className="w-full lg:w-4/12 px-4">
                   <h5 className="text-xl font-semibold pb-4 text-center">
-                    Page d’Accueil
+                    Page de Véhicules
                   </h5>
                   <Link to="/landing">
-                    <div className="hover:-mt-4 relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg ease-linear transition-all duration-150">
-                      <img
+                    <div className="hover:-mt-4 relative flex flex-col min-w-0 break-words bg-white w-full h-[1000px] mb-6 shadow-lg rounded-lg ease-linear transition-all duration-150" >
+                      <img style={{height:"274px"}}
                         alt="..."
-                        className="align-middle border-none max-w-full h-auto rounded-lg"
-                        src={require("assets/img/landing.jpg").default}
+                        className="align-middle border-none max-w-full  rounded-lg"
+                        src={require("assets/img/Cars.png").default}
                       />
                     </div>
                   </Link>
@@ -124,10 +124,10 @@ export default function Index() {
         </div>
       </section>
 
-      <section className="py-20 bg-blueGray-600 overflow-hidden">
+      <section className="py-20  overflow-hidden" style={{backgroundColor:"#F3F2F3"}}>
         
       </section>
-
+{/* #bbbbbf */}
       <section className="pb-16 bg-blueGray-200 relative pt-32">
         <div
           className="-mt-20 top-0 bottom-auto left-0 right-0 w-full absolute h-20"

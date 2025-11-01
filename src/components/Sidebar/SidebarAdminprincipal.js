@@ -80,7 +80,7 @@ export default function SidebarAdminprincipal() {
             <h4 className="text-center mt-2 ">Karama-Auto</h4>
             <hr className="my-2 md:min-w-full" />
             {/* Heading */}
-            <h6 className="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1  no-underline pl-3">
+            <h6 className="md:min-w-full text-blueGray-500 text-xl uppercase font-bold block pt-1  no-underline pl-3">
               Mon espace
             
             </h6>
@@ -90,7 +90,7 @@ export default function SidebarAdminprincipal() {
               <li className="items-center">
                 <Link
                   className={
-                    "text-xs uppercase py-3 font-bold block " +
+                    "text-xl uppercase py-3 font-bold block " +
                     (window.location.href.indexOf("/AdminPrincipal/tables") !== -1
                       ? "text-lightBlue-500 hover:text-lightBlue-600"
                       : "text-blueGray-700 hover:text-blueGray-500")
@@ -99,7 +99,7 @@ export default function SidebarAdminprincipal() {
                 >
                   <i
                     className={
-                      "fas fa-table mr-2 text-sm " +
+                      "fas fa-table mr-2 text-xl font-bold " +
                       (window.location.href.indexOf("/AdminPrincipal/tables") !== -1
                         ? "opacity-75"
                         : "text-blueGray-300")
@@ -112,16 +112,16 @@ export default function SidebarAdminprincipal() {
               <li className="items-center">
                 <Link
                   className={
-                    "text-xs uppercase py-3 font-bold block " +
+                    "text-xl uppercase py-3 font-bold block " +
                     (window.location.href.indexOf("/admin/settings") !== -1
                       ? "text-lightBlue-500 hover:text-lightBlue-600"
                       : "text-blueGray-700 hover:text-blueGray-500")
                   }
-                  to="/admin/settings"
+                  to="/AdminPrincipal/settings"
                 >
                   <i
                     className={
-                      "fas fa-tools mr-2 text-sm " +
+                      "fas fa-tools mr-2 text-xl font-bold " +
                       (window.location.href.indexOf("/admin/settings") !== -1
                         ? "opacity-75"
                         : "text-blueGray-300")
@@ -134,7 +134,7 @@ export default function SidebarAdminprincipal() {
               <li className="items-center">
                 <Link
                   className={
-                    "text-xs uppercase py-3 font-bold block " +
+                    "text-xl uppercase py-3 font-bold block " +
                     (window.location.href.indexOf("/AdminPrincipal/tables1") !== -1
                       ? "text-lightBlue-500 hover:text-lightBlue-600"
                       : "text-blueGray-700 hover:text-blueGray-500")
@@ -143,7 +143,7 @@ export default function SidebarAdminprincipal() {
                 >
                   <i
                     className={
-                      "fas fa-table mr-2 text-sm " +
+                      "fas fa-table mr-2 text-xl font-bold " +
                       (window.location.href.indexOf("/AdminPrincipal/tables1") !== -1
                         ? "opacity-75"
                         : "text-blueGray-300")
@@ -161,7 +161,7 @@ export default function SidebarAdminprincipal() {
             {/* Divider */}
             <hr className="my-4 md:min-w-full" />
             {/* Heading */}
-            <h6 className="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1  no-underline pl-3">
+            <h6 className="md:min-w-full text-blueGray-500 text-xl uppercase font-bold block pt-1  no-underline pl-3">
               Auth Admin
             </h6>
             {/* Navigation */}
@@ -169,15 +169,15 @@ export default function SidebarAdminprincipal() {
             <ul className="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
               <li className="items-center">
                 <Link
-                  className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
+                  className="text-blueGray-700 hover:text-blueGray-500 text-xl uppercase py-3 font-bold block"
                   to="/auth/login"
                 >
-                  <i className="fas fa-fingerprint text-blueGray-400 mr-2 text-sm"></i>{" "}
-                  Login
+                  <i className="fas fa-sign-out-alt text-blueGray-400 mr-2 text-xl font-bold"></i>{" "}
+                  Log Out
                 </Link>
               </li>
 
-              <li className="items-center">
+              {/* <li className="items-center">
                 <Link
                   className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
                   to="/auth/register"
@@ -185,13 +185,13 @@ export default function SidebarAdminprincipal() {
                   <i className="fas fa-clipboard-list text-blueGray-300 mr-2 text-sm"></i>{" "}
                   Register
                 </Link>
-              </li>
+              </li> */}
             </ul>
 
             {/* Divider */}
             <hr className="my-4 md:min-w-full" />
             {/* Heading */}
-            <h6 className="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pl-3 no-underline">
+            <h6 className="md:min-w-full  text-blueGray-500 text-xl uppercase font-bold block pt-1 pl-3 no-underline">
               les Pages
             </h6>
             {/* Navigation */}
@@ -199,20 +199,20 @@ export default function SidebarAdminprincipal() {
             <ul className="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
               <li className="items-center">
                 <Link
-                  className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
+                  className="text-blueGray-700 hover:text-blueGray-500 text-xl uppercase py-3 font-bold block"
                   to="/"
                 >
-                  <i className="fas fa-newspaper text-blueGray-400 mr-2 text-sm"></i>{" "}
+                  <i className="fas fa-newspaper text-blueGray-400 mr-2 text-xl font-bold"></i>{" "}
                   Landing Page
                 </Link>
               </li>
 
               <li className="items-center">
                 <Link
-                  className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
+                  className="text-blueGray-700 hover:text-blueGray-500 text-xl uppercase py-3 font-bold block"
                   to="/profile"
                 >
-                  <i className="fas fa-user-circle text-blueGray-400 mr-2 text-sm"></i>{" "}
+                  <i className="fas fa-user-circle text-blueGray-400 mr-2 text-xl font-bold"></i>{" "}
                   Profile Page
                 </Link>
               </li>

@@ -18,41 +18,36 @@ import Tablesdemesvoiture from "views/admin/Tablesdemesvoiture"
 import Tableuserpub from "views/admin/Tableuserpub"
 export default function AdminPrincipal() {
   return (
-    <>
-      <SidebarAdminprincipal  />
-      <div className="relative md:ml-64 bg-blueGray-800" style={{height:"100vh"}}>
+    <div className="bg-blueGray-800 min-h-screen">
+      <SidebarAdminprincipal />
+      <div className="relative md:ml-64">
         <AdminNavbar />
-        <HeaderStats title1="Véhicules"   title3="Annonces"  />
+        <HeaderStats title1="Véhicules" title3="Annonces" />
 
-        <div className="px-4 md:px-10 mx-auto w-full -m-24" >
+        <div className="px-4 md:px-10 mx-auto w-full -m-24">
           <Switch>
             {/* Dashboard أولاً */}
-             <Route
+            <Route
               path="/AdminPrincipal/dashboardagencedevoiture"
               exact
               component={Dashboard}
-            /> 
-
-            {/* Settings
-            <Route
-              path="/Adminagencedevoiture/settings"
+            />
+  <Route
+              path="/AdminPrincipal/settings"
               exact
               component={Settings}
-            /> */}
-
+            />
             {/* Tables */}
             <Route
               path="/AdminPrincipal/tables"
               exact
               component={Tablesuseradminprincipale}
             />
-               <Route
+            <Route
               path="/AdminPrincipal/tables1"
               exact
               component={Tableuserpub}
             />
-             {/* Tables */}
-         
 
             {/* أي Route غير معروف يعيد التوجيه للـ Dashboard */}
             <Redirect
@@ -64,6 +59,6 @@ export default function AdminPrincipal() {
           <FooterAdmin />
         </div>
       </div>
-    </>
+    </div>
   );
 }
