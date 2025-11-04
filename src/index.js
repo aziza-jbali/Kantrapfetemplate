@@ -26,6 +26,8 @@ import Tablesagencedevoiture from "views/admin/Tablesagencedevoiture"
 import CustomerDetails from "views/Agencedevoitureadmin/CustomerDetails.jsx";
 import CarDetails from "views/Agencedevoitureadmin/CarDetails";
 import PageArticle from "views/user/PageArticle.jsx";
+import Register from "views/auth/Register.js";
+
 
 //Utilisateurpub 
 ReactDOM.render(
@@ -40,6 +42,8 @@ ReactDOM.render(
       <Route path="/admin" component={Admin} />
 
       <Route path="/auth" component={Auth} />
+      <Route path="/auth/auth/register" component={Register} />
+
       {/* <Route path="/dashboardagencedevoiture" exact component={ Adminagencedevoiture } /> */}
       <Route path="/AddCarPage" element component={AddCarPage} />
        {/* <Route path="/dashboardagencedevoiture/tables" exact component={Tablesagencedevoiture} />   */}

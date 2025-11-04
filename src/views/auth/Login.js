@@ -120,10 +120,109 @@
 
 
 
-import React from "react";
-import { Link } from "react-router-dom";
-
+import React, { useState } from "react";
+import { Link ,useHistory,useLocation} from "react-router-dom";
+import {connexion} from "../../service/apiUsers"
 export default function Login() {
+const location = useLocation();
+const roleFromRegister = location.state?.role;
+console.log("🧭 Role reçu depuis Register:", roleFromRegister);
+
+  const history = useHistory();
+  const [user, setUser] = useState({
+    email: "",
+    password: "",
+  });
+
+  // const LoginUser = async () => {
+  //   try {
+  //     await connexion(user)
+  //       .then((response) => {
+  // const userRole = response.data.user.role || roleFromRegister;
+  //   localStorage.setItem("token", response.data.token);
+  //   localStorage.setItem("role", userRole);
+
+  //   if (userRole === "agence") {
+  //     history.push("/Adminagencedevoiture/settings");
+  //   } else if (userRole === "annonceur") {
+  //     history.push("/Utilisateur/settings");
+  //   } 
+  //    else {
+  //     history.push("/landing");
+  //   }
+  //       })
+  //       .catch((error) => {
+  //         console.log("Error while calling addUser API ", error);
+  //       });
+  //   } catch (error) {
+  //     console.log("Error while calling getUsers API ", error);
+  //   }
+  // };
+
+//   const LoginUser = async () => {
+//   try {
+//     const response = await connexion(user);
+//     console.log("hello world")
+
+//     // استخراج الدور مباشرة من response
+//     const userRole = response.data.user.role; // أو response.data.user.role حسب ما يعيد السيرفر
+
+//     localStorage.setItem("token", response.data.token);
+//     localStorage.setItem("role", userRole);
+
+//     // توجيه المستخدم حسب الدور
+//     if (userRole === "agence") {
+//       history.push("/Adminagencedevoiture/settings");
+//     } else if (userRole === "annonceur") {
+//       history.push("/landing");
+//     } else {
+//       history.push("/");
+//     }
+
+//   } catch (error) {
+//     console.error("Error while logging in:", error);
+//   }
+// };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const LoginUser = async () => {
+  try {
+    const response = await connexion(user);
+    console.log("response:", response.data);
+
+    const token = response.data.token;
+    const userRole = response.data.user.role;
+
+    localStorage.setItem("token", token);
+    localStorage.setItem("role", userRole);
+
+    if (userRole === "agence") history.push("/Adminagencedevoiture/settings");
+    else if (userRole === "annonceur") history.push("/landing");
+    else history.push("/");
+  } catch (error) {
+    console.error("Login error:", error.response ? error.response.data : error.message);
+  }
+};
+
+
+  const handleChange = (e) => {
+    setUser({ ...user, [e.target.name]: e.target.value });
+    console.log(user);
+  };
   return (
     <>
       <div className="container mx-auto px-4 h-full">
@@ -157,8 +256,10 @@ export default function Login() {
                       </span>
                       <input
                         type="email"
+                        name="email"
                         placeholder="votre email"
                         class="px-3 py-4 placeholder-blueGray-300 text-blueGray-600 relative  bg-transparent rounded color-white border border-blueGray-300 outline-none focus:outline-none focus:shadow-outline w-full pl-10"
+                      onChange={handleChange}
                       />
                     </div>
                   </div>
@@ -176,8 +277,10 @@ export default function Login() {
                       </span>
                       <input
                         type="password"
+                        name="password"
                         placeholder="votre mot de passe "
                         class="px-3 py-4 placeholder-blueGray-300 text-blueGray-600 relative bg-transparent rounded color-white border border-blueGray-300 outline-none focus:outline-none focus:shadow-outline w-full pl-10"
+                        onChange={handleChange}
                       />
                     </div>
                   </div>
@@ -198,6 +301,8 @@ export default function Login() {
                     <button
                       className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
                       type="button"
+                       onClick={() => LoginUser()}
+
                     >
                       Sign In
                     </button>
