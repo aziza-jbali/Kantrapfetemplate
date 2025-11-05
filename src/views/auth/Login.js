@@ -213,6 +213,10 @@ const LoginUser = async () => {
     if (userRole === "agence") history.push("/Adminagencedevoiture/settings");
     else if (userRole === "annonceur") history.push("/Utilisateur/Mes-Annonces");
     else history.push("/");
+    // window.history.pushState(null, "", window.location.href);
+    // window.onpopstate = function () {
+    // window.history.go(1);
+    // };
   } catch (error) {
     console.error("Login error:", error.response ? error.response.data : error.message);
   }

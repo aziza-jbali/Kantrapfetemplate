@@ -193,13 +193,18 @@ export default function Sidebar() {
 
             <ul className="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
               <li className="items-center">
-                <Link
+                <button
                   className="text-blueGray-700 hover:text-blueGray-500 text-xl uppercase py-3 font-bold block"
-                  to="/auth/login"
+                 type="button"
+                   onClick={() => {
+                    localStorage.removeItem("token");
+                    localStorage.removeItem("role");
+                    window.location.href = "/auth/login";
+                  }}
                 >
                   <i className="fas fa-sign-out-alt text-blueGray-400 mr-2 text-xl"></i>{" "}
                   Log out
-                </Link>
+                </button>
               </li>
             </ul>
 
@@ -212,7 +217,7 @@ export default function Sidebar() {
             {/* Navigation */}
 
             <ul className="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
-              {/* <li className="items-center">
+              <li className="items-center">
                 <Link
                   className="text-blueGray-700 hover:text-blueGray-500 text-xl uppercase py-3 font-bold block"
                   to="/"
@@ -220,9 +225,9 @@ export default function Sidebar() {
                   <i className="fas fa-newspaper text-blueGray-400 mr-2 text-xl"></i>{" "}
                   Landing Page
                 </Link>
-              </li> */}
+              </li> 
 
-              <li className="items-center">
+              {/* <li className="items-center">
                 <Link
                   className="text-blueGray-700 hover:text-blueGray-500 text-xl uppercase py-3 font-bold block"
                   to="/profile"
@@ -230,7 +235,7 @@ export default function Sidebar() {
                   <i className="fas fa-user-circle text-blueGray-400 mr-2 text-xl"></i>{" "}
                   Profile Page
                 </Link>
-              </li>
+              </li> */}
             </ul>
           </div>
         </div>

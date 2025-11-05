@@ -79,6 +79,18 @@ import Tablesagencedevoiture from "views/admin/Tablesagencedevoiture.js";
 import Tablesdemesvoiture from "views/admin/Tablesdemesvoiture"
 
 export default function Adminagencedevoiture() {
+const token = localStorage.getItem("token");
+const role = localStorage.getItem("role");
+
+if (!token) {
+  // يعني المستخدم مش داخل (ما عندوش توكن)
+  return <Redirect to="/auth/login" />;
+}
+
+if (role !== "agence") {
+  // يعني المستخدم عندو توكن لكن مش وكالة
+  return <Redirect to="/" />;
+}
   return (
     <div className="bg-blueGray-800 min-h-screen">
       <Sidebaragencedevoiture />

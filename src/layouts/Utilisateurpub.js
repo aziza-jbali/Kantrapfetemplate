@@ -14,6 +14,17 @@ import Settings from "views/admin/Settings.js";
 import Tablesdemesannoncesuser from "views/admin/Tablesdemesannoncesuser";
 
 export default function Adminagencedevoiture() {
+  const token = localStorage.getItem("token");
+  const role = localStorage.getItem("role");
+  
+  if (!token) {
+    // يعني المستخدم مش داخل (ما عندوش توكن)
+    return <Redirect to="/auth/login" />;
+  }
+  
+  if (role !== "annonceur") {
+    // يعني المستخدم عندو توكن لكن مش وكالة
+  return <Redirect to="/" />;}
   return (
     // <div >
     //   <Sidebarutilisateur/>

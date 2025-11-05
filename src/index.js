@@ -55,7 +55,7 @@ ReactDOM.render(
       <Route path="/profile" exact component={Profile} />
       <Route path="/" exact component={Index} />
 
-      <Route path="/booking/:id" element component={CarBooking} />
+      <Route path="/booking" element component={CarBooking} />
       {/* <Route path="/Dashboardagencedevoiture" element component={Dashboardagencedevoiture} /> */}
 
      
