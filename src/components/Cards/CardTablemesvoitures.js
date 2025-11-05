@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import {
@@ -14,8 +13,19 @@ export default function CardTable({ color }) {
   const [formData, setFormData] = useState({});
   const [searchTerm, setSearchTerm] = useState("");
 
-  const agenceId = "68f6aa0e912121c2e413dd49";
-
+  // const agenceId = "68f6aa0e912121c2e413dd49";
+  const token = localStorage.getItem("token");
+  console.log(token);
+  let agenceId = null;
+  if (token) {
+    const payloadBase64 = token.split(".")[1]; // الجزء الأوسط
+    const decoded = JSON.parse(atob(payloadBase64));
+    console.log(decoded); // { id: "69038c6d461e87058cc89352", role: "annonceur", ... }
+    agenceId = decoded.id;
+    console.log("🆔 ID de l'utilisateur :", agenceId);
+  } else {
+    console.log("⚠️ Aucun jeton trouvé");
+  }
   const getVehicule = async () => {
     try {
       const response = await getVehicules();
@@ -154,8 +164,7 @@ export default function CardTable({ color }) {
             <div className="mb-3 pt-0">
               <input
                 type="text"
-                  placeholder="chercher ici par  nom ou sièges"
-
+                placeholder="chercher ici par  nom ou sièges"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white rounded text-xl shadow outline-none focus:outline-none focus:shadow-outline w-1/2"

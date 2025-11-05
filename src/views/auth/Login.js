@@ -211,7 +211,7 @@ const LoginUser = async () => {
     localStorage.setItem("role", userRole);
 
     if (userRole === "agence") history.push("/Adminagencedevoiture/settings");
-    else if (userRole === "annonceur") history.push("/landing");
+    else if (userRole === "annonceur") history.push("/Utilisateur/Mes-Annonces");
     else history.push("/");
   } catch (error) {
     console.error("Login error:", error.response ? error.response.data : error.message);
@@ -228,7 +228,7 @@ const LoginUser = async () => {
       <div className="container mx-auto px-4 h-full">
         <div className="flex content-center items-center justify-center h-full">
           <div className="w-full lg:w-4/12 px-4">
-            <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-transparent border-0">
+            <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-white border-0">
               <div className="rounded-t mb-0 px-6 py-6">
                 <div className="text-center mb-3">
                   <h6 className="color-black text-xl font-bold">
@@ -236,14 +236,14 @@ const LoginUser = async () => {
                   </h6>
                 </div>
 
-                <hr className="mt-6 border-b-1 border-blueGray-300" />
+                <hr className="mt-6 border-b-1 border-blueGray-300 " />
               </div>
               <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
                 {/* <div className="text-blueGray-400 text-center mb-3 font-bold">
                   <small>Or sign in with credentials</small>
                 </div> */}
                 <form>
-                  <div className="relative w-full mb-3">
+                  <div className="relative w-full mb-3 ">
                     <label
                       className="block uppercase  color-black text-xl font-bold mb-2"
                       htmlFor="grid-password"
@@ -258,7 +258,7 @@ const LoginUser = async () => {
                         type="email"
                         name="email"
                         placeholder="votre email"
-                        class="px-3 py-4 placeholder-blueGray-300 text-blueGray-600 relative  bg-transparent rounded color-white border border-blueGray-300 outline-none focus:outline-none focus:shadow-outline w-full pl-10"
+                        class="px-3 py-4 placeholder-blueGray-300 text-blueGray-600 relative  bg-transparent rounded color-black border border-blueGray-300 outline-none focus:outline-none focus:shadow-outline w-full pl-10"
                       onChange={handleChange}
                       />
                     </div>
@@ -279,7 +279,7 @@ const LoginUser = async () => {
                         type="password"
                         name="password"
                         placeholder="votre mot de passe "
-                        class="px-3 py-4 placeholder-blueGray-300 text-blueGray-600 relative bg-transparent rounded color-white border border-blueGray-300 outline-none focus:outline-none focus:shadow-outline w-full pl-10"
+                        class="px-3 py-4 placeholder-blueGray-300 text-blueGray-600 relative bg-transparent rounded color-black border border-blueGray-300 outline-none focus:outline-none focus:shadow-outline w-full pl-10"
                         onChange={handleChange}
                       />
                     </div>

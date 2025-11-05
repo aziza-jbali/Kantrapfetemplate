@@ -1,6 +1,16 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { gettousannonces,addannonceWithImg ,deletepub,updatepubWithImg} from "../../service/apiGestionannonces";
+// import jwt_decode from "jwt-decode";
+// import { jwt_decode } from "jwt-decode";
+// const jwt_decode = require("jwt-decode");
+// import jwt_decode from "jwt-decode";
+// const { jwt_decode } = require("jwt-decode"); // ✅
+
+
+
+
+
 // بيانات المستخدمين
 // const utilisateurs = [
 //   {
@@ -46,10 +56,51 @@ const publications = [
   },
 ];
 
+ 
+
 export default function CardTable({ color }) {
   const [annonces, setannonces] = useState([]);
+  const token = localStorage.getItem("token");
+  console.log(token)
+let annonceurid = null;
+if (token) {
+  const payloadBase64 = token.split('.')[1]; // الجزء الأوسط
+  const decoded = JSON.parse(atob(payloadBase64));
+  console.log(decoded); // { id: "69038c6d461e87058cc89352", role: "annonceur", ... }
+   annonceurid = decoded.id;
+     console.log("ID المستخدم:", annonceurid);
 
-  const annonceurid = "69038c6d461e87058cc89352";
+} else {
+  console.log("⚠️ لا يوجد توكن");
+}
+
+
+//   const token = localStorage.getItem("token");
+//     console.log(token);
+
+//  const decoded = jwt_decode(token);
+//  const annonceurid = decoded.id;
+// const token = localStorage.getItem("token");
+// let annonceurid = null;
+
+// if (token) {
+//   const decoded = jwt_decode(token); // هذا يجب أن يعمل الآن
+//   annonceurid = decoded.id;
+// } else {
+//   console.log("⚠️ Token غير موجود");
+// }
+// let annonceurid = null;
+
+// if (token) {
+//   const decoded = jwt_decode(token); // فك التوكن
+//   annonceurid = decoded.id;           // استخراج id
+//   console.log("ID المستخدم:", annonceurid);
+// } else {
+//   console.log("⚠️ Token غير موجود");
+// }
+
+
+  //  const annonceurid = "69038c6d461e87058cc89352";
 // get annonce hadh envolope tnadhem
   const getannonces = async () => {
     try {
@@ -211,7 +262,7 @@ const handleSaveDescription = async () => {
             <tbody>
               {annonces.map((A) => (
                 <tr key={A._id}>
-                  <td className="border p-2 text-center">
+                  <td className="border p-3 text-center " >
                     <img 
                     src={`http://localhost:5011${A.image}`}
 

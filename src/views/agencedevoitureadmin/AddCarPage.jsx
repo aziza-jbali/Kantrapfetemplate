@@ -916,8 +916,19 @@ export default function AddCarForm() {
     statusVehicule: "disponible",
   });
 
-  const agenceId = "68f6aa0e912121c2e413dd49"; // ID الوكالة
-
+  //const agenceId = "68f6aa0e912121c2e413dd49"; // ID الوكالة
+const token = localStorage.getItem("token");
+  console.log(token);
+  let agenceId = null;
+  if (token) {
+    const payloadBase64 = token.split(".")[1]; // الجزء الأوسط
+    const decoded = JSON.parse(atob(payloadBase64));
+    console.log(decoded); // { id: "69038c6d461e87058cc89352", role: "annonceur", ... }
+    agenceId = decoded.id;
+    console.log("🆔 ID de l'utilisateur :", agenceId);
+  } else {
+    console.log("⚠️ Aucun jeton trouvé");
+  }
   const handleChange = (e) => {
     const { name, value, type, checked, files } = e.target;
     if (type === "file") {
