@@ -98,9 +98,6 @@
 //   },
 // ];
 
-
-    
-
 //   // إيجاد الحجز حسب id
 //   const booking = bookings.find((b) => b.id === id);
 //   const customer = booking?.customer || {};
@@ -119,10 +116,6 @@
 //     </div>
 //   );
 // }
-
-
-
-
 
 // import { useLocation } from "react-router-dom";
 // import video1 from "../../assets/videos/n1.mp4"
@@ -160,7 +153,7 @@
 //   const customer = booking?.customer || {};
 
 //   return (
-//     <div className="relative min-h-screen flex items-center justify-center" 
+//     <div className="relative min-h-screen flex items-center justify-center"
 // >
 //       {/* Vidéo en arrière-plan */}
 //       <video
@@ -169,7 +162,7 @@
 //         muted
 //         // className="absolute inset-0 w-full h-full object-cover"
 //          className="absolute top-0 left-0 w-full h-full object-cover"
-        
+
 //       >
 //         <source src={video1} type="video/mp4" />
 //       </video>
@@ -192,12 +185,6 @@
 //     </div>
 //   );
 // }
-
-
-
-
-
-
 
 // import { useLocation } from "react-router-dom";
 // import video1 from "../../assets/videos/n1.mp4";
@@ -302,7 +289,6 @@
 //   );
 // }
 
-
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import video1 from "../../assets/videos/n1.mp4";
@@ -312,6 +298,7 @@ export default function CustomerDetails() {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const id = searchParams.get("id");
+  console.log("🆔 id reçu depuis l’URL:", id);
 
   const [customer, setCustomer] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -321,10 +308,17 @@ export default function CustomerDetails() {
       try {
         const response = await getallclient(); // جلب جميع العملاء
         const allClients = response.data;
-        const foundClient = allClients.find((c) => c._id === id);
+        console.log("📋 Tous les clients:", allClients);
+
+        // البحث مباشرة بعد جلب البيانات (وليس بعد setState)
+        const foundClient = allClients.find(
+          (c) => String(c._id).trim() === String(id).trim()
+        );
+
+        console.log("🎯 Client trouvé:", foundClient);
         setCustomer(foundClient || null);
       } catch (error) {
-        console.error("Erreur lors de la récupération du client :", error);
+        console.error("❌ Erreur lors de la récupération du client :", error);
       } finally {
         setLoading(false);
       }
@@ -404,13 +398,30 @@ export default function CustomerDetails() {
             <i className="fas fa-user-circle mr-2 text-xl"></i>
             Détails du client
           </h1>
-          <p><i className="fas fa-id-badge mr-2 text-xl font-bold"></i><b>ID:</b> {customer._id}</p>
-          <p><i className="fas fa-user mr-2 text-xl font-bold"></i><b>Nom:</b> {customer.nom} {customer.prenom}</p>
-          <p><i className="fas fa-phone mr-2 text-xl font-bold"></i><b>Téléphone:</b> {customer.phones?.join(", ")}</p>
-          <p><i className="fas fa-envelope mr-2 text-xl font-bold"></i><b>Email:</b> {customer.email}</p>
-          {/* <p><i className="fas fa-user-tag mr-2 text-sm"></i><b>Rôle:</b> {customer.role}</p> */}
-          <p><i className="fas fa-map-marker-alt mr-2 text-xl font-bold"></i><b>Adresse:</b> {customer.address}</p>
+          <p>
+            <i className="fas fa-id-badge mr-2 text-xl font-bold"></i>
+            <b>ID:</b> {customer._id}
+          </p>
+          <p>
+            <i className="fas fa-user mr-2 text-xl font-bold"></i>
+            <b>Nom:</b> {customer.nom} {customer.prenom}
+          </p>
+          <p>
+            <i className="fas fa-phone mr-2 text-xl font-bold"></i>
+            {/* <b>Téléphone:</b> {customer.phones?.join(", ")} */}
+            <b>Téléphone:</b>{" "}
+{Array.isArray(customer.phones) ? customer.phones.join(", ") : customer.phones}
 
+          </p>
+          <p>
+            <i className="fas fa-envelope mr-2 text-xl font-bold"></i>
+            <b>Email:</b> {customer.email}
+          </p>
+          {/* <p><i className="fas fa-user-tag mr-2 text-sm"></i><b>Rôle:</b> {customer.role}</p> */}
+          <p>
+            <i className="fas fa-map-marker-alt mr-2 text-xl font-bold"></i>
+            <b>Adresse:</b> {customer.address}
+          </p>
         </div>
       </div>
     </>
