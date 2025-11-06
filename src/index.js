@@ -27,6 +27,7 @@ import CustomerDetails from "views/Agencedevoitureadmin/CustomerDetails.jsx";
 import CarDetails from "views/Agencedevoitureadmin/CarDetails";
 import PageArticle from "views/user/PageArticle.jsx";
 import Register from "views/auth/Register.js";
+//  import Pagedepub from "views/Pagedepub.js";
 
 
 //Utilisateurpub 
@@ -64,6 +65,7 @@ ReactDOM.render(
         {/* the page of article */}
 
         <Route path="/Articles" element component={PageArticle } />
+        <Route path="/annonces" element component={Pagedepub } />
 
 
       {/* add redirect for first page */}

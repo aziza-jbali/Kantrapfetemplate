@@ -11,7 +11,7 @@ function Vistornavbar({ isTransparent = false }) {
     { name: "Véhicules", to: "/landing" },
     { name: "Annonces", to: "/annonces" },
     { name: "Blog", to: "/Articles" },
-    { name: "Connexion", to: "" },
+    { name: "Connexion", to: "/auth/login" },
   ];
 
   // تحديد موقع الخط السفلي أسفل الصفحة النشطة
