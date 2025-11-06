@@ -191,7 +191,9 @@ function Cardsvehiculs() {
                     <li>
                       Disponibilité:{" "}
                       <span className="fw-bold ms-1 text-success">
-                        Disponible
+                          {car.statusVehicule || "—"}
+
+
                       </span>
                     </li>
                   </ul>

@@ -21,6 +21,11 @@ export async function ajouterannonceur(data) {
 export async function ajouteragence(data) {
   return await axios.post(`${apiUrl}/createagence`, data);
 }
+export async function addClient(clientData) {
+  const response = await axios.post(`${apiUrl}/createclient`, clientData);
+  return response.data;
+}
+
 export async function connexion(userData) {
   return await axios.post(`${apiUrl}/login`, userData, {
     withCredentials: true,

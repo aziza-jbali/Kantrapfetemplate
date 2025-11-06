@@ -7,3 +7,9 @@ const apiUrl = "http://localhost:5011/Reservation";// hadi el adreese mta3 el ma
 export async function gettousReservations() {
   return await axios.get(`${apiUrl}/getallreservation`);
 }
+
+export async function addreservation(reservationData ) {
+  return await axios.post(`${apiUrl}/ajouterReservation`, reservationData, {
+
+  });
+}
