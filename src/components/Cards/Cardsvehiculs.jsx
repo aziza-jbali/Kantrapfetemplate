@@ -191,9 +191,7 @@ function Cardsvehiculs() {
                     <li>
                       Disponibilité:{" "}
                       <span className="fw-bold ms-1 text-success">
-                          {car.statusVehicule || "—"}
-
-
+                        {car.statusVehicule || "—"}
                       </span>
                     </li>
                   </ul>
@@ -207,7 +205,7 @@ function Cardsvehiculs() {
                   >
                     Réserver un véhicule
                   </Link> */}
-                  <button
+                  {/* <button
                     type="button"
                     style={{marginLeft:"22px",width:"340px"}}
                     // className="block bg-lightBlue-500 text-center text-white py-2 px-4 rounded-lg font-bold mt-4"
@@ -219,6 +217,42 @@ function Cardsvehiculs() {
                     }}
                   >
                     Réserver un véhicule
+                  </button> */}
+                  <button
+                    type="button"
+                    style={{
+                      marginLeft: "22px",
+                      width: "340px",
+                      background:
+                        car.statusVehicule === "indisponible"
+                          ? "#ccc" // رمادي باهت عند التعطيل
+                          : "linear-gradient(to right, #3b82f6, #06b6d4)", // تدرج أزرق جميل عند التفعيل
+                      color:
+                        car.statusVehicule === "indisponible"
+                          ? "#666"
+                          : "white",
+                      cursor:
+                        car.statusVehicule === "indisponible"
+                          ? "not-allowed"
+                          : "pointer",
+                      border: "none",
+                      padding: "10px 20px",
+                      borderRadius: "8px",
+                      fontWeight: "bold",
+                      textAlign: "center",
+                      marginTop: "16px",
+                    }}
+                    disabled={car.statusVehicule === "indisponible"}
+                    onClick={() => {
+                      if (car.statusVehicule !== "indisponible") {
+                        console.log("🚗 Car envoyé vers Booking:", car);
+                        history.push({ pathname: "/booking", state: { car } });
+                      }
+                    }}
+                  >
+                    {car.statusVehicule === "indisponible"
+                      ? "Véhicule Indisponible"
+                      : "Réserver un véhicule"}
                   </button>
                 </div>
               </div>

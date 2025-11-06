@@ -31,3 +31,18 @@ export async function connexion(userData) {
     withCredentials: true,
   });
 }// bach njem nsajel el token fi localstorage
+
+// update client 
+export const updateclientWithImg = async (usertData, userId) => {
+  try {
+    const response = await axios.put(`${apiUrl}/updateUserById/${userId}`,usertData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    return response;
+  } catch (error) {
+    console.error("Erreur lors de la mise à jour du utilisateur:", error);
+    throw error;
+  }
+};
