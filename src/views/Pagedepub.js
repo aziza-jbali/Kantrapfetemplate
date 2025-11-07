@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Vistornavbar from "components/Navbars/Vistornavbar";
 import main from "assets/img/main.jpg"; // import your local image
 import hero from "assets/img/hero12.jpg";
+import Cardannonces from "components/Cards/Cardannonces";
 
 
 // components
@@ -23,10 +24,10 @@ export default function Pagedepub() {
             // className="absolute top-0 w-full h-full bg-center bg-cover"
                         className="absolute top-0 w-full h-full bg-center bg-cover"
 
-          //  style={{
+            style={{
               
-          //      backgroundImage: `url(${main})`,
-          //   }}
+               backgroundImage: `url(${main})`,
+            }}
           >
             <span
               id="blackOverlay"
@@ -315,7 +316,7 @@ export default function Pagedepub() {
 
         <section className="pt-20 pb-48">
           
-           <div className="container mx-auto px-4">
+           <div >
             {/* <div className="flex flex-wrap justify-center text-center mb-24">
               <div className="w-full lg:w-6/12 px-4">
                 <h2 className="text-4xl font-semibold">Here are our heroes</h2>
@@ -468,7 +469,9 @@ export default function Pagedepub() {
                 </div>
               </div>
             </div> */}
-            hello
+            
+            
+            <Cardannonces/>
           </div> 
         </section>
 
