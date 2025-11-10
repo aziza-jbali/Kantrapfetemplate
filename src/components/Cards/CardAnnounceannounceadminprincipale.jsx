@@ -203,6 +203,8 @@ export default function CardAnnonceAdmin({ color = "light" }) {
             : row
         )
       );
+        alert("✅ Statut mis à jour avec succès !");
+
     } catch (error) {
       console.error("Erreur update statut:", error);
       alert("Erreur lors de la mise à jour du statut");
@@ -259,10 +261,10 @@ export default function CardAnnonceAdmin({ color = "light" }) {
           <thead>
             <tr>
               {[
-                "IMAGE/NOM",
-                "ADDRESS",
+                "NOM",
+                // "ADDRESS",
                 "Email",
-                "PHONES",
+                // "PHONES",
                 "Date publication",
                 "Status",
                 "Actions",
@@ -283,25 +285,25 @@ export default function CardAnnonceAdmin({ color = "light" }) {
           <tbody>
             {filteredRows.map((row) => (
               <tr key={row.annonceId}>
-                <td className="border px-6 py-3 text-xl whitespace-nowrap p-3 text-center flex items-center">
-                  <img
+                <td className="border px-6 py-3 text-xl font-bold text-center">
+                  {/* <img
                     src={`http://localhost:5011${row.annonceur.image}`}
                     alt="annonceur"
                     className="h-12 w-12 bg-white rounded-full border"
-                  />
+                  /> */}
                   <span className="ml-2 font-bold text-xl">
                     {row.annonceur.nom} {row.annonceur.prenom}
                   </span>
                 </td>
-                <td className="border px-6 py-3 text-xl font-bold text-center">
+                {/* <td className="border px-6 py-3 text-xl font-bold text-center">
                   {row.annonceur.address || "—"}
-                </td>
+                </td> */}
                 <td className="border px-6 py-3 text-xl font-bold text-center">
                   {row.annonceur.email}
                 </td>
-                <td className="border px-6 py-3 text-xl font-bold text-center">
+                {/* <td className="border px-6 py-3 text-xl font-bold text-center">
                   {row.annonceur.phones?.join(", ") || "—"}
-                </td>
+                </td> */}
                 <td className="border px-6 py-3 text-xl font-bold text-center">
                   {new Date(
                     row.publication.datePublication

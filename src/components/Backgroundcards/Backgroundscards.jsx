@@ -143,7 +143,7 @@ function Backgroundscards({ video, whyofrendrenig }) {
               //   "Tu es un héros,\nnon pas parce que la vie est facile,\nmais parce que tu affrontes chaque défi avec courage.\nTa valeur brille au-delà des limites.",
               // ]}
               text={[
-                "Tu n’as pas choisi le chemin le plus simple,\nmais tu avances avec une force incroyable.\nChaque pas que tu fais est une victoire,\nchaque sourire que tu offres est une lumière d’espoir.\nTon courage inspire, ta volonté élève,\net ton cœur rappelle au monde que la vraie grandeur\nréside dans la persévérance et la dignité.",
+                "Tu n’as pas choisi le chemin le plus simple,\nmais tu avances avec une force incroyable.\nChaque pas que tu fais est une victoire,\nchaque sourire que tu offres est une lumière d’espoir.\nTon courage inspire, ta volonté élève,\net ton cœur rappelle au monde que la vraie ",
               ]}
               typingSpeed={75}
               pauseDuration={1500}

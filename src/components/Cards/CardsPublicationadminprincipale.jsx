@@ -143,10 +143,10 @@ const handleStatusChange = async (publicationId, newStatus) => {
           <thead>
             <tr>
               {[
-                "IMAGE/NOM",
-                "address",
+                "NOM",
+                // "address",
                 "Email",
-                "phones",
+                // "phones",
                 "Date de publication",
                 "Status de publication",
                 "Consulter",
@@ -167,28 +167,29 @@ const handleStatusChange = async (publicationId, newStatus) => {
           </thead>
 
           <tbody>
+            {/* border   text-xl whitespace-nowrap p-3 text-center flex items-center */}
             {filteredRows.map((row) => (
               <tr key={row.publicationId}>
-                <td className=" border   text-xl whitespace-nowrap p-3 text-center flex items-center">
-                  <img
+                <td className="border px-6 py-3 text-xl font-bold text-center">
+                  {/* <img
                     src={`http://localhost:5011${row.image}`}
                     className="h-12 w-12 bg-white rounded-full border"
                     alt="voiture"
-                  />
+                  /> */}
                   <span className="ml-2 font-bold text-xl ">
                     {row.fullName} {row.prenom}
                   </span>
                 </td>
 
-                <td className="border px-6 py-3 text-xl  font-bold text-center">
+                {/* <td className="border px-6 py-3 text-xl  font-bold text-center">
                   {row.address}
-                </td>
+                </td> */}
                 <td className="border px-6 py-3 text-xl font-bold text-center">
                   {row.email}
                 </td>
-                <td className="border px-6 py-3 text-xl font-bold text-center">
+                {/* <td className="border px-6 py-3 text-xl font-bold text-center">
                   {row.phones}
-                </td>
+                </td> */}
                 <td className="border px-6 py-3 text-xl font-bold text-center">
                   {new Date(row.datePublication).toLocaleDateString()}
 

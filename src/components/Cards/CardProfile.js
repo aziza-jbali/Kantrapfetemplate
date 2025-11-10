@@ -442,13 +442,13 @@ export default function CardProfile() {
 
           {/* Profile Info */}
           <div className="text-center mt-6">
-            <h3 className="text-2xl font-semibold leading-normal mb-2 text-blueGray-800">
-              Aziza Jbali
+            {/* <h3 className="text-2xl font-semibold leading-normal mb-2 text-blueGray-800">
+             
             </h3>
             <div className="text-md leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase">
               <i className="fas fa-map-marker-alt mr-2 text-lg text-blueGray-400"></i>
               Tunis
-            </div>
+            </div> */}
             {/* <div className="mb-2 text-blueGray-700 mt-4 text-lg">
               <i className="fas fa-briefcase mr-2 text-lg text-blueGray-400"></i>
               Développeuse Full Stack

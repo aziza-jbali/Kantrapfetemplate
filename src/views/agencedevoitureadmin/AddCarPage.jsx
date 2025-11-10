@@ -1154,7 +1154,7 @@ const token = localStorage.getItem("token");
 {/* linear-gradient(135deg,#1e293b,#0f172a) */}
       {/* CSS كامل */}
       <style>{`
-        body { background:white ; font-family: Arial, sans-serif; color: white; margin: 0; padding: 20px; }
+        body {background: linear-gradient(135deg, #d6e2f5ff, #f9fcff, #d7e9ff); font-family: Arial, sans-serif; color: white; margin: 0; padding: 20px; }
         .form-container { max-width: 1000px; margin:auto; background:#111827; padding:30px; border-radius:12px; box-shadow:0 6px 15px rgba(0,0,0,0.6);}
         h2 { text-align:center; margin-bottom:20px; color:#C2A68C; }
         .car-form { display:grid; grid-template-columns:1fr 1fr; gap:20px; }

@@ -91,10 +91,10 @@ function CarBooking() {
 
 🚗 Véhicule réservé :
    • Nom : ${car.nom}
-   • Marque : ${car.marque}
+   • description : ${car.description}
    • Catégorie : ${car.categorie}
    • Carburant : ${car.carburant}
-   • Transmission : ${car.transmission}
+   • Sièges : ${car.sieges}
    • Prix par jour : ${car.prixParJour} DT
 
 📅 Du ${formData.pickupDate} au ${formData.returnDate}
@@ -156,7 +156,7 @@ function CarBooking() {
               }}
             >
               <InfoItem icon="fa-tag" label="Nom" value={car.nom} />
-              <InfoItem icon="fa-industry" label="Marque" value={car.marque} />
+              <InfoItem icon="fa-star" label="étoil" value={5} />
               <InfoItem icon="fa-cogs" label="Modèle" value={car.modele} />
               <InfoItem
                 icon="fa-calendar-alt"
@@ -333,9 +333,12 @@ function CarBooking() {
         <div className="popup-overlay">
           <div className="popup">
             <h3>✅ Réservation confirmée !</h3>
-            <p>On va vous contacter, merci 🙏</p>
-            <QRCodeCanvas id="reservationQR" value={qrValue} size={180} />
-            <div style={{ marginTop: "15px" }}>
+            <p>On va vous contacter directement, merci 🙏</p>
+            <p>Cher(e) utilisateur(trice), si vous rencontrez un problème, vous pouvez le signaler ou contacter l’administrateur principal au numéro suivant : [23098849].🙏</p>
+<div style={{marginLeft:"430px"}}>
+              <QRCodeCanvas id="reservationQR" value={qrValue} size={180} />
+  
+</div>            <div style={{ marginTop: "15px" }}>
               <button
                 onClick={() => {
                   const canvas = document.getElementById("reservationQR");
