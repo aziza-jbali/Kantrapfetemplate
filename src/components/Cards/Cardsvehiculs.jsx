@@ -85,6 +85,26 @@ function Cardsvehiculs() {
     for (let i = start; i <= end; i++) pages.push(i);
     return pages;
   };
+  const lieux = [
+    "Tunis",
+    "Ariana",
+    "Manouba",
+    "Ben Arous",
+    "Sousse",
+    "Sfax",
+    "Tozeur",
+    "Nabeul",
+    "Bizerte",
+    "Gabès",
+  ];
+
+  const [lieuAgence, setLieuAgence] = useState("");
+
+  useEffect(() => {
+    // ✅ يتم تعيين المكان مرة واحدة فقط
+    const randomIndex = Math.floor(Math.random() * lieux.length);
+    setLieuAgence(lieux[randomIndex]);
+  }, []); // ← لاحظ الأقواس الفارغة، معناها تعمل مرة واحدة فقط
 
   return (
     <section
@@ -182,12 +202,19 @@ function Cardsvehiculs() {
                       Carburant:{" "}
                       <span className="fw-bold ms-1">{car.carburant}</span>
                     </li>
-                    <li>
+                    {/* <li>
                       Transmission:{" "}
                       <span className="fw-bold ms-1">
                         {car.transmission || "—"}
                       </span>
+                    </li> */}
+                    <li>
+                      Lieu de l'agence:{" "}
+                      <span className="fw-bold ms-1 text-info">
+                        {lieuAgence}
+                      </span>
                     </li>
+
                     <li>
                       Disponibilité:{" "}
                       <span className="fw-bold ms-1 text-success">

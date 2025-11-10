@@ -207,7 +207,7 @@ export default function SidebarAdminprincipal() {
                 </Link>
               </li>
 
-              <li className="items-center">
+              {/* <li className="items-center">
                 <Link
                   className="text-blueGray-700 hover:text-blueGray-500 text-xl uppercase py-3 font-bold block"
                   to="/profile"
@@ -215,7 +215,7 @@ export default function SidebarAdminprincipal() {
                   <i className="fas fa-user-circle text-blueGray-400 mr-2 text-xl font-bold"></i>{" "}
                   Profile Page
                 </Link>
-              </li>
+              </li> */}
             </ul>
 
           </div>

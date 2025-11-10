@@ -198,71 +198,82 @@ export default function CardTable({ color }) {
           </thead>
 
           <tbody>
-            {Vehicules.filter(
-              (v) =>
-                v.nom.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                v.sieges.toString().includes(searchTerm)
-            ).map((v) => (
-              <tr key={v._id}>
-                <td className="border  p-2  px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-3 text-left flex items-center">
-                  <img
-                    src={`http://localhost:5011${v.image}`}
-                    className="h-12 w-12 bg-white rounded-full border"
-                    alt="voiture"
-                  />
-                  <span className="ml-2 font-bold text-xl ">{v.nom} </span>
-                </td>
-                <td className="border p-2 font-bold text-center text-xl">
-                  {v.sieges}
-                </td>
-                <td className="border p-2  font-bold text-center text-xl">
-                  {v.carburant}{" "}
-                </td>
-                <td className="border p-2 font-bold text-center text-xl">
-                  {v.statusVehicule}
-                  {
-                    <select
-                      value={v.statusVehicule}
-                      onChange={(e) =>
-                        handleStatusChange(v._id, e.target.value)
-                      }
-                      className="border rounded px-2 py-1 text-xl bg-lightBlue-500 ml-2"
-                    >
-                      <option value="disponible">disponible</option>
-                      <option value="indisponible">indisponible</option>
-                    </select>
-                  }
-                </td>
-                <td className="border p-2 text-center  font-bold text-xl">
-                  {" "}
-                  <span
-                    className={
-                      v.statut.trim() === "Approuvé"
-                        ? "text-emerald-500 font-bold"
-                        : v.statut.trim() === "Rejeté"
-                        ? "text-red-500 font-bold"
-                        : "text-yellow-500 font-bold"
-                    }
-                  >
-                    {v.statut}
-                  </span>
-                </td>
-                <td className="border p-2 text-center">
-                  <button
-                    className="bg-lightBlue-500 text-white font-bold px-4 py-2 rounded mr-2"
-                    onClick={() => openEditPopup(v)}
-                  >
-                    Modifier
-                  </button>
-                  <button
-                    className="bg-red-500 text-white font-bold px-4 py-2 rounded"
-                    onClick={() => deletevehicule(v._id)}
-                  >
-                    Supprimer
-                  </button>
+            {Vehicules.length === 0 ? (
+              <tr>
+                <td
+                  colSpan="6"
+                  className="text-center py-6 text-red-500 font-bold text-xl"
+                >
+                  🚗 Aucun véhicule trouvé pour cette agence
                 </td>
               </tr>
-            ))}
+            ) : (
+              Vehicules.filter(
+                (v) =>
+                  v.nom.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                  v.sieges.toString().includes(searchTerm)
+              ).map((v) => (
+                <tr key={v._id}>
+                  <td className="border  p-2  px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-3 text-left flex items-center">
+                    <img
+                      src={`http://localhost:5011${v.image}`}
+                      className="h-12 w-12 bg-white rounded-full border"
+                      alt="voiture"
+                    />
+                    <span className="ml-2 font-bold text-xl ">{v.nom} </span>
+                  </td>
+                  <td className="border p-2 font-bold text-center text-xl">
+                    {v.sieges}
+                  </td>
+                  <td className="border p-2  font-bold text-center text-xl">
+                    {v.carburant}{" "}
+                  </td>
+                  <td className="border p-2 font-bold text-center text-xl">
+                    {v.statusVehicule}
+                    {
+                      <select
+                        value={v.statusVehicule}
+                        onChange={(e) =>
+                          handleStatusChange(v._id, e.target.value)
+                        }
+                        className="border rounded px-2 py-1 text-xl bg-lightBlue-500 ml-2"
+                      >
+                        <option value="disponible">disponible</option>
+                        <option value="indisponible">indisponible</option>
+                      </select>
+                    }
+                  </td>
+                  <td className="border p-2 text-center  font-bold text-xl">
+                    {" "}
+                    <span
+                      className={
+                        v.statut.trim() === "Approuvé"
+                          ? "text-emerald-500 font-bold"
+                          : v.statut.trim() === "Rejeté"
+                          ? "text-red-500 font-bold"
+                          : "text-yellow-500 font-bold"
+                      }
+                    >
+                      {v.statut}
+                    </span>
+                  </td>
+                  <td className="border p-2 text-center">
+                    <button
+                      className="bg-lightBlue-500 text-white font-bold px-4 py-2 rounded mr-2"
+                      onClick={() => openEditPopup(v)}
+                    >
+                      Modifier
+                    </button>
+                    <button
+                      className="bg-red-500 text-white font-bold px-4 py-2 rounded"
+                      onClick={() => deletevehicule(v._id)}
+                    >
+                      Supprimer
+                    </button>
+                  </td>
+                </tr>
+              ))
+            )}
           </tbody>
         </table>
       </div>

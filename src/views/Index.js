@@ -18,12 +18,12 @@ import ServicesAndWhyUs from "components/ServiceandWhyUs/ServiceandWhyUs";
 export default function Index() {
   const history = useHistory();
 
-const goToRegister = (role) => {
-  history.push({
-    pathname: "/auth/register",
-    state: { role },
-  });
-};
+  const goToRegister = (role) => {
+    history.push({
+      pathname: "/auth/register",
+      state: { role },
+    });
+  };
 
   return (
     <>
@@ -113,8 +113,9 @@ const goToRegister = (role) => {
                     <div className="hover:-mt-4 relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg ease-linear transition-all duration-150">
                       <img
                         alt="..."
-                        className="align-middle border-none max-w-full h-auto rounded-lg"
-                        src={require("assets/img/profile.jpg").default}
+                        style={{ height: "274px" }}
+                        className="align-middle border-none max-w-full  rounded-lg"
+                        src={require("assets/img/annonces.png").default}
                       />
                     </div>
                   </Link>
@@ -186,9 +187,8 @@ const goToRegister = (role) => {
               </p>
               <div className="sm:block flex flex-col mt-10">
                 {/* onClick={()=>{ history.push("/auth/register");}} */}
-                <button  onClick={() => goToRegister("agence")}
-                 
-                 
+                <button
+                  onClick={() => goToRegister("agence")}
                   // href="https://www.creative-tim.com/learning-lab/tailwind/react/overview/notus?ref=nr-index"
                   // target="_blank"
                   className="get-started text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-2 bg-lightBlue-500 active:bg-lightBlue-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150"
@@ -197,7 +197,8 @@ const goToRegister = (role) => {
 
                   <span>Ajouter Véhicule</span>
                 </button>
-                <button onClick={() => goToRegister("annonceur")}
+                <button
+                  onClick={() => goToRegister("annonceur")}
                   // to="/auth/register"
                   // state={{ role: "annonceur" }}
                   // href="https://github.com/creativetimofficial/notus-react?ref=nr-index"

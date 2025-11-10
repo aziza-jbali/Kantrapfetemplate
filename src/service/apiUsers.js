@@ -46,3 +46,12 @@ export const updateclientWithImg = async (usertData, userId) => {
     throw error;
   }
 };
+
+export async function getUserById(id) {
+  try {
+    return await axios.get(`${apiUrl}/getUserById/${id}`);
+  } catch (error) {
+    console.error("Error fetching user by ID:", error);
+    throw error;
+  }
+}

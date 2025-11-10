@@ -888,7 +888,7 @@
 
 
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { addVehiculeWithImg } from "../../service/apiGestionvehicules";
 
 export default function AddCarForm() {
@@ -1014,9 +1014,28 @@ const token = localStorage.getItem("token");
       alert("حدث خطأ أثناء الإضافة.");
     }
   };
+  // ✅ Fonction retour à la page précédente
+  const handleGoBack = () => {
+    window.history.back();
+  };
+
+  // ✅ Gérer la touche Échap pour retour automatique
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        handleGoBack();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
 
   return (
     <div className="form-container">
+        {/* ✅ Bouton X pour retour */}
+      <button className="close-btn" onClick={handleGoBack}>
+        🗙
+      </button>
       <h2 style={{color:"#6D94C5"}}>Ajouter une voiture adaptée</h2>
       <form className="car-form" onSubmit={handleSubmit}>
 

@@ -395,9 +395,10 @@ export default function TableReservation({ color }) {
                 <tr>
                   <td
                     colSpan="6"
-                    className="text-center p-4 text-lg text-blueGray-500"
+                    
+                  className="text-center py-6 text-red-500 font-bold text-xl"
                   >
-                    Aucune réservation trouvée pour cette agence.
+                     🎫 Aucune réservation trouvée pour cette agence.
                   </td>
                 </tr>
               )}

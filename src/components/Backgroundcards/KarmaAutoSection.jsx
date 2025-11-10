@@ -1,8 +1,10 @@
 import React from "react";
 import img1 from "../../assets/img/chat.png";
 import "../component.css"
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 export default function KarmaAutoSection() {
+  const history=useHistory();
   return (
     <section className="karma-section">
       <div className="karma-content">
@@ -18,7 +20,10 @@ export default function KarmaAutoSection() {
             Notre mission est de rendre la mobilité plus simple, plus sûre et plus digne, 
             en alliant technologie moderne et solutions pratiques qui renforcent l'autonomie.
           </p>
-          <button className="style-button">Découvrir Nos Véhicules</button>
+          <button className="style-button"    onClick={() => {
+                    // مثال: التوجّه إلى صفحة التفاصيل إن وجدت
+                 history.push("/landing");
+               }}>Découvrir Nos Véhicules</button>
         </div>
 
         {/* Image droite */}

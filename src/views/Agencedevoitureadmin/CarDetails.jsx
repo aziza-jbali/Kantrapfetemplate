@@ -95,7 +95,7 @@ export default function CarDetails() {
           justifyContent: "center",
           alignItems: "center",
           width: "600px", // عرض أصغر للكارد
-          background: "rgba(255, 255, 255, 0.4)",
+          background: "rgba(255, 255, 255, 0.99)",
           backdropFilter: "blur(6px)",
           borderRadius: "15px",
           boxShadow: "0 4px 15px rgba(0,0,0,0.3)",

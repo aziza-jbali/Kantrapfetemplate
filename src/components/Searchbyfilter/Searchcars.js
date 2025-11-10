@@ -115,7 +115,7 @@ function HandicapFilter() {
       </div>
 
       {/* Espace Fauteuil */}
-      <div>
+      {/* <div>
         <label htmlFor="espaceFauteuil" className="form-label d-block">
           Espace fauteuil
         </label>
@@ -131,7 +131,7 @@ function HandicapFilter() {
           <option value="Moyen">Moyen</option>
           <option value="Large">Large</option>
         </select>
-      </div>
+      </div> */}
 
       {/* Support */}
       <div>

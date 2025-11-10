@@ -447,19 +447,19 @@ export default function CardProfile() {
             </h3>
             <div className="text-md leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase">
               <i className="fas fa-map-marker-alt mr-2 text-lg text-blueGray-400"></i>
-              Tunis, Tunisie
+              Tunis
             </div>
-            <div className="mb-2 text-blueGray-700 mt-4 text-lg">
+            {/* <div className="mb-2 text-blueGray-700 mt-4 text-lg">
               <i className="fas fa-briefcase mr-2 text-lg text-blueGray-400"></i>
               Développeuse Full Stack
             </div>
             <div className="mb-2 text-blueGray-700 text-lg">
               <i className="fas fa-university mr-2 text-lg text-blueGray-400"></i>
               Université des Sciences Informatiques
-            </div>
+            </div> */}
           </div>
 
-          {/* About Section */}
+           {/* About Section 
           <div className="mt-8 py-8 border-t border-blueGray-200 text-center">
             <div className="w-full lg:w-9/12 px-4 mx-auto">
               <p className="mb-4 text-xl leading-relaxed text-blueGray-700">
@@ -476,7 +476,7 @@ export default function CardProfile() {
                 Voir plus
               </a>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </>

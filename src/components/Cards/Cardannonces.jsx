@@ -294,6 +294,278 @@
 
 // export default Cardannonces;
 
+// import React, { useEffect, useState } from "react";
+// import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/js/bootstrap.bundle.min.js";
+// import "@fortawesome/fontawesome-free/css/all.min.css";
+// import { gettousannonces } from "../../service/apiGestionannonces";
+// import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+
+// function Cardannonces() {
+//   const [pub, setPub] = useState([]);
+//   const [loading, setLoading] = useState(true);
+//   const [error, setError] = useState(null);
+//   const history = useHistory();
+
+//   // 🔹 جلب كل الإعلانات من الـ API
+//   const getPublication = async () => {
+//     try {
+//       const response = await gettousannonces();
+//       // فقط الإعلانات الموافق عليها
+//       const approved = response.data.filter((a) => a.statut === "Approuvé");
+//       setPub(approved);
+//       setError(null);
+//     } catch (error) {
+//       console.log("❌ Error while calling gettousannonces API", error);
+//       setError("خطأ في الاتصال بالسيرفر");
+//     } finally {
+//       setLoading(false);
+//     }
+//   };
+
+//   useEffect(() => {
+//     getPublication();
+//     const interval = setInterval(() => {
+//       getPublication();
+//     }, 5000);
+//     return () => clearInterval(interval);
+//   }, []);
+
+//   // 🔹 Pagination setup
+//   const cardsPerPage = 6;
+//   const [currentPage, setCurrentPage] = useState(1);
+//   const totalPages = Math.ceil(pub.length / cardsPerPage);
+//   const indexOfLastCard = currentPage * cardsPerPage;
+//   const indexOfFirstCard = indexOfLastCard - cardsPerPage;
+//   const currentCards = pub.slice(indexOfFirstCard, indexOfLastCard);
+
+//   const getPageNumbers = () => {
+//     const pages = [];
+//     const totalNumbers = 3;
+//     let start = currentPage - 1;
+//     let end = currentPage + 1;
+//     if (start < 1) {
+//       start = 1;
+//       end = totalNumbers;
+//     }
+//     if (end > totalPages) {
+//       end = totalPages;
+//       start = totalPages - (totalNumbers - 1);
+//       if (start < 1) start = 1;
+//     }
+//     for (let i = start; i <= end; i++) pages.push(i);
+//     return pages;
+//   };
+
+//   return (
+//     <section
+//       style={{
+//         position: "relative",
+//         width: "100vw",
+//         minHeight: "100vh",
+//         overflow: "hidden",
+//       }}
+//     >
+//       <div className="container py-5">
+//         <h2 className="text-center text-black mb-4" >
+//          📢 Découvrez les annonces approuvées 📢
+//         </h2>
+
+//         {/* 🔹 حالة التحميل */}
+//         {loading && (
+//           <div className="text-center my-5 ">
+//             <div className="spinner-border text-primary" role="status"></div>
+//             <p className="mt-3">جاري تحميل الإعلانات...</p>
+//           </div>
+//         )}
+
+//         {/* 🔹 حالة الخطأ */}
+//         {error && (
+//           <div className="alert alert-danger text-center" role="alert">
+//             {error}
+//           </div>
+//         )}
+
+//         {/* 🔹 حالة لا توجد نتائج */}
+//         {!loading && !error && pub.length === 0 && (
+//           <div className="text-center text-muted fs-5 my-5">
+//             لا توجد إعلانات متاحة حالياً 📭
+//           </div>
+//         )}
+
+//         {/* 🔹 عرض الإعلانات */}
+//         <div className="row g-4">
+//           {currentCards.map((annonce, index) => (
+//             <div
+//               style={{ borderRadius: "70px" }}
+//               className="col-md-6 col-lg-4"
+//               key={annonce._id || index}
+//             >
+//               <div
+//                 className="card shadow h-100"
+//                 style={{
+//                   transition: "transform 0.3s, box-shadow 0.3s",
+//                   cursor: "pointer",
+//                 }}
+//                 onMouseEnter={(e) => {
+//                   e.currentTarget.style.transform = "scale(1.05)";
+//                   e.currentTarget.style.boxShadow =
+//                     "0 15px 30px rgba(0,0,0,0.3)";
+//                 }}
+//                 onMouseLeave={(e) => {
+//                   e.currentTarget.style.transform = "scale(1)";
+//                   e.currentTarget.style.boxShadow = "0 4px 6px rgba(0,0,0,0.1)";
+//                 }}
+//               >
+//                 <div className="card-body">
+//                   <img
+//                     style={{
+//                       height: "300px",
+//                       width: "100%",
+//                       objectFit: "cover",
+//                       borderRadius: "15px",
+//                     }}
+//                     src={`http://localhost:5011${annonce.image}`}
+//                     className="card-img-top"
+//                     alt="annonce"
+//                   />
+//                   <hr />
+//                   <p className="text-center font-bold text-muted mt-3">
+//                     {annonce.description || "—"}
+//                   </p>
+
+//                   <hr />
+//                   <p className="text-center text-xl text-secondary">
+//                     Publié le:{" "}
+//                     <span className="fw-bold">
+//                       {new Date(annonce.datePublication).toLocaleDateString()}
+//                     </span>
+//                   </p>
+//                 </div>
+//               </div>
+//             </div>
+//           ))}
+//         </div>
+
+//         {/* 🔹 Pagination */}
+//         {!loading && pub.length > 0 && (
+//           <div className="py-4">
+//             <nav className="block">
+//               <ul className="flex pl-0 rounded list-none flex-wrap justify-center">
+//                 <li>
+//                   <a
+//                     href="#!"
+//                     onClick={() =>
+//                       currentPage > 1 && setCurrentPage(currentPage - 1)
+//                     }
+//                     className="first:ml-0 text-xs font-semibold flex w-12 h-12 mx-1 p-0 rounded-full items-center justify-center leading-tight relative border border-solid border-blueGray-200 text-white bg-blueGray-200"
+//                   >
+//                     <i className="fas fa-chevron-left -ml-px"></i>
+//                   </a>
+//                 </li>
+//                 {getPageNumbers().map((number) => (
+//                   <li key={number}>
+//                     <a
+//                       href="#!"
+//                       onClick={() => setCurrentPage(number)}
+//                       className={`first:ml-0 text-xs font-semibold flex w-12 h-12 mx-1 p-2 rounded-full items-center justify-center leading-tight relative border border-solid ${
+//                         currentPage === number
+//                           ? "border-blueGray-500 bg-lightBlue-500 text-white"
+//                           : "border-blueGray-200 bg-white text-blueGray-500"
+//                       }`}
+//                     >
+//                       {number}
+//                     </a>
+//                   </li>
+//                 ))}
+//                 <li>
+//                   <a
+//                     href="#!"
+//                     onClick={() =>
+//                       currentPage < totalPages &&
+//                       setCurrentPage(currentPage + 1)
+//                     }
+//                     className="first:ml-0 text-xs font-semibold flex w-12 h-12 mx-1 p-0 rounded-full items-center justify-center leading-tight relative border border-solid border-blueGray-200 text-white bg-blueGray-200"
+//                   >
+//                     <i className="fas fa-chevron-right -mr-px"></i>
+//                   </a>
+//                 </li>
+//               </ul>
+//             </nav>
+//           </div>
+//         )}
+//       </div>
+//     </section>
+//   );
+// }
+
+// export default Cardannonces;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
@@ -306,6 +578,10 @@ function Cardannonces() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const history = useHistory();
+
+  // Search state
+  const [searchTerm, setSearchTerm] = useState("");
+  const [debouncedSearch, setDebouncedSearch] = useState("");
 
   // 🔹 جلب كل الإعلانات من الـ API
   const getPublication = async () => {
@@ -331,13 +607,32 @@ function Cardannonces() {
     return () => clearInterval(interval);
   }, []);
 
-  // 🔹 Pagination setup
+  // Debounce البحث (300ms)
+  useEffect(() => {
+    const t = setTimeout(() => setDebouncedSearch(searchTerm.trim()), 300);
+    return () => clearTimeout(t);
+  }, [searchTerm]);
+
+  // 🔹 Pagination setup (سيتم حسابها اعتماداً على النتائج المفلترة)
   const cardsPerPage = 6;
   const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = Math.ceil(pub.length / cardsPerPage);
+
+  // 🔹 تطبيق فلتر البحث على القائمة (بحث في حقل description)
+  const filteredPub = pub.filter((a) => {
+    if (!debouncedSearch) return true; // لا فلتر إذا حقل البحث فارغ
+    const desc = a.description || "";
+    return desc.toLowerCase().includes(debouncedSearch.toLowerCase());
+  });
+
+  // Reset page to 1 عندما يتغير مصطلح البحث المفلتر
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [debouncedSearch]);
+
+  const totalPages = Math.max(1, Math.ceil(filteredPub.length / cardsPerPage));
   const indexOfLastCard = currentPage * cardsPerPage;
   const indexOfFirstCard = indexOfLastCard - cardsPerPage;
-  const currentCards = pub.slice(indexOfFirstCard, indexOfLastCard);
+  const currentCards = filteredPub.slice(indexOfFirstCard, indexOfLastCard);
 
   const getPageNumbers = () => {
     const pages = [];
@@ -367,9 +662,32 @@ function Cardannonces() {
       }}
     >
       <div className="container py-5">
-        <h2 className="text-center text-black mb-4" >
-          Découvrez les annonces approuvées
-        </h2>
+        <h2 className="text-center text-black mb-4">📢 Découvrez les annonces approuvées 📢</h2>
+
+        {/* ===== Search input ===== */}
+        <div className="row mb-4">
+          <div className="col-md-8 offset-md-2">
+            <div className="input-group" style={{padding:"35px"}}>
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Rechercher par description... (ex: fauteuil, accessibilité, chaise)"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+              <button
+                className="btn btn-outline-secondary"
+                type="button"
+                onClick={() => {
+                  setSearchTerm("");
+                }}
+                title="Réinitialiser la recherche"
+              >
+                ✖
+              </button>
+            </div>
+          </div>
+        </div>
 
         {/* 🔹 حالة التحميل */}
         {loading && (
@@ -387,20 +705,14 @@ function Cardannonces() {
         )}
 
         {/* 🔹 حالة لا توجد نتائج */}
-        {!loading && !error && pub.length === 0 && (
-          <div className="text-center text-muted fs-5 my-5">
-            لا توجد إعلانات متاحة حالياً 📭
-          </div>
+        {!loading && !error && filteredPub.length === 0 && (
+          <div className="text-center text-muted fs-5 my-5">لا توجد إعلانات متطابقة مع البحث 📭</div>
         )}
 
         {/* 🔹 عرض الإعلانات */}
         <div className="row g-4">
           {currentCards.map((annonce, index) => (
-            <div
-              style={{ borderRadius: "70px" }}
-              className="col-md-6 col-lg-4"
-              key={annonce._id || index}
-            >
+            <div style={{ borderRadius: "70px" }} className="col-md-6 col-lg-4" key={annonce._id || index}>
               <div
                 className="card shadow h-100"
                 style={{
@@ -409,13 +721,16 @@ function Cardannonces() {
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = "scale(1.05)";
-                  e.currentTarget.style.boxShadow =
-                    "0 15px 30px rgba(0,0,0,0.3)";
+                  e.currentTarget.style.boxShadow = "0 15px 30px rgba(0,0,0,0.3)";
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.transform = "scale(1)";
                   e.currentTarget.style.boxShadow = "0 4px 6px rgba(0,0,0,0.1)";
                 }}
+                // onClick={() => {
+                //   // مثال: التوجّه إلى صفحة التفاصيل إن وجدت
+                //   history.push(`/annonce/${annonce._id}`, { annonce });
+                // }}
               >
                 <div className="card-body">
                   <img
@@ -430,16 +745,11 @@ function Cardannonces() {
                     alt="annonce"
                   />
                   <hr />
-                  <p className="text-center text-muted mt-3">
-                    {annonce.description || "—"}
-                  </p>
+                  <p className="text-center font-bold text-muted mt-3">{annonce.description || "—"}</p>
 
                   <hr />
                   <p className="text-center text-xl text-secondary">
-                    Publié le:{" "}
-                    <span className="fw-bold">
-                      {new Date(annonce.datePublication).toLocaleDateString()}
-                    </span>
+                    Publié le: <span className="fw-bold">{new Date(annonce.datePublication).toLocaleDateString()}</span>
                   </p>
                 </div>
               </div>
@@ -448,16 +758,14 @@ function Cardannonces() {
         </div>
 
         {/* 🔹 Pagination */}
-        {!loading && pub.length > 0 && (
+        {!loading && filteredPub.length > 0 && (
           <div className="py-4">
             <nav className="block">
               <ul className="flex pl-0 rounded list-none flex-wrap justify-center">
                 <li>
                   <a
                     href="#!"
-                    onClick={() =>
-                      currentPage > 1 && setCurrentPage(currentPage - 1)
-                    }
+                    onClick={() => currentPage > 1 && setCurrentPage(currentPage - 1)}
                     className="first:ml-0 text-xs font-semibold flex w-12 h-12 mx-1 p-0 rounded-full items-center justify-center leading-tight relative border border-solid border-blueGray-200 text-white bg-blueGray-200"
                   >
                     <i className="fas fa-chevron-left -ml-px"></i>
@@ -469,9 +777,7 @@ function Cardannonces() {
                       href="#!"
                       onClick={() => setCurrentPage(number)}
                       className={`first:ml-0 text-xs font-semibold flex w-12 h-12 mx-1 p-2 rounded-full items-center justify-center leading-tight relative border border-solid ${
-                        currentPage === number
-                          ? "border-blueGray-500 bg-lightBlue-500 text-white"
-                          : "border-blueGray-200 bg-white text-blueGray-500"
+                        currentPage === number ? "border-blueGray-500 bg-lightBlue-500 text-white" : "border-blueGray-200 bg-white text-blueGray-500"
                       }`}
                     >
                       {number}
@@ -481,10 +787,7 @@ function Cardannonces() {
                 <li>
                   <a
                     href="#!"
-                    onClick={() =>
-                      currentPage < totalPages &&
-                      setCurrentPage(currentPage + 1)
-                    }
+                    onClick={() => currentPage < totalPages && setCurrentPage(currentPage + 1)}
                     className="first:ml-0 text-xs font-semibold flex w-12 h-12 mx-1 p-0 rounded-full items-center justify-center leading-tight relative border border-solid border-blueGray-200 text-white bg-blueGray-200"
                   >
                     <i className="fas fa-chevron-right -mr-px"></i>

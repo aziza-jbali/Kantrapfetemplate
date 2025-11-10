@@ -209,6 +209,8 @@ const LoginUser = async () => {
 
     localStorage.setItem("token", token);
     localStorage.setItem("role", userRole);
+        alert("✅ Connexion réussie ! Bienvenue sur votre espace.");
+
 
     if (userRole === "agence") history.push("/Adminagencedevoiture/settings");
     else if (userRole === "annonceur") history.push("/Utilisateur/Mes-Annonces");
@@ -219,6 +221,8 @@ const LoginUser = async () => {
     // };
   } catch (error) {
     console.error("Login error:", error.response ? error.response.data : error.message);
+      alert("❌ Échec de la connexion. Veuillez vérifier vos identifiants.");
+
   }
 };
 
